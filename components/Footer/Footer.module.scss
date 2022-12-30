@@ -1,0 +1,17 @@
+.navBarContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 6.5%;
+  padding: 10px;
+  border: 1.5px solid #0000002d;
+  background-color: rgb(137, 156, 227);
+  h5 {
+    margin-right: 5px;
+  }
+  a {
+    text-decoration: none;
+    color: #fefefe;
+  }
+}
