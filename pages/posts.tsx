@@ -6,6 +6,7 @@ import NavBar from "../components/NavBar/NavBar"
 import Pagination from "../components/Pagination/Pagination";
 import style from './../styles/posts.module.scss'
 
+
 type postsType = {
     userId: number;
     id: number;
