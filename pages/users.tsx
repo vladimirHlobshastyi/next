@@ -23,6 +23,7 @@ export type userType = {
 
 }
 const Users = ({ users }: { users: userType[] }) => {
+    debugger
     return <div className={style.userContainer}>
         <HeadComponent description='test project, users link'
             viewport='width=device-width, initial-scale=1'

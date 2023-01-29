@@ -1,17 +1,55 @@
-.navBarContainer {
+.container {
+  position: static;
   display: flex;
-  justify-content: center;
+  justify-content: space-around;
   align-items: center;
   width: 100%;
-  height: 6.5%;
-  padding: 10px;
+  height: 80px;
+  padding: 10px 50px;
   border: 1.5px solid #0000002d;
-  background-color: rgb(137, 156, 227);
-  h5 {
-    margin-right: 5px;
+  background-color: #efefee;
+  .info {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    width: 35%;
+    .infoPhone {
+      display: flex;
+      margin-bottom: 10px;
+      .infoPhoneOne {
+        border-right: 1.5px solid black;
+        padding-right: 5px;
+      }
+      .infoPhoneTwo {
+        margin-left: 5px;
+      }
+    }
+    .infoStreet {
+      letter-spacing: 3.8px;
+    }
   }
-  a {
-    text-decoration: none;
-    color: #fefefe;
+
+  .logo {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 25%;
+  }
+  .social {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    width: 35%;
+    .socialLink {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-left: 15px;
+      svg {
+        width: 32px;
+        height: 32px;
+        color: #000000;
+      }
+    }
   }
 }

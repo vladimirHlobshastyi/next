@@ -16,7 +16,7 @@ type postsType = {
 
 const Posts = ({ posts }: { posts: postsType[][] }) => {
     const [page, setPage] = useState(1)
-
+    debugger
     return <div className={style.postsContainer}>
         <HeadComponent description='test project, post link'
             viewport='width=device-width, initial-scale=1'
