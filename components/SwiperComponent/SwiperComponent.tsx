@@ -6,6 +6,7 @@ import "swiper/css/pagination";
 import "swiper/css/navigation";
 import "swiper/css/virtual";
 import "swiper/css/effect-flip";
+import Image from "next/image";
 
 
 const mocFrame = [
@@ -33,7 +34,7 @@ const SwiperComponent = () => {
             >
                 {mocFrame.map((item) => {
                     return <SwiperSlide key={item.id} className={style.swaperItem}>
-                        <img src={item.img} alt="image" />
+                        <Image src={item.img} alt="image" />
                     </SwiperSlide>
                 })}
 
