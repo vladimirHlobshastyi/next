@@ -7,7 +7,7 @@ import { useSelector } from 'react-redux';
 import { cartState } from '../store/cart/cartSlice';
 
 
-
+const HOME_ADRESS = process.env.HOME_ADRESS
 
 const Cart = ({ productsPreview }: { productsPreview: dataCartProduct[] }) => {
 
@@ -17,7 +17,7 @@ const Cart = ({ productsPreview }: { productsPreview: dataCartProduct[] }) => {
 
     <div className={style.orderContainer}>
       <div className={style.orderProductsContainer}>
-        {products.length ? products.map((product) => <CartProduct product={product.data} />) : <span>Корзина пуста</span>}
+        {products.length ? products.map((product) => <CartProduct product={product.data} key={product.data.id} />) : <span>Корзина пуста</span>}
       </div>
       <div className={style.orderInfo}>
         <div className={style.orderInfoPromo}>
@@ -48,7 +48,7 @@ const Cart = ({ productsPreview }: { productsPreview: dataCartProduct[] }) => {
 export default Cart
 
 export async function getServerSideProps() {
-  const response = await fetch('/api/products')
+  const response = await fetch(`${HOME_ADRESS}/api/products`)
   const productsPreview = await response.json()
 
   return {

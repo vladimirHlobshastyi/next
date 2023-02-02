@@ -8,7 +8,7 @@ import ProductPreview from '../components/ProductPreview/ProductPreview'
 import { dataCartProduct } from '../store/cart/cartSlice.types'
 
 const inter = Inter({ subsets: ['latin'] })
-
+const HOME_ADRESS = process.env.HOME_ADRESS
 export default function Home({ products }: { products: dataCartProduct[] }) {
   debugger
   return (
@@ -16,7 +16,7 @@ export default function Home({ products }: { products: dataCartProduct[] }) {
       <HeadComponent description='test project, main link'
         viewport='width=device-width, initial-scale=1'
       />
-      
+
       <div className={style.wrapperContainer}>
         <div className={style.carousel}>
           <SwiperComponent />
@@ -47,7 +47,7 @@ export default function Home({ products }: { products: dataCartProduct[] }) {
 
 
 export async function getServerSideProps() {
-  const response = await fetch('http://localhost:3000/api/products')
+  const response = await fetch(`${ HOME_ADRESS }/api/products`)
 
   const products = await response.json()
 
