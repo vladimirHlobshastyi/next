@@ -48,7 +48,7 @@ const Cart = ({ productsPreview }: { productsPreview: dataCartProduct[] }) => {
 export default Cart
 
 export async function getServerSideProps() {
-  const response = await fetch('http://localhost:3000/api/products')
+  const response = await fetch('/api/products')
   const productsPreview = await response.json()
 
   return {
