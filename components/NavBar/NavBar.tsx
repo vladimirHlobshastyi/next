@@ -20,7 +20,6 @@ const NavBar = () => {
     //setIsVisible(false)
   })
 
-  console.log(isVisible)
   return (<>
     <div className={style.navBarContainer}>
       <div className={style.navBarMenu} onClick={closeSidePanel} >

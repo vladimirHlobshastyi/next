@@ -8,10 +8,11 @@ import "swiper/css/virtual";
 import "swiper/css/effect-flip";
 
 
-const mocFrame = [{ id: 1, img: './Frame_1.png' },
-{ id: 2, img: './Frame_2.png' },
-{ id: 3, img: './Frame_3.png' },
-{ id: 4, img: './Frame_4.png' },]
+const mocFrame = [
+    { id: 1, img: './Frame_1.png' },
+    { id: 2, img: './Frame_2.png' },
+    { id: 3, img: './Frame_3.png' },
+    { id: 4, img: './Frame_4.png' },]
 
 const SwiperComponent = () => {
 

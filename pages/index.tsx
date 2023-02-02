@@ -1,24 +1,22 @@
 import { Inter } from '@next/font/google'
 import style from './../styles/Home.module.scss'
 import HeadComponent from '../components/Head/HeadComponent'
-import Wrapper from '../components/Wrapper/Wrapper'
-import Product from '../components/Product/Product'
-import { mocTypes } from '../moc/moc'
 import SwiperComponent from '../components/SwiperComponent/SwiperComponent'
 import Link from 'next/link'
 import { BsFillInfoCircleFill } from 'react-icons/bs'
 import ProductPreview from '../components/ProductPreview/ProductPreview'
+import { dataCartProduct } from '../store/cart/cartSlice.types'
 
 const inter = Inter({ subsets: ['latin'] })
 
-export default function Home({ products }: { products: mocTypes[] }) {
+export default function Home({ products }: { products: dataCartProduct[] }) {
   debugger
   return (
     <>
       <HeadComponent description='test project, main link'
         viewport='width=device-width, initial-scale=1'
       />
-      {/* <Product {...{ products }} /> */}
+      
       <div className={style.wrapperContainer}>
         <div className={style.carousel}>
           <SwiperComponent />

@@ -1,14 +1,11 @@
-import Link from 'next/link'
 import { useState } from 'react'
 import style from './Dropdown.module.scss'
 import { GoChevronDown } from 'react-icons/go';
+import { DropdownTypes } from './Dropdown.types';
 
-type DropdownTypes = { nameWrapper: string, dropDownItem: string[] }
 
 const Dropdown = ({ nameWrapper, dropDownItem }: DropdownTypes) => {
     const [isVisibleCategory1, setIsVisibleCategory1] = useState(false)
-
-
 
     return <div className={style.sidePanelCatalogElement} onClick={() => setIsVisibleCategory1(!isVisibleCategory1)}>
         <div className={style.sidePanelCatalogElementC1}>

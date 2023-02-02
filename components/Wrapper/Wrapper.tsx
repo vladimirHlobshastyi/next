@@ -1,6 +1,4 @@
 import style from './Wrapper.module.scss'
-import Frame_1 from './img/Frame_1.png'
-import Image from 'next/image'
 import SwiperComponent from '../SwiperComponent/SwiperComponent'
 import Link from 'next/link'
 import ProductPreview from '../ProductPreview/ProductPreview'

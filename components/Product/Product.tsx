@@ -1,22 +1,17 @@
-import Image, { StaticImageData } from 'next/image'
-import { mocProducts, mocTypes } from '../../moc/moc'
+import Image from 'next/image'
 import ProductPreview from '../ProductPreview/ProductPreview'
 import style from './Product.module.scss'
-import { FC, useState } from 'react'
+import { useState } from 'react'
 import Dropdown from '../Dropdown/Dropdown'
-import test from './../../public/l_20222-w2ca33z8-lrw_u.webp'
 import { AiOutlineStar } from 'react-icons/ai';
+import { dataCartProduct } from '../../store/cart/cartSlice.types'
 
 
-const Product = ({ product, allProducts }: { product: mocTypes, allProducts: mocTypes[] }) => {
+const Product = ({ product, allProducts }: { product: dataCartProduct, allProducts: dataCartProduct[] }) => {
     const transcriptionMoc = { nameWrapper: 'Описание', dropDownItem: ['sadasdasdsadas'] }
     const transcriptionTwoMoc = { nameWrapper: 'Характеристики', dropDownItem: ['sadasdasdsadas'] }
 
     const [indexImage, setIndexImage] = useState(0)
-
-
-
-
 
     return <div className={style.container}>
         <div className={style.wrapper}>
