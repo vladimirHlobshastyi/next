@@ -11,7 +11,7 @@ type pathTypes = { params: { id: string }, }[]
 type productComponentTypes = { product: dataCartProduct, allProducts: dataCartProduct[] }
 
 export async function getStaticPaths() {
-  const response = await fetch(`${process.env.API_URL}/api/products`);
+  const response = await fetch(`${process.env.NEXT_PUBLIC_VERCEL_URL}/api/products`);
   const products = await response.json();
   const paths: pathTypes = products.map((product: dataCartProduct) => {
     return {
@@ -29,10 +29,10 @@ export async function getStaticProps({ params }: {
   params: { id: string },
 }) {
   const response = await fetch(
-    `${process.env.API_URL}/api/products/${params.id}`
+    `${process.env.NEXT_PUBLIC_VERCEL_URL}/api/products/${params.id}`
   );
   const allProductsResponse = await fetch(
-    `${process.env.API_URL}/api/products`
+    `${process.env.NEXT_PUBLIC_VERCEL_URL}/api/products`
   );
   const allProducts = await allProductsResponse.json();
   const product = await response.json();
