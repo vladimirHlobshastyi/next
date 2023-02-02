@@ -18,7 +18,7 @@ const Pagination = ({ page, totalPage, callb }: paginationProps) => {
         {pages().map((item) =>
             <div
                 onClick={(_e) => callb(item)}
-                className={`${style.paginationButton}  ${isActiveClass(item)}`}>
+                className={`${style.paginationButton}  ${isActiveClass(item)}`} key={item}>
                 {item}
             </div>)}
     </div>
