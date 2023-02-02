@@ -9,5 +9,9 @@ const nextConfig = {
     return config;
   },
 };
-
 module.exports = nextConfig;
+module.exports = {
+  env: {
+    API_URL: "http://localhost:3000",
+  },
+};

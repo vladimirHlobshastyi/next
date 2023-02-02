@@ -10,10 +10,10 @@ import Image from "next/image";
 
 
 const mocFrame = [
-    { id: 1, img: './Frame_1.png' },
-    { id: 2, img: './Frame_2.png' },
-    { id: 3, img: './Frame_3.png' },
-    { id: 4, img: './Frame_4.png' },]
+    { id: 1, img: '/Frame_1.png' },
+    { id: 2, img: '/Frame_2.png' },
+    { id: 3, img: '/Frame_3.png' },
+    { id: 4, img: '/Frame_4.png' },]
 
 const SwiperComponent = () => {
 
@@ -34,7 +34,7 @@ const SwiperComponent = () => {
             >
                 {mocFrame.map((item) => {
                     return <SwiperSlide key={item.id} className={style.swaperItem}>
-                        <Image src={item.img} alt="image" />
+                        <Image src={item.img} alt="image" width={1000} height={1000} />
                     </SwiperSlide>
                 })}
 
