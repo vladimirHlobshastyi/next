@@ -13,7 +13,7 @@ type pathTypes = {
 type productComponentTypes = { product: dataCartProduct, allProducts: dataCartProduct[] }
 
 export async function getStaticPaths() {
-  const response = await fetch("http://localhost:3000/api/products");
+  const response = await fetch("/api/products");
   const products = await response.json();
   const paths: pathTypes = products.map((product: dataCartProduct) => {
     return {
@@ -31,10 +31,10 @@ export async function getStaticProps({ params }: {
   params: { id: string },
 }) {
   const response = await fetch(
-    `http://localhost:3000/api/products/${params.id}`
+    `/api/products/${params.id}`
   );
   const allProductsResponse = await fetch(
-    `http://localhost:3000/api/products`
+    `/api/products`
   );
   const allProducts = await allProductsResponse.json();
   const product = await response.json();
