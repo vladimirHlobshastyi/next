@@ -46,7 +46,7 @@ const Cart = ({ productsPreview }: { productsPreview: dataCartProduct[] }) => {
 export default Cart
 
 export async function getServerSideProps() {
-  const response = await fetch(`${process.env.API_URL}/api/products`)
+  const response = await fetch(`${process.env.NEXT_PUBLIC_VERCEL_URL}/api/products`)
   const productsPreview = await response.json()
 
   return {
