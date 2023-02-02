@@ -7,15 +7,11 @@ import ProductPreview from "../../components/ProductPreview/ProductPreview";
 import { dataCartProduct } from "../../store/cart/cartSlice.types";
 import style from "./Product.module.scss";
 
-type pathTypes = {
-  params: { id: string },
-}[]
+type pathTypes = { params: { id: string }, }[]
 type productComponentTypes = { product: dataCartProduct, allProducts: dataCartProduct[] }
 
-const HOME_ADRESS = process.env.HOME_ADRESS
-
 export async function getStaticPaths() {
-  const response = await fetch(`${HOME_ADRESS}/api/products`);
+  const response = await fetch(`${process.env.API_URL}/api/products`);
   const products = await response.json();
   const paths: pathTypes = products.map((product: dataCartProduct) => {
     return {
@@ -33,10 +29,10 @@ export async function getStaticProps({ params }: {
   params: { id: string },
 }) {
   const response = await fetch(
-    `${HOME_ADRESS}/api/products/${params.id}`
+    `${process.env.API_URL}/api/products/${params.id}`
   );
   const allProductsResponse = await fetch(
-    `${HOME_ADRESS}/api/products`
+    `${process.env.API_URL}/api/products`
   );
   const allProducts = await allProductsResponse.json();
   const product = await response.json();

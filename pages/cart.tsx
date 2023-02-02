@@ -7,8 +7,6 @@ import { useSelector } from 'react-redux';
 import { cartState } from '../store/cart/cartSlice';
 
 
-const HOME_ADRESS = process.env.HOME_ADRESS
-
 const Cart = ({ productsPreview }: { productsPreview: dataCartProduct[] }) => {
 
   const { products, totalCount, totalPrice } = useSelector(cartState);
@@ -48,7 +46,7 @@ const Cart = ({ productsPreview }: { productsPreview: dataCartProduct[] }) => {
 export default Cart
 
 export async function getServerSideProps() {
-  const response = await fetch(`${HOME_ADRESS}/api/products`)
+  const response = await fetch(`${process.env.API_URL}/api/products`)
   const productsPreview = await response.json()
 
   return {
