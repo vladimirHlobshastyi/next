@@ -8,14 +8,14 @@ import { cartState } from '../store/cart/cartSlice';
 
 
 const Cart = ({ productsPreview }: { productsPreview: dataCartProduct[] }) => {
-/*   const { products, totalCount, totalPrice } = useSelector(cartState);
- */  return <div className={style.container}>
+  const { products, totalCount, totalPrice } = useSelector(cartState);
+  return <div className={style.container}>
     <h4 >Корзина</h4>
 
     <div className={style.orderContainer}>
       <div className={style.orderProductsContainer}>
-        {/*         {products.length ? products.map((product) => <CartProduct product={product.data} key={product.data.id} />) : <span>Корзина пуста</span>}
- */}      </div>
+        {products.length ? products.map((product) => <CartProduct product={product.data} key={product.data.id} />) : <span>Корзина пуста</span>}
+      </div>
       <div className={style.orderInfo}>
         <div className={style.orderInfoPromo}>
           <span>Введите промокод</span>
@@ -26,10 +26,10 @@ const Cart = ({ productsPreview }: { productsPreview: dataCartProduct[] }) => {
         </div>
         <div className={style.orderControl}>
           <div className={style.orderControlProducts}>
-            <span>Товары ({/* totalCount */})</span><span>{/* totalPrice */} $</span> </div>
+            <span>Товары ({totalCount})</span><span>{totalPrice} $</span> </div>
           <div className={style.orderControlPrice}>
             <span>Итого к оплате:</span>
-            <span>{/* totalPrice */} $</span>
+            <span>{totalPrice} $</span>
           </div>
           <div className={style.orderControlButton}>Оформить заказ</div>
         </div>
