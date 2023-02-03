@@ -3,12 +3,13 @@ import style from './../styles/cart.module.scss'
 import { AiOutlineCheck } from 'react-icons/ai';
 /* import CartProduct from '../components/CartProduct/CartProduct';
  */import { dataCartProduct } from '../store/cart/cartSlice.types';
+import { mocProducts } from '../moc/moc';
 /* import { useSelector } from 'react-redux';
 import { cartState } from '../store/cart/cartSlice'; */
 
 
-const Cart = ({ productsPreview }: { productsPreview: dataCartProduct[] }) => {
-  
+const Cart = (/* { productsPreview }: { productsPreview: dataCartProduct[] } */) => {
+  const productsPreview = mocProducts
 /*   const { products, totalCount, totalPrice } = useSelector(cartState);
  */  return <div className={style.container}>
     <h4 >Корзина</h4>

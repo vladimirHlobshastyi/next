@@ -6,11 +6,12 @@ import Link from 'next/link'
 import { BsFillInfoCircleFill } from 'react-icons/bs'
 import ProductPreview from '../components/ProductPreview/ProductPreview'
 import { dataCartProduct } from '../store/cart/cartSlice.types'
+import { mocProducts } from '../moc/moc'
 
 const inter = Inter({ subsets: ['latin'] })
 
-export default function Home({ products }: { products: dataCartProduct[] }) {
-  
+export default function Home(/* { products }: { products: dataCartProduct[] } */) {
+  const products = mocProducts
   return (
     <>
       <HeadComponent description='test project, main link'
