@@ -4,6 +4,7 @@ import { AiOutlineStar } from "react-icons/ai";
 import Dropdown from "../../components/Dropdown/Dropdown";
 import HeadComponent from "../../components/Head/HeadComponent";
 import ProductPreview from "../../components/ProductPreview/ProductPreview";
+import { mocProducts } from "../../moc/moc";
 import { dataCartProduct } from "../../store/cart/cartSlice.types";
 import style from "./Product.module.scss";
 
@@ -43,10 +44,10 @@ export async function getStaticProps({ params }: {
 }
  */
 
-const ProductComponent = ({ product, allProducts }: productComponentTypes) => {
+const ProductComponent = (/* { product, allProducts }: productComponentTypes */) => {
   const transcriptionMoc = { nameWrapper: 'Описание', dropDownItem: ['Здесь будет описание вашего товара'] }
   const transcriptionTwoMoc = { nameWrapper: 'Характеристики', dropDownItem: ['Здесь будут характиристики вашего товара'] }
-
+  const allProducts = mocProducts
   const [indexImage, setIndexImage] = useState(0)
   return (
     <div>
@@ -60,10 +61,10 @@ const ProductComponent = ({ product, allProducts }: productComponentTypes) => {
           <div className={style.wrapperProduct}>
             <div className={style.wrapperProductImage}>
               <div className={style.wrapperProductImageLogo}>
-                <Image src={product.images[indexImage]} alt='logo product' />
+                <Image src={allProducts[0].images[indexImage]} alt='logo product' />
               </div>
               <div className={style.wrapperProductImagesMin}>
-                {product.images.map((smallImage, index) =>
+                {allProducts[0].images.map((smallImage, index) =>
                   <Image src={smallImage} alt='logo product' key={index} onClick={() => {
                     setIndexImage(index)
                   }} />)}
@@ -78,12 +79,12 @@ const ProductComponent = ({ product, allProducts }: productComponentTypes) => {
                   <AiOutlineStar />
                   <AiOutlineStar />
                   <AiOutlineStar /></div>
-                арт.{product.article}
+                арт.{allProducts[0].article}
               </div>
-              <div className={style.wrapperProductInfoLabel}>{product.description}</div>
+              <div className={style.wrapperProductInfoLabel}>{allProducts[0].description}</div>
               <div className={style.wrapperProductInfoCurrency}>
-                <h4>{product.price}</h4>
-                <span>{product.currency}</span>
+                <h4>{allProducts[0].price}</h4>
+                <span>{allProducts[0].currency}</span>
               </div>
               <div className={style.wrapperProductInfoColor}>Цвет</div>
               <div className={style.wrapperProductInfoCartButton}><span>В корзину</span></div>
