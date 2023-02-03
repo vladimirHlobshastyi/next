@@ -10,7 +10,7 @@ import { dataCartProduct } from '../store/cart/cartSlice.types'
 const inter = Inter({ subsets: ['latin'] })
 
 export default function Home({ products }: { products: dataCartProduct[] }) {
-  debugger
+  
   return (
     <>
       <HeadComponent description='test project, main link'
@@ -47,7 +47,7 @@ export default function Home({ products }: { products: dataCartProduct[] }) {
 
 
 export async function getServerSideProps() {
-  const response = await fetch(`${process.env.NEXT_PUBLIC_VERCEL_URL}/api/products`)
+  const response = await fetch(`http://localhost:3000/api/products`)
 
   const products = await response.json()
 
