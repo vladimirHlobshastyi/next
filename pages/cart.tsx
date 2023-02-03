@@ -8,14 +8,14 @@ import { cartState } from '../store/cart/cartSlice'; */
 
 
 const Cart = ({ productsPreview }: { productsPreview: dataCartProduct[] }) => {
-
+  
 /*   const { products, totalCount, totalPrice } = useSelector(cartState);
  */  return <div className={style.container}>
     <h4 >Корзина</h4>
 
     <div className={style.orderContainer}>
       <div className={style.orderProductsContainer}>
-{/*         {products.length ? products.map((product) => <CartProduct product={product.data} key={product.data.id} />) : <span>Корзина пуста</span>}
+        {/*         {products.length ? products.map((product) => <CartProduct product={product.data} key={product.data.id} />) : <span>Корзина пуста</span>}
  */}      </div>
       <div className={style.orderInfo}>
         <div className={style.orderInfoPromo}>
@@ -45,11 +45,11 @@ const Cart = ({ productsPreview }: { productsPreview: dataCartProduct[] }) => {
 
 export default Cart
 
-export async function getServerSideProps() {
-  const response = await fetch(`http://localhost:3000/api/products`)
+/* export async function getServerSideProps() {
+  const response = await fetch(`${process.env.API_URL}/api/products`)
   const productsPreview = await response.json()
 
   return {
     props: { productsPreview },
   }
-}
+} */
