@@ -6,12 +6,10 @@ import Link from 'next/link'
 import { BsFillInfoCircleFill } from 'react-icons/bs'
 import ProductPreview from '../components/ProductPreview/ProductPreview'
 import { dataCartProduct } from '../store/cart/cartSlice.types'
-import { mocProducts } from '../moc/moc'
 
 const inter = Inter({ subsets: ['latin'] })
 
-export default function Home(/* { products }: { products: dataCartProduct[] } */) {
-  const products = mocProducts
+export default function Home({ products }: { products: dataCartProduct[] }) {
   return (
     <>
       <HeadComponent description='test project, main link'
@@ -47,7 +45,7 @@ export default function Home(/* { products }: { products: dataCartProduct[] } */
 }
 
 
-/* export async function getServerSideProps() {
+export async function getServerSideProps() {
   const response = await fetch(`${process.env.API_URL}/api/products`)
 
   const products = await response.json()
@@ -57,4 +55,3 @@ export default function Home(/* { products }: { products: dataCartProduct[] } */
     props: { products },
   }
 }
- */
