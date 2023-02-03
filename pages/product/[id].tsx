@@ -10,8 +10,8 @@ import style from "./Product.module.scss";
 type pathTypes = { params: { id: string }, }[]
 type productComponentTypes = { product: dataCartProduct, allProducts: dataCartProduct[] }
 
-export async function getStaticPaths() {
-  const response = await fetch(`http://localhost:3000/api/products`);
+/* export async function getStaticPaths() {
+  const response = await fetch(`${procces.env.API_URL}/api/products`);
   const products = await response.json();
   const paths: pathTypes = products.map((product: dataCartProduct) => {
     return {
@@ -29,10 +29,10 @@ export async function getStaticProps({ params }: {
   params: { id: string },
 }) {
   const response = await fetch(
-    `http://localhost:3000/api/products/${params.id}`
+    `${procces.env.API_URL}/api/products/${params.id}`
   );
   const allProductsResponse = await fetch(
-    `http://localhost:3000/api/products`
+    `${procces.env.API_URL}/api/products`
   );
   const allProducts = await allProductsResponse.json();
   const product = await response.json();
@@ -41,7 +41,7 @@ export async function getStaticProps({ params }: {
     props: { product, allProducts },
   };
 }
-
+ */
 
 const ProductComponent = ({ product, allProducts }: productComponentTypes) => {
   const transcriptionMoc = { nameWrapper: 'Описание', dropDownItem: ['Здесь будет описание вашего товара'] }

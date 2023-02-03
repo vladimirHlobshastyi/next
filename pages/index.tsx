@@ -46,8 +46,8 @@ export default function Home({ products }: { products: dataCartProduct[] }) {
 }
 
 
-export async function getServerSideProps() {
-  const response = await fetch(`http://localhost:3000/api/products`)
+/* export async function getServerSideProps() {
+  const response = await fetch(`${process.env.API_URL}/api/products`)
 
   const products = await response.json()
 
@@ -56,3 +56,4 @@ export async function getServerSideProps() {
     props: { products },
   }
 }
+ */
