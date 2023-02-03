@@ -11,7 +11,7 @@ type pathTypes = { params: { id: string }, }[]
 type productComponentTypes = { product: dataCartProduct, allProducts: dataCartProduct[] }
 
 export async function getStaticPaths() {
-  const response = await fetch(`http://next-lime-delta.vercel.app/api/products`);
+  const response = await fetch(`${process.env.API_URL}/api/products`);
 
 
 
@@ -32,10 +32,10 @@ export async function getStaticProps({ params }: {
   params: { id: string },
 }) {
   const response = await fetch(
-    `http://next-lime-delta.vercel.app/api/products/${params.id}`
+    `${process.env.API_URL}/api/products/${params.id}`
   );
   const allProductsResponse = await fetch(
-    `http://next-lime-delta.vercel.app/api/products`
+    `${process.env.API_URL}/api/products`
   );
   const allProducts = await allProductsResponse.json();
   const product = await response.json();
