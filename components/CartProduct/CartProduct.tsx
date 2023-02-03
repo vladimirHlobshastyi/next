@@ -5,21 +5,21 @@ import { RiDeleteBin6Line } from 'react-icons/ri';
 import useRootDispatch from '../../hooks/useDispatch';
 import { addProduct, cartState, minusProduct, removeProduct } from '../../store/cart/cartSlice';
 import { dataCartProduct } from '../../store/cart/cartSlice.types';
-import { useSelector } from 'react-redux';
+/* import { useSelector } from 'react-redux'; */
 
 
 
 const CartProduct = ({ product }: { product: dataCartProduct }) => {
-    const { products } = useSelector(cartState);
-
-    const countProduct = () => {
+    /*     const { products } = useSelector(cartState);
+     */
+    /* const countProduct = () => {
         const allParametresProduct = products.find((item) => item.data.id === product.id)
         if (allParametresProduct?.count) {
             return allParametresProduct?.count
         } else {
             return 0
         }
-    }
+    } */
 
     const dispatch = useRootDispatch()
     return <div className={style.orderProduct}>
@@ -33,7 +33,7 @@ const CartProduct = ({ product }: { product: dataCartProduct }) => {
         <div className={style.orderNumber}>
             <div className={style.orderNumberMinus}
                 onClick={() => dispatch(minusProduct(product))}><AiOutlineMinus /></div>
-            <div className={style.orderNumberCall}>{countProduct ? countProduct() : null}</div>
+            <div className={style.orderNumberCall}>{/* {countProduct ? countProduct() : null} */}</div>
             <div className={style.orderNumberPlus}
                 onClick={() => dispatch(addProduct(product))}><AiOutlinePlus /></div>
         </div>
@@ -41,7 +41,7 @@ const CartProduct = ({ product }: { product: dataCartProduct }) => {
             <span>{product.price} {product.currency}</span>
         </div>
         <div className={style.orderAddToCart} onClick={() =>
-            dispatch(removeProduct({ ...product, quantity: countProduct() }))}>
+            dispatch(removeProduct({ ...product, quantity: 0 /* countProduct() */ }))}>
             <RiDeleteBin6Line />
         </div>
     </div >
