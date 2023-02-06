@@ -12,14 +12,6 @@ import useIsProductInCart from '../../hooks/useIsProductInCart';
 const ProductPreview = ({ product }: { product: dataCartProduct }) => {
     const route = Router
     const products = useAppSelector((state) => state.cart.products)
-   /*  const countProductsInCart = () => {
-        const countProductsArray = products.filter((item) => item.data.id === product.id)
-        countProductsArray.length ? countProductsArray[0].count : false;
-        if (countProductsArray.length) {
-            return countProductsArray[0].count
-        }
-        return false
-    } */
 
     return <div className={style.container} >
         <div onClick={() => route.push(`/product/${product.id}`)} >

@@ -11,7 +11,7 @@ const OrderCheckButton = ({ productCount, dispatch, product }: OrderCheckButton)
     return <div className={style.orderNumber}>
         <div className={style.orderNumberMinus}
             onClick={() => dispatch(minusProduct(product))}><AiOutlineMinus /></div>
-        <div className={style.orderNumberCall}><span>В корзине {productCount} шт</span> <span>перейти</span>{/* {countProduct ? countProduct() : null} */}</div>
+        <div className={style.orderNumberCall}><span>В корзине {productCount} шт</span> <span>перейти</span></div>
         <div className={style.orderNumberPlus}
             onClick={() => dispatch(addProduct(product))}><AiOutlinePlus /></div>
     </div>

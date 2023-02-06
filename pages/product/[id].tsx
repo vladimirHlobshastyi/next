@@ -55,8 +55,6 @@ const ProductComponent = ({ product, allProducts }: productComponentTypes) => {
                 <span>{product.currency}</span>
               </div>
               <div className={style.wrapperProductInfoColor}>Цвет</div>
-              {/*               <div className={style.wrapperProductInfoCartButton}><span>В корзину</span></div>
- */}
               <AddCartCotnerButton product={product} />
               <div className={style.wrapperProductInfoSpan}></div>
               <div className={style.wrapperProductInfoDescription}>
