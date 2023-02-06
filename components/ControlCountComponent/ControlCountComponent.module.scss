@@ -1,0 +1,16 @@
+.container {
+  span {
+    width: 18px;
+    height: 18px;
+    position: absolute;
+    right: -8px;
+    top: -8px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #364f71;
+    border-radius: 50%;
+    font-size: 0.9em;
+    color: #f0f8ff;
+  }
+}

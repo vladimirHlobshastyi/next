@@ -7,11 +7,13 @@ import { useRef, useState } from 'react'
 import useClickOutsideDiv from '../../hooks/useClickOutsideDiv'
 import Image from 'next/image'
 import Dropdown from '../Dropdown/Dropdown'
+import useAppSelector from '../../hooks/useAppSelector';
+import ControlCountComponent from '../ControlCountComponent/ControlCountComponent';
 
 const NavBar = () => {
   const rootEl: React.MutableRefObject<null> = useRef(null);
   const [isVisible, setIsVisible] = useState(false)
-
+  const totalCountProducts = useAppSelector(state => state.cart.totalCount)
 
   const closeSidePanel = () => setIsVisible(!isVisible)
 
@@ -32,11 +34,12 @@ const NavBar = () => {
         </Link>
       </div>
       <div className={style.navBarAreaControls}>
-        <Link href='/serch' className={style.navBarSearch}><BiSearch /></Link>
-        <Link href='/user' className={style.navBarUser}><BiUser /></Link>
-        <Link href='/compare' className={style.navBarCompare}><BiBarChart /></Link>
-        <Link href='/like' className={style.navBarLike}><BiHeart /></Link>
-        <Link href='/cart' className={style.navBarCart}><BiCart /></Link>
+        <Link href='/serch' ><BiSearch /></Link>
+        <Link href='/user' ><BiUser /></Link>
+        <Link href='/compare' ><BiBarChart /></Link>
+        <Link href='/like' ><BiHeart /></Link>
+        <Link href='/cart' ><BiCart />
+          {totalCountProducts ? <ControlCountComponent countProductsInCart={totalCountProducts} /> : null}</Link>
       </div>
     </div>
     {isVisible && <div className={style.sidePanelContainer} >

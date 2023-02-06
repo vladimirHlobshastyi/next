@@ -1,0 +1,29 @@
+.cart {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 40px;
+  height: 40px;
+  z-index: 22;
+  background-color: #1e2339;
+  color: #ffffff;
+  border-radius: 50%;
+  cursor: pointer;
+  .cartItem {
+    font-size: 0.7em;
+    &:hover {
+      background-color: #1e2339e0;
+    }
+  }
+
+  svg {
+    width: 100%;
+    height: 100%;
+    padding: 7px;
+    color: #ffffff;
+  }
+  &:hover {
+    background-color: #1e2339e0;
+  }
+}

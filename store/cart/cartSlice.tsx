@@ -1,4 +1,5 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import useAppSelector from "../../hooks/useAppSelector";
 import { RootState } from "../store";
 import { dataCartProduct, initialStateTypes } from "./cartSlice.types";
 
@@ -53,7 +54,7 @@ const cartSlice = createSlice({
     },
     removeProduct(state, action: PayloadAction<{ id: number, price: number, quantity: number }>) {
       const newState = state.products.filter((item) => item.data.id !== action.payload.id)
-      --state.totalCount
+      state.totalCount -= action.payload.quantity
       state.totalPrice -= action.payload.price * action.payload.quantity
       state.products = newState
     },
@@ -68,5 +69,6 @@ const cartSlice = createSlice({
 
 export const { addProduct, minusProduct, removeProduct } = cartSlice.actions;
 export const cartState = (state: RootState) => state.cart
+
 
 export default cartSlice.reducer;

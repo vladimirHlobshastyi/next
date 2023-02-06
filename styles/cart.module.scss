@@ -81,7 +81,11 @@
     .orderControlPrice {
       display: flex;
       justify-content: space-between;
+      align-items: center;
       padding: 24px;
+      p {
+        font-size: 1.7em;
+      }
     }
     .orderControlButton {
       display: flex;

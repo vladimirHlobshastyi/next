@@ -1,0 +1,16 @@
+.container {
+  width: 75%;
+  height: 20%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid #1b2738;
+  background-color: #1b2738;
+  font-size: 1.2em;
+  color: #ffffff;
+  padding: 15px 0;
+  &:hover {
+    cursor: pointer;
+    background-color: #1b2738e7;
+  }
+}

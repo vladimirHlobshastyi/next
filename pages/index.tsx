@@ -10,6 +10,7 @@ import { dataCartProduct } from '../store/cart/cartSlice.types'
 const inter = Inter({ subsets: ['latin'] })
 
 export default function Home({ products }: { products: dataCartProduct[] }) {
+
   return (
     <>
       <HeadComponent description='test project, main link'
