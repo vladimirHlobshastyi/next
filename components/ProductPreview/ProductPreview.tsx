@@ -1,16 +1,18 @@
-import Image, { StaticImageData } from 'next/image'
+import Image from 'next/image'
 import style from './ProductPreview.module.scss'
-import { BsCart } from "react-icons/bs";
-import useRootDispatch from '../../hooks/useDispatch';
-import { addProduct } from '../../store/cart/cartSlice';
+import useRootDispatch from '../../hooks/useRootDispatch';
 import Router from 'next/router';
 import { dataCartProduct } from '../../store/cart/cartSlice.types';
+import useAppSelector from '../../hooks/useAppSelector';
+import CardButton from '../CardButton/CardButton';
+import useIsProductInCart from '../../hooks/useIsProductInCart';
 
 
 
 const ProductPreview = ({ product }: { product: dataCartProduct }) => {
-    const dispatch = useRootDispatch()
     const route = Router
+    const products = useAppSelector((state) => state.cart.products)
+
     return <div className={style.container} >
         <div onClick={() => route.push(`/product/${product.id}`)} >
             <div className={style.image}>
@@ -20,7 +22,7 @@ const ProductPreview = ({ product }: { product: dataCartProduct }) => {
         </div>
         <div className={style.count}>
             <div className={style.price}>{product.price}<span>{product.currency}</span></div>
-            <div className={style.cart} onClick={() => dispatch(addProduct(product))}><BsCart /></div>
+            <CardButton product={product} countProductsInCart={useIsProductInCart(products, product)} />
         </div>
 
     </div>

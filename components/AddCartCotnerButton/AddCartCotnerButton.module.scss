@@ -1,0 +1,53 @@
+.container {
+  width: 366px;
+  height: 60px;
+  font-size: 1.2em;
+
+  .cartButton {
+    border: 1px solid #1b2738;
+    background-color: #1b2738;
+    color: #ffffff;
+    min-height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    &:hover {
+      cursor: pointer;
+      background-color: #1b2738e7;
+    }
+  }
+
+  .orderNumber {
+    display: flex;
+    min-width: 100%;
+    min-height: 100%;
+    background: #f7f7f7;
+    .orderNumberMinus,
+    .orderNumberPlus {
+      width: 40px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin: 0 5px;
+      &:hover {
+        cursor: pointer;
+      }
+      svg {
+        width: 60%;
+        height: 60%;
+      }
+    }
+    .orderNumberCall {
+      flex-grow: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      span {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+    }
+  }
+}

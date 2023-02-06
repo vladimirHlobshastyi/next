@@ -6,10 +6,10 @@ import { store } from "../store/store.tsx";
 // This default export is required in a new `pages/_app.js` file.
 export default function MyApp({ Component, pageProps }) {
   return (
-    <Layout>
-      <Provider store={store}>
+    <Provider store={store}>
+      <Layout>
         <Component {...pageProps} />
-      </Provider>
-    </Layout>
+      </Layout>
+    </Provider>
   );
 }

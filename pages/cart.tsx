@@ -11,7 +11,6 @@ const Cart = ({ productsPreview }: { productsPreview: dataCartProduct[] }) => {
   const { products, totalCount, totalPrice } = useSelector(cartState);
   return <div className={style.container}>
     <h4 >Корзина</h4>
-
     <div className={style.orderContainer}>
       <div className={style.orderProductsContainer}>
         {products.length ? products.map((product) => <CartProduct product={product.data} key={product.data.id} />) : <span>Корзина пуста</span>}
@@ -29,7 +28,7 @@ const Cart = ({ productsPreview }: { productsPreview: dataCartProduct[] }) => {
             <span>Товары ({totalCount})</span><span>{totalPrice} $</span> </div>
           <div className={style.orderControlPrice}>
             <span>Итого к оплате:</span>
-            <span>{totalPrice} $</span>
+            <p>{totalPrice} $</p>
           </div>
           <div className={style.orderControlButton}>Оформить заказ</div>
         </div>

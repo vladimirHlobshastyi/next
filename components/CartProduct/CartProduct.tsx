@@ -2,15 +2,19 @@ import Image from 'next/image'
 import style from './CartProduct.module.scss'
 import { AiOutlinePlus, AiOutlineMinus } from 'react-icons/ai';
 import { RiDeleteBin6Line } from 'react-icons/ri';
-import useRootDispatch from '../../hooks/useDispatch';
+import useRootDispatch from '../../hooks/useRootDispatch';
 import { addProduct, cartState, minusProduct, removeProduct } from '../../store/cart/cartSlice';
 import { dataCartProduct } from '../../store/cart/cartSlice.types';
 import { useSelector } from 'react-redux';
+import { useRouter } from 'next/router';
+
 
 
 
 const CartProduct = ({ product }: { product: dataCartProduct }) => {
     const { products } = useSelector(cartState);
+    const dispatch = useRootDispatch()
+    const router = useRouter()
 
     const countProduct = () => {
         const allParametresProduct = products.find((item) => item.data.id === product.id)
@@ -21,12 +25,13 @@ const CartProduct = ({ product }: { product: dataCartProduct }) => {
         }
     }
 
-    const dispatch = useRootDispatch()
+    const totalPriceOrder = () => product.price * countProduct()
+
     return <div className={style.orderProduct}>
         <div className={style.orderProductImage}>
             <Image src={product.images[0]} alt='logot' width={150} height={150} />
         </div>
-        <div className={style.orderDescription}>
+        <div className={style.orderDescription} onClick={() => router.push(`/product/${product.id}`)}>
             {product.description}
             <span>{product.price}{product.currency}/<span>шт</span></span>
         </div>
@@ -38,7 +43,7 @@ const CartProduct = ({ product }: { product: dataCartProduct }) => {
                 onClick={() => dispatch(addProduct(product))}><AiOutlinePlus /></div>
         </div>
         <div className={style.orderPrice}>
-            <span>{product.price} {product.currency}</span>
+            <span>{totalPriceOrder()} {product.currency}</span>
         </div>
         <div className={style.orderAddToCart} onClick={() =>
             dispatch(removeProduct({ ...product, quantity: countProduct() }))}>

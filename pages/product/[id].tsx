@@ -1,6 +1,7 @@
 import Image from "next/image";
 import { useState } from "react";
 import { AiOutlineStar } from "react-icons/ai";
+import AddCartCotnerButton from "../../components/AddCartCotnerButton/AddCartCotnerButton";
 import Dropdown from "../../components/Dropdown/Dropdown";
 import HeadComponent from "../../components/Head/HeadComponent";
 import ProductPreview from "../../components/ProductPreview/ProductPreview";
@@ -9,41 +10,6 @@ import style from "./Product.module.scss";
 
 type pathTypes = { params: { id: string }, }[]
 type productComponentTypes = { product: dataCartProduct, allProducts: dataCartProduct[] }
-
-export async function getStaticPaths() {
-  const response = await fetch(`${process.env.API_URL}/api/products`);
-
-
-
-  const products = await response.json();
-  const paths: pathTypes = products.map((product: dataCartProduct) => {
-    return {
-      params: { id: product.id.toString() },
-    };
-  });
-
-  return {
-    paths,
-    fallback: false,
-  };
-}
-
-export async function getStaticProps({ params }: {
-  params: { id: string },
-}) {
-  const response = await fetch(
-    `${process.env.API_URL}/api/products/${params.id}`
-  );
-  const allProductsResponse = await fetch(
-    `${process.env.API_URL}/api/products`
-  );
-  const allProducts = await allProductsResponse.json();
-  const product = await response.json();
-
-  return {
-    props: { product, allProducts },
-  };
-}
 
 
 const ProductComponent = ({ product, allProducts }: productComponentTypes) => {
@@ -89,7 +55,7 @@ const ProductComponent = ({ product, allProducts }: productComponentTypes) => {
                 <span>{product.currency}</span>
               </div>
               <div className={style.wrapperProductInfoColor}>Цвет</div>
-              <div className={style.wrapperProductInfoCartButton}><span>В корзину</span></div>
+              <AddCartCotnerButton product={product} />
               <div className={style.wrapperProductInfoSpan}></div>
               <div className={style.wrapperProductInfoDescription}>
                 <Dropdown {...transcriptionMoc} />
@@ -112,3 +78,37 @@ const ProductComponent = ({ product, allProducts }: productComponentTypes) => {
 };
 
 export default ProductComponent;
+
+
+export async function getStaticPaths() {
+  const response = await fetch(`${process.env.API_URL}/api/products`);
+  const products = await response.json();
+
+  const paths: pathTypes = products.map((product: dataCartProduct) => {
+    return {
+      params: { id: product.id.toString() },
+    };
+  });
+
+  return {
+    paths,
+    fallback: false,
+  };
+}
+
+export async function getStaticProps({ params }: {
+  params: { id: string },
+}) {
+  const getOneProduct = await fetch(
+    `${process.env.API_URL}/api/products/${params.id}`
+  );
+  const getAllProductsResponse = await fetch(
+    `${process.env.API_URL}/api/products`
+  );
+  const allProducts = await getAllProductsResponse.json();
+  const product = await getOneProduct.json();
+
+  return {
+    props: { product, allProducts },
+  };
+}
