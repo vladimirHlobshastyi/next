@@ -98,3 +98,19 @@
     }
   }
 }
+@media (max-width: 830px) {
+  .container {
+    .proposalProducts {
+      padding: 0;
+    }
+  }
+  .orderContainer {
+    flex-direction: column;
+    .orderProductsContainer {
+      width: 100%;
+    }
+  }
+  .orderInfo {
+    width: 100%;
+  }
+}

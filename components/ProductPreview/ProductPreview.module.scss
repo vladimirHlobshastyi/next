@@ -58,3 +58,11 @@
     }
   }
 }
+
+@media (max-width: 800px) {
+  .container {
+    .count {
+      justify-content: space-around;
+    }
+  }
+}
