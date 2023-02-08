@@ -60,3 +60,26 @@
     }
   }
 }
+
+@media (max-width: 830px) {
+  .orderProduct {
+    align-items: center;
+    flex-direction: column;
+    .orderProductImage {
+      width: 80%;
+    }
+    .orderDescription {
+      width: 80%;
+      flex-direction: row;
+      margin: 10px 0;
+    }
+    .orderNumber {
+      width: 50%;
+      display: flex;
+      margin: 10px 0;
+    }
+    .orderPrice {
+      margin: 10px 0;
+    }
+  }
+}

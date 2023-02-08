@@ -7,12 +7,29 @@
   padding: 10px 20px;
   border: 1.5px solid #bababa2d;
   background-color: #efefee;
-
+  z-index: 100;
   svg {
     width: 30px;
     height: 30px;
     color: #000000;
   }
+  .navBarLogo {
+    a {
+      display: flex;
+      justify-content: center;
+      img {
+        width: 40%;
+        height: 100px;
+      }
+    }
+  }
+}
+.navBarContainerDropDown {
+  position: fixed;
+}
+
+.containerFixed {
+  position: fixed;
 }
 
 .navBarMenu {
@@ -37,9 +54,12 @@
     position: relative;
   }
 }
+.navBarCallPhone {
+  display: none;
+}
 
 .sidePanelContainer {
-  position: absolute;
+  position: fixed;
   top: 78px;
   left: 0;
   width: 100%;
@@ -123,6 +143,68 @@
     &:hover {
       color: #00000036;
       cursor: pointer;
+    }
+  }
+}
+
+@media (max-width: 800px) {
+  .navBarContainerDropDown {
+    justify-content: center;
+  }
+  .navBarAreaControls {
+    display: none;
+  }
+  .navBarAreaControlsMobile {
+    display: flex;
+    width: auto;
+  }
+  .navBarMenu {
+    font-size: 0;
+  }
+  .navBarCallPhone {
+    width: 25%;
+    display: flex;
+    justify-content: flex-end;
+    padding-right: 10px;
+  }
+  .navBarCallPhoneDropDown {
+    display: none;
+  }
+  .navBarLogo {
+    a {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+  }
+  .navBarLogoDropDown {
+    display: none;
+  }
+
+  .navBarMenuDropDown {
+    display: none;
+  }
+  .sidePanelContainer {
+    z-index: 100;
+    .sidePanelContainerRelative {
+      .sidePanel {
+        width: 100vw;
+        height: 100%;
+      }
+    }
+    .closeIcon {
+      position: absolute;
+      top: 32px;
+      right: 15px;
+      left: auto;
+      z-index: 100;
+      svg {
+        color: #000000;
+        &:hover {
+          color: #00000036;
+          cursor: pointer;
+        }
+      }
     }
   }
 }
