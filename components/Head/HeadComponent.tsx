@@ -7,6 +7,7 @@ const HeadComponent = ({ description, viewport }: HeadTypesProps) => {
         <meta name="description" content={description} />
         <meta name="viewport" content={viewport} />
         <link rel="icon" href="/Letter_M_black_64.ico" />
+        <link rel="manifest" href="manifest.json"></link>
     </Head>
 }
 
