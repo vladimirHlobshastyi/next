@@ -3,7 +3,7 @@
     "name": "Mono Store",
     "lang": "ru-Ru",
     "description": "Mono store",
-    "orientation":"landscape",
+    "orientation":"portrait",
     "icons": [
       {
         "src": "Letter_M_black_64.ico",
