@@ -3,10 +3,10 @@ type HeadTypesProps = { description: string, viewport: string }
 
 const HeadComponent = ({ description, viewport }: HeadTypesProps) => {
     return <Head>
-        <title>Create Next App</title>
+        <title>Mono Store</title>
         <meta name="description" content={description} />
         <meta name="viewport" content={viewport} />
-        <link rel="icon" href="/favicon.ico" />
+        <link rel="icon" href="/Letter_M_black_64.ico" />
     </Head>
 }
 

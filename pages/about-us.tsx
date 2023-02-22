@@ -1,8 +1,14 @@
 import Link from 'next/link'
+import HeadComponent from '../components/Head/HeadComponent'
 import style from './../styles/about.module.scss'
 
 const About = () => {
     return <div className={style.aboutContainer}>
+        <HeadComponent
+            description='Презентация сайта магазина одежды. Информация о компании'
+            viewport='width=device-width, initial-scale=1'
+        />
+
         <h2>О компании</h2>
         <span>Разместите на этой странице информацию с описанием вашего магазина.</span>
 

@@ -1,9 +1,27 @@
+%iconbutton {
+  position: absolute;
+  right: 25px;
+  top: 0;
+  cursor: pointer;
+  color: #808080;
+  z-index: 99;
+}
+
 .container {
+  position: relative;
   width: 164px;
   height: auto;
   display: flex;
   flex-direction: column;
   margin: 2.5%;
+  .favorit {
+    @extend%iconbutton;
+    top: 5px;
+  }
+  .compare {
+    @extend%iconbutton;
+    top: 30px;
+  }
   a {
     text-decoration: none;
     color: #000;

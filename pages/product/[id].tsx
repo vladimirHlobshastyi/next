@@ -1,11 +1,16 @@
 import Image from "next/image";
 import { useState } from "react";
 import { AiOutlineStar } from "react-icons/ai";
-import AddCartCotnerButton from "../../components/AddCartCotnerButton/AddCartCotnerButton";
+import { BiBarChart, BiBarChartAlt } from "react-icons/bi";
+import AddCartCornerButton from "../../components/AddCartCornerButton/AddCartCornerButton";
 import Dropdown from "../../components/Dropdown/Dropdown";
 import HeadComponent from "../../components/Head/HeadComponent";
 import ProductPreview from "../../components/ProductPreview/ProductPreview";
+import useAppSelector from "../../hooks/useAppSelector";
+import useIsFavorites from "../../hooks/useIsFavorites";
+import useRootDispatch from "../../hooks/useRootDispatch";
 import { dataCartProduct } from "../../store/cart/cartSlice.types";
+import { addCompareProduct, compareState, removeCompareProduct } from "../../store/compare/compareSlice";
 import style from "./Product.module.scss";
 
 type pathTypes = { params: { id: string }, }[]
@@ -15,13 +20,26 @@ type productComponentTypes = { product: dataCartProduct, allProducts: dataCartPr
 const ProductComponent = ({ product, allProducts }: productComponentTypes) => {
   const transcriptionMoc = { nameWrapper: 'Описание', dropDownItem: ['Здесь будет описание вашего товара'] }
   const transcriptionTwoMoc = { nameWrapper: 'Характеристики', dropDownItem: ['Здесь будут характиристики вашего товара'] }
-
   const [indexImage, setIndexImage] = useState(0)
+
+  const dispatch = useRootDispatch()
+  const compareProducts = useAppSelector(compareState)
+
+
+  const addToCompare = () => {
+    if (compareProducts.count < 5)
+      dispatch(addCompareProduct(product))
+  }
+  const removeFromeCompare = () => {
+    dispatch(removeCompareProduct(product))
+  }
+
+
   return (
     <div>
       <HeadComponent
-        description="test project, main link"
-        viewport="width=device-width, initial-scale=1"
+        description='Презентация сайта магазина одежды. Главная страница с товаром'
+        viewport='width=device-width, initial-scale=1'
       />
       <div className={style.container}>
         <div className={style.wrapper}>
@@ -30,6 +48,10 @@ const ProductComponent = ({ product, allProducts }: productComponentTypes) => {
             <div className={style.wrapperProductImage}>
               <div className={style.wrapperProductImageLogo}>
                 <Image src={product.images[indexImage]} alt='logo product' />
+                <div className={style.compare}
+                  onClick={useIsFavorites(compareProducts, product) ? removeFromeCompare : addToCompare}>
+                  {useIsFavorites(compareProducts, product) ? <BiBarChartAlt /> : <BiBarChart />}
+                </div>
               </div>
               <div className={style.wrapperProductImagesMin}>
                 {product.images.map((smallImage, index) =>
@@ -46,7 +68,8 @@ const ProductComponent = ({ product, allProducts }: productComponentTypes) => {
                   <AiOutlineStar />
                   <AiOutlineStar />
                   <AiOutlineStar />
-                  <AiOutlineStar /></div>
+                  <AiOutlineStar />
+                </div>
                 арт.{product.article}
               </div>
               <div className={style.wrapperProductInfoLabel}>{product.description}</div>
@@ -55,7 +78,7 @@ const ProductComponent = ({ product, allProducts }: productComponentTypes) => {
                 <span>{product.currency}</span>
               </div>
               <div className={style.wrapperProductInfoColor}>Цвет</div>
-              <AddCartCotnerButton product={product} />
+              <AddCartCornerButton product={product} />
               <div className={style.wrapperProductInfoSpan}></div>
               <div className={style.wrapperProductInfoDescription}>
                 <Dropdown {...transcriptionMoc} />

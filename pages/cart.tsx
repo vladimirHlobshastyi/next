@@ -3,13 +3,19 @@ import style from './../styles/cart.module.scss'
 import { AiOutlineCheck } from 'react-icons/ai';
 import CartProduct from '../components/CartProduct/CartProduct';
 import { dataCartProduct } from '../store/cart/cartSlice.types';
-import { useSelector } from 'react-redux';
 import { cartState } from '../store/cart/cartSlice';
+import useAppSelector from '../hooks/useAppSelector';
+import HeadComponent from '../components/Head/HeadComponent';
 
 
 const Cart = ({ productsPreview }: { productsPreview: dataCartProduct[] }) => {
-  const { products, totalCount, totalPrice } = useSelector(cartState);
+  const { products, totalCount, totalPrice } = useAppSelector(cartState);
+
   return <div className={style.container}>
+    <HeadComponent
+      description='Презентация сайта магазина одежды. Корзина с товарами'
+      viewport='width=device-width, initial-scale=1'
+    />
     <h4 >Корзина</h4>
     <div className={style.orderContainer}>
       <div className={style.orderProductsContainer}>

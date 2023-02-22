@@ -1,5 +1,4 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import useAppSelector from "../../hooks/useAppSelector";
 import { RootState } from "../store";
 import { dataCartProduct, initialStateTypes } from "./cartSlice.types";
 
@@ -69,6 +68,9 @@ const cartSlice = createSlice({
 
 export const { addProduct, minusProduct, removeProduct } = cartSlice.actions;
 export const cartState = (state: RootState) => state.cart
+export const rootProductsInCart = (state: RootState) => state.cart.products
+export const rootTotalCountInCart = (state: RootState) => state.cart.totalCount
+
 
 
 export default cartSlice.reducer;

@@ -13,7 +13,7 @@ export default function Home({ products }: { products: dataCartProduct[] }) {
 
   return (
     <>
-      <HeadComponent description='test project, main link'
+      <HeadComponent description='Презентация сайта магазина одежды. Главная страница с товаром'
         viewport='width=device-width, initial-scale=1'
       />
 

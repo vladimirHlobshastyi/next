@@ -1,10 +1,13 @@
-
-
 import Link from 'next/link'
+import HeadComponent from '../components/Head/HeadComponent'
 import style from './../styles/contacts.module.scss'
 
 const Contacts = () => {
     return <div className={style.contactsContainer}>
+        <HeadComponent
+         description='Презентация сайта магазина одежды. Контакты магазина'
+        viewport='width=device-width, initial-scale=1'
+      />
         <span><h3>Контакты</h3></span>
         <span>Разместите на этой странице информацию с контактами вашего интернет-магазина, а также краткую информацию о нем.</span>
 

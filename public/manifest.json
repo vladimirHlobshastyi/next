@@ -1,0 +1,27 @@
+{
+    "short_name": "Mono Store",
+    "name": "Mono Store",
+    "lang": "Ru",
+    "orientation":"landscape",
+    "icons": [
+      {
+        "src": "Letter_M_black_64.ico",
+        "sizes": "64x64 32x32 24x24 16x16",
+        "type": "image/x-icon"
+      },
+      {
+        "src": "Letter_M_black_128x128.png",
+        "type": "image/png",
+        "sizes": "128x128"
+      },
+      {
+        "src": "Letter_M_black_256x256.png",
+        "type": "image/png",
+        "sizes": "256x256"
+      }
+    ],
+    "start_url": ".",
+    "display": "fullscreen",
+    "theme_color": "#000000",
+    "background_color": "#ffffff"
+  }
