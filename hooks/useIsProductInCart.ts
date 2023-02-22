@@ -6,7 +6,7 @@ type useIsProductInCartPropType =
       data: dataCartProduct;
       count: number;
     }[];
-    
+
 const useIsProductInCart = (
   products: useIsProductInCartPropType,
   product: dataCartProduct
