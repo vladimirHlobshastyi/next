@@ -99,3 +99,15 @@ export const mocProducts: mocTypes[] = [
     article: "0008",
   },
 ];
+
+export const categoryesMoc = [
+  { name: "category1", id: "1a" },
+  { name: "category2", id: "2a" },
+  { name: "category3", id: "3a" },
+  { name: "category4", id: "4a" },
+  { name: "category5", id: "5a" },
+  { name: "category6", id: "6a" },
+  { name: "category7", id: "7a" },
+];
+
+export const poductsInCategotyes = {'1a':{}}
