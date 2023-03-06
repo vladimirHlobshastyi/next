@@ -3,7 +3,7 @@ import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
 import { authToken } from "../../moc/moc";
 
-// моки для логина и пароля
+
 const loginMock = "user";
 const passwordMock: string = "password";
 const token = authToken;
