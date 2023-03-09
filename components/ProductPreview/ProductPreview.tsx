@@ -47,7 +47,7 @@ const ProductPreview = ({ product }: { product: dataCartProduct }) => {
             onClick={useIsFavorites(compareProducts, product) ? removeFromeCompare : addToCompare}>
             {useIsFavorites(compareProducts, product) ? <BiBarChartAlt /> : <BiBarChart />}
         </div>
-        <div onClick={() => router.push(`/${category}/${product.id}`)} >
+        <div onClick={() => router.push(`/category/${category}/${product.id}`)} >
             <div className={style.image}>
                 <Image src={product.images[0]} alt='large_tovar' width={164} height={164} />
             </div>
