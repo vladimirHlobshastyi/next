@@ -128,15 +128,27 @@ export const mocProducts: mocTypes[] = [
   },
 ];
 
+export type productsInCategory = {
+  data: {
+    description: string;
+    price: number;
+    currency: string;
+    images: StaticImageData[];
+    id: string;
+    article: string;
+  }[];
+  total: number;
+};
+
 export const categoriesMoc = [
-  { name: "category1", id: "1a" },
-  { name: "category2", id: "2a" },
-  { name: "category3", id: "3a" },
-  { name: "category4", id: "4a" },
-  { name: "category5", id: "5a" },
+  { name: "category1", id: "category1" },
+  { name: "category2", id: "category2" },
+  { name: "category3", id: "category3" },
+  { name: "category4", id: "category4" },
+  { name: "category5", id: "category5" },
 ];
 
-export const category1 = {
+export const category1: productsInCategory = {
   data: [
     {
       description: "Рубашка 1",
@@ -803,11 +815,11 @@ export const category5 = {
 };
 
 export const allProducts: allProductsTypes = {
-  "1a": category1,
-  "2a": category2,
-  "3a": category3,
-  "4a": category4,
-  "5a": category5,
+  category1,
+  category2,
+  category3,
+  category4,
+  category5,
 };
 
 export const blogPosts: blogPostsTypes[] = [

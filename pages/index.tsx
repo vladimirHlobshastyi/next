@@ -27,7 +27,7 @@ export default function Home({ products }: { products: dataCartProduct[] }) {
             <Link href='/'>Популярные</Link>
           </div>
           <div className={style.wrapperContentProducts}>
-            {products.map((product, index) => <ProductPreview key={index} {...{ product }} />)}
+            {products.map((product) => <ProductPreview key={product.id} {...{ product }} />)}
           </div>
           <div className={style.wrapperInfo}>
             <div className={style.wrapperInfoSvg}>

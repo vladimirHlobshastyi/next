@@ -46,7 +46,8 @@ const NavBar = () => {
       </div>
       <div className={navBarLogoClass}>
         <Link href='/'>
-          <Image src='https://static.insales-cdn.com/files/1/2933/14871413/original/Group_8.svg' width={180} height={39} alt='Logo' />
+          {/*  <Image src={'MONO'} width={180} height={39} alt='Logo' /> */}
+          <h5>MONO</h5>
         </Link>
       </div>
       <div className={navBarAreaControlsClass}>
@@ -67,7 +68,7 @@ const NavBar = () => {
         <div className={style.sidePanelContainerRelative}>
           <div className={style.sidePanel} ref={rootEl}>
             <div className={style.sidePanelCatalog}>
-              <div className={style.sidePanelCatalogElement}><h3>Каталог</h3></div>
+              <div className={style.sidePanelCatalogElement}><Link href={'/categories'} onClick={() => closeSidePanel(!isVisible)}><h3>Категории</h3></Link></div>
               <div className={style.sidePanelCatalogElement} >
                 <Dropdown nameWrapper='Каталог 1' dropDownItem={['Подкатегория 1', 'Подкатегория 2']} />
               </div>

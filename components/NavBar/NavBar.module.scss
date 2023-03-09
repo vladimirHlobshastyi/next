@@ -108,6 +108,11 @@
           display: flex;
           justify-content: space-between;
           flex-direction: column;
+          h3 {
+            &:hover {
+              color: #00000079;
+            }
+          }
         }
       }
       .sidePanelCatalogMenu {

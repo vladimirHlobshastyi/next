@@ -24,7 +24,7 @@ const compareSlice = createSlice({
     },
     removeCompareProduct(
       state,
-      action: PayloadAction<{ id: number; price: number }>
+      action: PayloadAction<{ id: string; price: number }>
     ) {
       const minusCompareProduct = state.data.filter(
         (item) => item.id !== action.payload.id
