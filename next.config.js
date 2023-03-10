@@ -13,6 +13,6 @@ module.exports = nextConfig;
 module.exports = {
   env: {
     API_URL:
-      /* "https://next-lime-delta.vercel.app" */ "http://localhost:3000/",
+      /* "https://next-lime-delta.vercel.app" */ "http://localhost:3001/",
   },
 };

@@ -16,6 +16,7 @@ import { GetServerSideProps, GetServerSidePropsContext } from 'next';
 import { productsInCategory } from "../../moc/moc";
 import { useRouter } from "next/router";
 import Link from "next/link";
+import NavigateControl from "../../components/NavigateControl/NavigateControl";
 
 export type pathTypes = { params: { category: string }, }[]
 export type productComponentTypes = { products: productsInCategory }
@@ -30,10 +31,11 @@ const Category = ({ products }: productComponentTypes) => {
 
   return <div className={style.container}>
     <div className={style.content}>
-      <div className={style.contentNavigate}>
+      {/*   <div className={style.contentNavigate}>
         <Link href={`/categories`}>Категории/</Link>
         <Link href={`${category}`}>{category}</Link>
-      </div>
+      </div> */}
+      {Array.isArray(category) || !category ? null : <NavigateControl navItem={[category]} />}
       <div className={style.contentProducts}>
         {products.data.map((product) => <ProductPreview key={product.id} {...{ product }} />)}
       </div>

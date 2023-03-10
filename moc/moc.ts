@@ -129,14 +129,7 @@ export const mocProducts: mocTypes[] = [
 ];
 
 export type productsInCategory = {
-  data: {
-    description: string;
-    price: number;
-    currency: string;
-    images: StaticImageData[];
-    id: string;
-    article: string;
-  }[];
+  data: produtsDataType[];
   total: number;
 };
 
