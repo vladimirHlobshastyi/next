@@ -4,7 +4,7 @@ import { BsInstagram, BsTelegram } from "react-icons/bs";
 import { IoCallOutline } from "react-icons/io5";
 import { TfiYoutube } from "react-icons/tfi";
 import { BiXCircle, BiSearch, BiUser, BiHeart, BiCart, BiBarChart, BiMenuAltLeft } from "react-icons/bi";
-import { useRef, useState } from 'react'
+import { useEffect, useMemo, useRef, useState } from 'react'
 import useClickOutsideDiv from '../../hooks/useClickOutsideDiv'
 import Image from 'next/image'
 import Dropdown from '../Dropdown/Dropdown'
@@ -14,50 +14,89 @@ import classNames from 'classnames';
 import { rootTotalCountInCart } from '../../store/cart/cartSlice';
 import { rootCountInFavorites } from '../../store/favorites/favoritesSlice';
 import { rootCountInCompare } from '../../store/compare/compareSlice';
+import Logo from '../../public/Logo.svg'
+
+
+type CategoryTypes = { name: string; id: string };
+
 
 
 const NavBar = () => {
   const rootEl: React.MutableRefObject<null> = useRef(null);
   const [isVisible, setIsVisible] = useState(false)
+  const [categories, setCategories] = useState<CategoryTypes[]>([]);
 
   const totalCountProducts = useAppSelector(rootTotalCountInCart)
   const totalCountFavorites = useAppSelector(rootCountInFavorites)
   const totalCountCompare = useAppSelector(rootCountInCompare)
 
-  const navBarAreaControlsClass = classNames(style.navBarAreaControls, isVisible ? style.navBarAreaControlsMobile : '');
-  const navBarCallPhoneclass = classNames(style.navBarCallPhone, isVisible ? style.navBarCallPhoneDropDown : '');
-  const navBarLogoClass = classNames(style.navBarLogo, isVisible ? style.navBarLogoDropDown : '');
-  const navBarMenuClass = classNames(style.navBarMenu, isVisible ? style.navBarMenuDropDown : '');
-  const navBarContainerClass = classNames(style.navBarContainer, isVisible ? style.navBarContainerDropDown : '');
-
-  const controlCount = (totalCount: number) => { return totalCount ? <ControlCountComponent countProductsInCart={totalCount} /> : null }
-  const closeSidePanel = (isClose: boolean) => setIsVisible(isClose)
+  const navBarAreaControlsClass = useMemo(
+    () =>
+      classNames(style.navBarAreaControls, isVisible ? style.navBarAreaControlsMobile : ''),
+    [isVisible]
+  );
+  const navBarCallPhoneclass = useMemo(
+    () =>
+      classNames(style.navBarCallPhone, isVisible ? style.navBarCallPhoneDropDown : ''),
+    [isVisible]
+  );
+  const navBarLogoClass = useMemo(
+    () => classNames(style.navBarLogo, isVisible ? style.navBarLogoDropDown : ''),
+    [isVisible]
+  );
+  const navBarMenuClass = useMemo(
+    () => classNames(style.navBarMenu, isVisible ? style.navBarMenuDropDown : ''),
+    [isVisible]
+  );
+  const navBarContainerClass = useMemo(
+    () => classNames(style.navBarContainer, isVisible ? style.navBarContainerDropDown : ''),
+    [isVisible]
+  );
+  const controlCount = (totalCount: number) => {
+    const result = useMemo(() => totalCount ? <ControlCountComponent countProductsInCart={totalCount} /> : null, [totalCount])
+    return result
+  }
+  const closeSidePanel = (isClose: boolean) => () => setIsVisible(isClose)
 
   useClickOutsideDiv(rootEl, () => {
     console.log('UseCLick......' + isVisible)
     //setIsVisible(false)
   })
 
+  useEffect(() => {
+    const fetchCategories = async () => {
+      try {
+        const response = await fetch(`${process.env.API_URL}/api/categories`);
+        const data = await response.json();
+        setCategories(data);
+      } catch (error) {
+        console.error(error);
+      }
+    };
+    fetchCategories();
+  }, []);
+
+
   return (<>
     <div className={navBarContainerClass}>
-      <div className={navBarMenuClass} onClick={() => closeSidePanel(!isVisible)} >
+      <div className={navBarMenuClass} onClick={closeSidePanel(!isVisible)} >
         <BiMenuAltLeft />
         <span>Меню</span>
       </div>
-      <div className={navBarLogoClass}>
+      <div className={navBarLogoClass} onClick={closeSidePanel(false)}>
         <Link href='/'>
-          <Image src='https://static.insales-cdn.com/files/1/2933/14871413/original/Group_8.svg' width={180} height={39} alt='Logo' />
+          <Image src={Logo} width={180} height={39} alt='Logo' />
         </Link>
       </div>
       <div className={navBarAreaControlsClass}>
         <Link href='/serch' ><BiSearch /></Link>
         <Link href='/user' ><BiUser /></Link>
-        <Link href='/compare' onClick={() => closeSidePanel(false)}><BiBarChart />
+        <Link href='/compare' onClick={closeSidePanel(false)}><BiBarChart />
           {controlCount(totalCountCompare)}</Link>
-        <Link href='/favorites' onClick={() => closeSidePanel(false)}><BiHeart />
+        <Link href='/favorites' onClick={closeSidePanel(false)}><BiHeart />
           {controlCount(totalCountFavorites)}
         </Link>
-        <Link href='/cart' onClick={() => closeSidePanel(false)}><BiCart />
+        <Link href='/cart' onClick={closeSidePanel(false)}><BiCart />
           {controlCount(totalCountProducts)}</Link>
       </div>
       <div className={navBarCallPhoneclass}><IoCallOutline /></div>
@@ -67,15 +106,16 @@ const NavBar = () => {
         <div className={style.sidePanelContainerRelative}>
           <div className={style.sidePanel} ref={rootEl}>
             <div className={style.sidePanelCatalog}>
-              <div className={style.sidePanelCatalogElement}><h3>Каталог</h3></div>
+              <div className={style.sidePanelCatalogElement}
+                onClick={closeSidePanel(!isVisible)}><Link href={'/categories'} onClick={closeSidePanel(!isVisible)}><h3>Категории</h3></Link></div>
               <div className={style.sidePanelCatalogElement} >
-                <Dropdown nameWrapper='Каталог 1' dropDownItem={['Подкатегория 1', 'Подкатегория 2']} />
+                <Dropdown catalogName='Демонстрационный каталог' info={categories} calb={closeSidePanel(!isVisible)} />
               </div>
               <div className={style.sidePanelCatalogElement}>
-                <Link href='/'> Каталог 2</Link>
+                <Link href='/'> Каталог 2(пустой)</Link>
               </div>
               <div className={style.sidePanelCatalogElement}>
-                <Link href='/'> Каталог 3</Link>
+                <Link href='/'> Каталог 3(пустой)</Link>
               </div>
             </div>
 
@@ -83,22 +123,19 @@ const NavBar = () => {
               <div className={style.sidePanelCatalogMenuElement}>
                 <h3>Меню</h3>
               </div>
-              <div className={style.sidePanelCatalogMenuElement} onClick={() => closeSidePanel(!isVisible)}>
-                <Link href='/'>Каталог</Link>
-              </div>
-              <div className={style.sidePanelCatalogMenuElement} onClick={() => closeSidePanel(!isVisible)}>
+              <div className={style.sidePanelCatalogMenuElement} onClick={closeSidePanel(!isVisible)}>
                 <Link href='/about-us'>О компании</Link>
               </div>
-              <div className={style.sidePanelCatalogMenuElement} onClick={() => closeSidePanel(!isVisible)}>
+              <div className={style.sidePanelCatalogMenuElement} onClick={closeSidePanel(!isVisible)}>
                 <Link href='/contacts'>Контакты</Link>
               </div>
-              <div className={style.sidePanelCatalogMenuElement} onClick={() => closeSidePanel(!isVisible)} >
+              <div className={style.sidePanelCatalogMenuElement} onClick={closeSidePanel(!isVisible)} >
                 <Link href='/'>Оплата</Link>
               </div>
-              <div className={style.sidePanelCatalogMenuElement} onClick={() => closeSidePanel(!isVisible)}>
+              <div className={style.sidePanelCatalogMenuElement} onClick={closeSidePanel(!isVisible)}>
                 <Link href='/'>Личный кабинет</Link>
               </div>
-              <div className={style.sidePanelCatalogMenuElement} onClick={() => closeSidePanel(!isVisible)}>
+              <div className={style.sidePanelCatalogMenuElement} onClick={closeSidePanel(!isVisible)}>
                 <Link href='/'>Блог</Link>
               </div>
             </div>
@@ -125,7 +162,7 @@ const NavBar = () => {
               </div>
             </div>
           </div>
-        </div><div className={style.closeIcon} onClick={() => closeSidePanel(!isVisible)}><BiXCircle /></div>
+        </div><div className={style.closeIcon} onClick={closeSidePanel(!isVisible)}><BiXCircle /></div>
 
       </div>
     }

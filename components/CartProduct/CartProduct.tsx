@@ -7,6 +7,7 @@ import { addProduct, cartState, minusProduct, removeProduct, rootProductsInCart 
 import { dataCartProduct } from '../../store/cart/cartSlice.types';
 import { useRouter } from 'next/router';
 import useAppSelector from '../../hooks/useAppSelector';
+import { useMemo } from 'react';
 
 
 
@@ -17,7 +18,7 @@ const CartProduct = ({ product }: { product: dataCartProduct }) => {
     const router = useRouter()
 
     const countProduct = () => {
-        const isProductInCart = products.find((item) => item.data.id === product.id)
+        const isProductInCart = useMemo(() => products.find((item) => item.data.id === product.id), [product.id])
         if (isProductInCart?.count) {
             return isProductInCart?.count
         }

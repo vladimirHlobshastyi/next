@@ -11,7 +11,7 @@ const NotFoundPage = () => {
     return <div className={style.notFoundContainer}>
         <HeadComponent description='Презентация сайта магазина одежды. Главная страница с товаром'
         viewport='width=device-width, initial-scale=1'
-      /><span>Oops</span></div>
+      /><span>404</span></div>
 }
 
 export default NotFoundPage

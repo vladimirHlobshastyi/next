@@ -10,10 +10,10 @@ import Image from "next/image";
 
 
 const mocFrame = [
-    { id: 1, img: '/Frame_1.png' },
-    { id: 2, img: '/Frame_2.png' },
-    { id: 3, img: '/Frame_3.png' },
-    { id: 4, img: '/Frame_4.png' },]
+    { id: 1, img: '/Frame_1.webp' },
+    { id: 2, img: '/Frame_2.webp' },
+    { id: 3, img: '/Frame_3.webp' },
+    { id: 4, img: '/Frame_4.webp' },]
 
 const SwiperComponent = () => {
 

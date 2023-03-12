@@ -3,6 +3,7 @@ import Link from 'next/link'
 import style from './Footer.module.scss'
 import { BsInstagram, BsTelegram } from "react-icons/bs";
 import { TfiYoutube } from "react-icons/tfi";
+import Logo from '../../public/Logo.svg'
 
 const Footer = () => {
 
@@ -17,15 +18,15 @@ const Footer = () => {
             </div>
             <div className={style.logo}>
                 <Link href='/'>
-                    <Image src='https://static.insales-cdn.com/files/1/2933/14871413/original/Group_8.svg' width={180} height={39} alt='Logo' />
+                    <Image src={Logo} width={180} height={39} alt='Logo' />
                 </Link>
             </div>
             <div className={style.social}>
                 <div className={style.socialLink}>
-                    <Link href='https://www.instagram.com/'> <BsInstagram /></Link>
+                    <Link href='https://www.instagram.com/'><BsInstagram /></Link>
                 </div>
                 <div className={style.socialLink}>
-                    <Link href='https://www.youtube.com/'> <BsTelegram /></Link>
+                    <Link href='https://www.youtube.com/'><BsTelegram /></Link>
                 </div>
                 <div className={style.socialLink}>
                     <Link href='https://www.telegram.com/'><TfiYoutube /></Link>
