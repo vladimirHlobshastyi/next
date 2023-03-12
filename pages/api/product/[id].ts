@@ -1,16 +1,6 @@
 import { NextApiRequest, NextApiResponse } from "next";
 import { allProducts, produtsDataType } from "../../../moc/moc";
 
-/* export default function handler(req: NextApiRequest, res: NextApiResponse) {
-  const { category, idProduct } = req.query;
-  let test = [] as any;
-
-  if (!Array.isArray(category) && category) {
-    test = allProducts[category].data.filter((item) => item.id === idProduct);
-  }
-
-  res.status(200).json(test);
-} */
 
 export default function handler(req: NextApiRequest, res: NextApiResponse) {
   const { category, idProduct } = req.query;

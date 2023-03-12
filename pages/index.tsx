@@ -5,11 +5,11 @@ import SwiperComponent from '../components/SwiperComponent/SwiperComponent'
 import Link from 'next/link'
 import { BsFillInfoCircleFill } from 'react-icons/bs'
 import ProductPreview from '../components/ProductPreview/ProductPreview'
-import { dataCartProduct } from '../store/cart/cartSlice.types'
+import { productsInCategory } from '../moc/moc'
 
 const inter = Inter({ subsets: ['latin'] })
 
-export default function Home({ products }: { products: dataCartProduct[] }) {
+export default function Home({ products }: { products: productsInCategory }) {
 
   return (
     <>
@@ -27,7 +27,7 @@ export default function Home({ products }: { products: dataCartProduct[] }) {
             <Link href='/'>Популярные</Link>
           </div>
           <div className={style.wrapperContentProducts}>
-            {products.map((product) => <ProductPreview key={product.id} {...{ product }} />)}
+            {products.data.map((product) => <ProductPreview key={product.id} {...{ product }} />)}
           </div>
           <div className={style.wrapperInfo}>
             <div className={style.wrapperInfoSvg}>
@@ -46,13 +46,15 @@ export default function Home({ products }: { products: dataCartProduct[] }) {
 }
 
 
-export async function getServerSideProps() {
-  const response = await fetch(`${process.env.API_URL}/api/products`)
-
-  const products = await response.json()
-
+export const getStaticProps = async () => {
+  const getProducts = await fetch(`${process.env.API_URL}/api/category/category1`);
+  const products: productsInCategory = await getProducts.json();
 
   return {
-    props: { products },
-  }
-}
+    props: {
+      products,
+    }, revalidate: 86400,
+  };
+};
+
+

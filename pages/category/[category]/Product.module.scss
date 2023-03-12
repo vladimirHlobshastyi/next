@@ -1,12 +1,22 @@
 .container {
   width: 100%;
   height: 100%;
-  padding: 0 20%;
+  padding: 0 20% 5%;
   img {
     cursor: pointer;
   }
   .wrapperNavigate {
     padding: 15px 0 0 0;
+  }
+  .contentNavigate {
+    padding: 5% 10% 2% 0;
+    a {
+      text-decoration: none;
+      color: #1b1b1bbb;
+      &:hover {
+        color: #000000;
+      }
+    }
   }
 }
 .wrapperProduct {
@@ -125,10 +135,19 @@
   .container {
     padding: 0;
     .wrapperProduct {
+      padding-bottom: 40px;
       flex-direction: column;
       .wrapperProductInfo {
         width: 100%;
         padding: 0 15px;
+      }
+    }
+    .contentNavigate {
+      padding: 0;
+      .contentNavigateWrapper {
+        display: flex;
+        justify-content: center;
+        padding-top: 15px;
       }
     }
     .wrapperProductImage {

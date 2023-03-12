@@ -1,5 +1,6 @@
 import { GetStaticPaths, GetStaticPathsContext, GetStaticProps } from "next"
 import Image from "next/image";
+import Link from "next/link";
 import { useRouter } from "next/router"
 import { useState } from "react";
 import { AiOutlineStar } from "react-icons/ai";
@@ -13,29 +14,21 @@ import useRootDispatch from "../../../hooks/useRootDispatch";
 import { productsInCategory, produtsDataType } from "../../../moc/moc";
 import { dataCartProduct } from "../../../store/cart/cartSlice.types";
 import { addCompareProduct, compareState, removeCompareProduct } from "../../../store/compare/compareSlice";
-import { categoryType } from "../[category]";
 import style from './Product.module.scss'
+import { paramsType, productPathType } from "./product.types";
 
-type productPathType = {
-    params: {
-        category: string,
-        productId: string,
-    },
-}
-
-
-type pathTypes = { params: { id: string }, }[]
-type productComponentTypes = { product: dataCartProduct }
 
 
 const ProductComponent = ({ product }: { product: produtsDataType }) => {
-    const transcriptionMoc = { nameWrapper: 'Описание', dropDownItem: ['Здесь будет описание вашего товара'] }
-    const transcriptionTwoMoc = { nameWrapper: 'Характеристики', dropDownItem: ['Здесь будут характиристики вашего товара'] }
+    const transcriptionMoc = { nameWrapper: 'Описание', dropDownItem: 'Здесь будет описание вашего товара' }
+    const transcriptionTwoMoc = { nameWrapper: 'Характеристики', dropDownItem: 'Здесь будут характиристики вашего товара' }
     const [indexImage, setIndexImage] = useState(0)
-    debugger
+
     const dispatch = useRootDispatch()
     const compareProducts = useAppSelector(compareState)
+    const router = useRouter()
 
+    const { category, productId } = router.query
 
     const addToCompare = () => {
         if (compareProducts.count < 5)
@@ -53,8 +46,14 @@ const ProductComponent = ({ product }: { product: produtsDataType }) => {
                 viewport='width=device-width, initial-scale=1'
             />
             <div className={style.container}>
+                <div className={style.contentNavigate}>
+                    <div className={style.contentNavigateWrapper}>
+                        <Link href={`/categories`}>Категории / </Link>
+                        <Link href={`/category/${category}`}>{category} / </Link>
+                        <Link href={`/category/${category}/${productId}`}> {productId}</Link>
+                    </div>
+                </div>
                 <div className={style.wrapper}>
-                    <div className={style.wrapperNavigate}> navigation** </div>
                     <div className={style.wrapperProduct}>
                         <div className={style.wrapperProductImage}>
                             <div className={style.wrapperProductImageLogo}>
@@ -92,19 +91,13 @@ const ProductComponent = ({ product }: { product: produtsDataType }) => {
                             <AddCartCornerButton product={product} />
                             <div className={style.wrapperProductInfoSpan}></div>
                             <div className={style.wrapperProductInfoDescription}>
-                                <Dropdown {...transcriptionMoc} />
+                                <Dropdown infoForProduct={transcriptionMoc} />
                             </div>
                             <div className={style.wrapperProductInfoParametres}>
-                                <Dropdown {...transcriptionTwoMoc} />
+                                <Dropdown infoForProduct={transcriptionTwoMoc} />
                             </div>
                         </div>
                     </div>
-                    {/*  <div className={style.wrapperPromotion}>
-                        <span> Похожие товары:</span>
-                        <div className={style.wrapperPromotionContent}>
-                            {allProducts.map((product, index) => <ProductPreview key={index} {...{ product }} />)}
-                        </div>
-                    </div> */}
                 </div>
             </div>
         </div>
@@ -133,16 +126,13 @@ export const getStaticPaths: GetStaticPaths = async () => {
         });
     }
 
-    console.log('==========path=============');
-    console.log(paths);
-    console.log('==================path================');
     return {
         paths,
         fallback: false,
     };
 };
 
-type paramsType = { category: string, productId: string }
+
 
 export const getStaticProps = async ({ params }: { params: paramsType }) => {
     const { category, productId } = params;
@@ -150,12 +140,10 @@ export const getStaticProps = async ({ params }: { params: paramsType }) => {
     const getProduct = await fetch
         (`${process.env.API_URL}/api/product/category?category=${category}&idProduct=${productId}`)
     const product: productsInCategory = await getProduct.json();
-    console.log('===============static================');
-    console.log(product);
-    console.log('================static===============');
+
     return {
         props: {
-            product,
+            product, revalidate: 86400,
         },
     };
 };

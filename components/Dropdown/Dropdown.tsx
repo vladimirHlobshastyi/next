@@ -2,22 +2,24 @@ import { useState } from 'react'
 import style from './Dropdown.module.scss'
 import { GoChevronDown } from 'react-icons/go';
 import { DropdownTypes } from './Dropdown.types';
+import Link from 'next/link';
 
 
-const Dropdown = ({ nameWrapper, dropDownItem }: DropdownTypes) => {
-    const [isVisibleCategory1, setIsVisibleCategory1] = useState(false)
+const Dropdown = ({ catalogName, info, infoForProduct, calb }: DropdownTypes) => {
+    const [isVisibleCategory, setIsVisibleCategory] = useState(false)
 
-    return <div className={style.sidePanelCatalogElement} onClick={() => setIsVisibleCategory1(!isVisibleCategory1)}>
-        <div className={style.sidePanelCatalogElementC1}>
-            <span>{nameWrapper}</span>
+    return <div className={style.sidePanelCatalogElement}>
+        <div className={style.sidePanelCatalogElementC1} onClick={() => setIsVisibleCategory(!isVisibleCategory)}>
+            <span>{catalogName || infoForProduct?.nameWrapper}</span>
             <div className={style.sidePanelCatalogElementSvg}><GoChevronDown /></div>
         </div>
-        {isVisibleCategory1 && <div className={style.sidePanelCatalogElementOpen}>
-            {dropDownItem.map((item, index) => {
-                return <div className={style.sidePanelCatalogElementOpenСategory} key={item + index}>
-                    {item}
+        {isVisibleCategory && <div className={style.sidePanelCatalogElementOpen}>
+            {info?.map((item) => {
+                return <div className={style.sidePanelCatalogElementOpenСategory} key={item.id} onClick={calb}>
+                    <Link href={`/category/${item.name}`}>{item.name}</Link>
                 </div>
             })}
+            {infoForProduct?.dropDownItem}
         </div>}
     </div>
 }

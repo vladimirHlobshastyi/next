@@ -81,11 +81,11 @@ const ProductComponent = ({ product, allProducts }: productComponentTypes) => {
               <AddCartCornerButton product={product} />
               <div className={style.wrapperProductInfoSpan}></div>
               <div className={style.wrapperProductInfoDescription}>
-                <Dropdown {...transcriptionMoc} />
-              </div>
+                {/*                 <Dropdown {...transcriptionMoc} />
+ */}              </div>
               <div className={style.wrapperProductInfoParametres}>
-                <Dropdown {...transcriptionTwoMoc} />
-              </div>
+                {/*              <Dropdown {...transcriptionTwoMoc} />
+ */}              </div>
             </div>
           </div>
           <div className={style.wrapperPromotion}>
@@ -132,6 +132,6 @@ export async function getStaticProps({ params }: {
   const product = await getOneProduct.json();
 
   return {
-    props: { product, allProducts },
+    props: { product, allProducts }, revalidate: 86400,
   };
 }
