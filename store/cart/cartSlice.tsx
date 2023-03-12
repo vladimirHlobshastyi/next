@@ -38,7 +38,7 @@ const cartSlice = createSlice({
       return state;
 
     },
-    minusProduct(state, action: PayloadAction<{ id: number, price: number }>) {
+    minusProduct(state, action: PayloadAction<{ id: number | string, price: number }>) {
       if (state.totalCount !== 0) {
         const minusProduct = state.products.map((item) => {
           if (item.data.id === action.payload.id) {
@@ -51,7 +51,9 @@ const cartSlice = createSlice({
         state.products = minusProduct.filter((item) => item.count !== 0)
       }
     },
-    removeProduct(state, action: PayloadAction<{ id: number, price: number, quantity: number }>) {
+    removeProduct(state, action: PayloadAction<{
+      id: number | string, price: number, quantity: number
+    }>) {
       const newState = state.products.filter((item) => item.data.id !== action.payload.id)
       state.totalCount -= action.payload.quantity
       state.totalPrice -= action.payload.price * action.payload.quantity

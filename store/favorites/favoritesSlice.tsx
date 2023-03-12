@@ -25,7 +25,7 @@ const favoritesSlice = createSlice({
         ++state.count
       }
     },
-    removeFavoritesProduct(state, action: PayloadAction<{ id: number, price: number }>) {
+    removeFavoritesProduct(state, action: PayloadAction<{ id: string, price: number }>) {
 
       const minusFavoritesProduct = state.data.filter((item) => item.id !== action.payload.id)
       state.data = minusFavoritesProduct

@@ -1,7 +1,7 @@
 import Image from 'next/image'
 import style from './ProductPreview.module.scss'
 import useRootDispatch from '../../hooks/useRootDispatch';
-import Router from 'next/router';
+import Router, { useRouter } from 'next/router';
 import { dataCartProduct } from '../../store/cart/cartSlice.types';
 import useAppSelector from '../../hooks/useAppSelector';
 import CardButton from '../CardButton/CardButton';
@@ -16,12 +16,13 @@ import { rootProductsInCart } from '../../store/cart/cartSlice';
 
 const ProductPreview = ({ product }: { product: dataCartProduct }) => {
     const router = Router
+    const { category } = useRouter().query
 
     const products = useAppSelector(rootProductsInCart)
     const favoritesProducts = useAppSelector(rootFavoritesProducts)
     const compareProducts = useAppSelector(compareState)
     const dispatch = useRootDispatch()
-    
+
     const addToFavorites = () => {
         dispatch(addFavoritesProduct(product))
     }
@@ -35,6 +36,8 @@ const ProductPreview = ({ product }: { product: dataCartProduct }) => {
     const removeFromeCompare = () => {
         dispatch(removeCompareProduct(product))
     }
+
+
     return <div className={style.container}>
         <div className={style.favorit}
             onClick={useIsFavorites(favoritesProducts, product) ? removeFromeFavorites : addToFavorites}>
@@ -44,7 +47,7 @@ const ProductPreview = ({ product }: { product: dataCartProduct }) => {
             onClick={useIsFavorites(compareProducts, product) ? removeFromeCompare : addToCompare}>
             {useIsFavorites(compareProducts, product) ? <BiBarChartAlt /> : <BiBarChart />}
         </div>
-        <div onClick={() => router.push(`/product/${product.id}`)} >
+        <div onClick={() => router.push(`/category/${category || 'category1'}/${product.id}`)} >
             <div className={style.image}>
                 <Image src={product.images[0]} alt='large_tovar' width={164} height={164} />
             </div>

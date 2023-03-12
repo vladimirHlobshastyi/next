@@ -1,3 +1,4 @@
+import { useMemo } from "react";
 import { dataCartProduct } from "../store/cart/cartSlice.types";
 
 type useIsProductInCartPropType =
@@ -11,14 +12,12 @@ const useIsProductInCart = (
   products: useIsProductInCartPropType,
   product: dataCartProduct
 ) => {
-  const countProductsArray = products.filter(
-    (item) => item.data.id === product.id
+  const filteredProducts = useMemo(
+    () => products.filter((item) => item.data.id === product.id),
+    [products, product.id]
   );
-  countProductsArray.length ? countProductsArray[0].count : false;
-  if (countProductsArray.length) {
-    return countProductsArray[0].count;
-  }
-  return false;
+
+  return filteredProducts.length ? filteredProducts[0].count : false;
 };
 
 export default useIsProductInCart;
