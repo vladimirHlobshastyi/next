@@ -21,7 +21,7 @@ type CategoryTypes = { name: string; id: string };
 
 
 
-const NavBar = () => {
+const NavBar = (props: any) => {
   const rootEl: React.MutableRefObject<null> = useRef(null);
   const [isVisible, setIsVisible] = useState(false)
   const [categories, setCategories] = useState<CategoryTypes[]>([]);
@@ -62,20 +62,19 @@ const NavBar = () => {
     console.log('UseCLick......' + isVisible)
     //setIsVisible(false)
   })
-
-  useEffect(() => {
-    const fetchCategories = async () => {
-      try {
-        const response = await fetch(`${process.env.API_URL}/api/categories`);
+  debugger
+  /* 
+    useEffect(() => {
+      const fetchCategories = async () => {
+        const response = await fetch(`${process.env.API_URL}api/categories`);
         const data = await response.json();
         setCategories(data);
-      } catch (error) {
-        console.error(error);
-      }
-    };
-    fetchCategories();
-  }, []);
-
+      };
+      fetchCategories();
+    }, []);
+    console.log('====================================');
+    console.log(categories);
+    console.log('===================================='); */
 
   return (<>
     <div className={navBarContainerClass}>
@@ -168,6 +167,7 @@ const NavBar = () => {
     }
   </>
   )
+
 }
 
 export default NavBar 
