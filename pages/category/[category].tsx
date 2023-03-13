@@ -23,7 +23,7 @@ const Category = ({ products }: productComponentTypes) => {
         <Link href={`${category}`}> {category}</Link>
       </div>
       <div className={style.contentProducts}>
-        {products.data.map((product) => <ProductPreview key={product.id} {...{ product }} />)}
+        {products?.data.map((product) => <ProductPreview key={product.id} {...{ product }} />)}
       </div>
     </div>
 
