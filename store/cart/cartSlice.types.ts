@@ -1,7 +1,7 @@
 import { StaticImageData } from "next/image";
 
 export type dataCartProduct = {
-  id: string;
+  id: string | number;
   description: string;
   price: number;
   currency: string;

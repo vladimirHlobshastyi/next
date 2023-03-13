@@ -62,7 +62,7 @@ const NavBar = (props: any) => {
     console.log('UseCLick......' + isVisible)
     //setIsVisible(false)
   })
-  debugger
+  
   /* 
     useEffect(() => {
       const fetchCategories = async () => {
