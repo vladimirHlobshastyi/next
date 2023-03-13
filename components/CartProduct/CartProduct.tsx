@@ -17,14 +17,14 @@ const CartProduct = ({ product }: { product: dataCartProduct }) => {
     const dispatch = useRootDispatch()
     const router = useRouter()
 
-    const countProduct = () => {
-        const isProductInCart = useMemo(() => products.find((item) => item.data.id === product.id), [product.id])
-        if (isProductInCart?.count) {
-            return isProductInCart?.count
-        }
-        return 0
-    }
 
+    const countProduct = () => {
+        const isProductInCart = products.find((item) => item.data.id === product.id);
+        if (isProductInCart?.count) {
+            return isProductInCart.count;
+        }
+        return 0;
+    };
     const minusProductItem = () => dispatch(minusProduct(product))
 
     const addProductItem = () => dispatch(addProduct(product))
