@@ -2,8 +2,14 @@ import ProductPreview from "../../components/ProductPreview/ProductPreview";
 import style from "./category.module.scss";
 import { useRouter } from "next/router";
 import Link from "next/link";
-import { categoryType, pathTypes, productComponentTypes } from "./category.types";
+import { productsInCategory } from "../../moc/moc";
 
+export type pathTypes = { params: { category: string } }[];
+export type productComponentTypes = { products: productsInCategory };
+export type categoryType = {
+  name: string;
+  id: string;
+};
 
 
 const Category = ({ products }: productComponentTypes) => {

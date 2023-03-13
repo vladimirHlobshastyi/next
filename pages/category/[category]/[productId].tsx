@@ -15,8 +15,15 @@ import { productsInCategory, produtsDataType } from "../../../moc/moc";
 import { dataCartProduct } from "../../../store/cart/cartSlice.types";
 import { addCompareProduct, compareState, removeCompareProduct } from "../../../store/compare/compareSlice";
 import style from './Product.module.scss'
-import { paramsType, productPathType } from "./product.types";
 
+export type productPathType = {
+    params: {
+        category: string;
+        productId: string;
+    };
+};
+
+export type paramsType = { category: string; productId: string };
 
 
 const ProductComponent = ({ product }: { product: produtsDataType }) => {
