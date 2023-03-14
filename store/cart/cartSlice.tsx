@@ -79,3 +79,5 @@ export const rootTotalCountInCart = (state: RootState) => state.cart.totalCount
 
 
 export default cartSlice.reducer;
+
+
