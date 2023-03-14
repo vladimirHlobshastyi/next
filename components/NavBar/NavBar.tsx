@@ -17,14 +17,13 @@ import { rootCountInCompare } from '../../store/compare/compareSlice';
 import Logo from '../../public/Logo.svg'
 
 
-type CategoryTypes = { name: string; id: string };
+type CategoryTypes = { categories: { name: string; id: string }[] };
 
 
 
-const NavBar = (props: any) => {
+const NavBar = ({ categories }: CategoryTypes) => {
   const rootEl: React.MutableRefObject<null> = useRef(null);
   const [isVisible, setIsVisible] = useState(false)
-  const [categories, setCategories] = useState<CategoryTypes[]>([]);
 
   const totalCountProducts = useAppSelector(rootTotalCountInCart)
   const totalCountFavorites = useAppSelector(rootCountInFavorites)
@@ -62,19 +61,7 @@ const NavBar = (props: any) => {
     console.log('UseCLick......' + isVisible)
     //setIsVisible(false)
   })
-  
-  /* 
-    useEffect(() => {
-      const fetchCategories = async () => {
-        const response = await fetch(`${process.env.API_URL}api/categories`);
-        const data = await response.json();
-        setCategories(data);
-      };
-      fetchCategories();
-    }, []);
-    console.log('====================================');
-    console.log(categories);
-    console.log('===================================='); */
+
 
   return (<>
     <div className={navBarContainerClass}>
