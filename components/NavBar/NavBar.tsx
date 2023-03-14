@@ -17,11 +17,11 @@ import { rootCountInCompare } from '../../store/compare/compareSlice';
 import Logo from '../../public/Logo.svg'
 
 
-type CategoryTypes = { categories: { name: string; id: string }[] };
+export type CategoryTypes = { name: string; id: string }[];
 
 
 
-const NavBar = ({ categories }: CategoryTypes) => {
+const NavBar = ({ categories }: { categories: CategoryTypes }) => {
   const rootEl: React.MutableRefObject<null> = useRef(null);
   const [isVisible, setIsVisible] = useState(false)
 

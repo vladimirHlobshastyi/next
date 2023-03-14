@@ -16,7 +16,6 @@ const cartSlice = createSlice({
   reducers: {
 
     addProduct(state, action: PayloadAction<dataCartProduct>) {
-      debugger
       let sheckIdentical = state.products.some(
         (item) => item.data.id === action.payload.id
       );
@@ -39,7 +38,7 @@ const cartSlice = createSlice({
 
     },
     minusProduct(state, action: PayloadAction<{ id: number | string, price: number }>) {
-      debugger
+
       if (state.totalCount !== 0) {
         const minusProduct = state.products.map((item) => {
           if (item.data.id === action.payload.id) {
@@ -56,7 +55,7 @@ const cartSlice = createSlice({
 
       id: number | string, price: number, quantity: number
     }>) {
-      debugger
+
       const newState = state.products.filter((item) => item.data.id !== action.payload.id)
       state.totalCount -= action.payload.quantity
       state.totalPrice -= action.payload.price * action.payload.quantity
@@ -79,3 +78,5 @@ export const rootTotalCountInCart = (state: RootState) => state.cart.totalCount
 
 
 export default cartSlice.reducer;
+
+
