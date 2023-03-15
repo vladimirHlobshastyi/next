@@ -34,7 +34,7 @@ const SwiperComponent = () => {
             >
                 {mocFrame.map((item) => {
                     return <SwiperSlide key={item.id} className={style.swaperItem}>
-                        <Image src={item.img} alt="image" width={1000} height={1000} />
+                        <Image src={item.img} alt="image" width={1000} height={1000} priority />
                     </SwiperSlide>
                 })}
 
