@@ -15,6 +15,8 @@ import { rootTotalCountInCart } from '../../store/cart/cartSlice';
 import { rootCountInFavorites } from '../../store/favorites/favoritesSlice';
 import { rootCountInCompare } from '../../store/compare/compareSlice';
 import Logo from '../../public/Logo.svg'
+import SearchComponent from '../Search/Search';
+import { useRouter } from 'next/router';
 
 
 export type CategoryTypes = { name: string; id: string }[];
@@ -22,12 +24,17 @@ export type CategoryTypes = { name: string; id: string }[];
 
 
 const NavBar = ({ categories }: { categories: CategoryTypes }) => {
-  const rootEl: React.MutableRefObject<null> = useRef(null);
+  
+  const router = useRouter();
   const [isVisible, setIsVisible] = useState(false)
+  const [isSearch, setIsSearch] = useState(false)
 
   const totalCountProducts = useAppSelector(rootTotalCountInCart)
   const totalCountFavorites = useAppSelector(rootCountInFavorites)
   const totalCountCompare = useAppSelector(rootCountInCompare)
+
+  const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+  const isMobileMemo = useMemo(() => isMobile, [isMobile])
 
   const navBarAreaControlsClass = useMemo(
     () =>
@@ -56,12 +63,10 @@ const NavBar = ({ categories }: { categories: CategoryTypes }) => {
     return result
   }
   const closeSidePanel = (isClose: boolean) => () => setIsVisible(isClose)
-
-  useClickOutsideDiv(rootEl, () => {
-    console.log('UseCLick......' + isVisible)
-    //setIsVisible(false)
-  })
-
+  const searchOrRedirect = isMobileMemo ? () => {
+    setIsVisible(!isVisible)
+    return router.push('search')
+  } : () => setIsSearch(true)
 
   return (<>
     <div className={navBarContainerClass}>
@@ -70,27 +75,35 @@ const NavBar = ({ categories }: { categories: CategoryTypes }) => {
         <span>Меню</span>
       </div>
       <div className={navBarLogoClass} onClick={closeSidePanel(false)}>
-        <Link href='/'>
-          <Image src={Logo} width={180} height={39} alt='Logo' />
-        </Link>
+        {isSearch ? <SearchComponent calb={setIsSearch} /> : <Link href='/'> <Image src={Logo} width={180} height={39} alt='Logo' /></Link>}
       </div>
       <div className={navBarAreaControlsClass}>
-        <Link href='/serch' ><BiSearch /></Link>
-        <Link href='/user' ><BiUser /></Link>
-        <Link href='/compare' onClick={closeSidePanel(false)}><BiBarChart />
-          {controlCount(totalCountCompare)}</Link>
-        <Link href='/favorites' onClick={closeSidePanel(false)}><BiHeart />
-          {controlCount(totalCountFavorites)}
-        </Link>
-        <Link href='/cart' onClick={closeSidePanel(false)}><BiCart />
-          {controlCount(totalCountProducts)}</Link>
+        <span>
+          <BiSearch onClick={searchOrRedirect} />
+        </span>
+        <span>
+          <Link href='/user' ><BiUser /></Link>
+        </span>
+        <span>
+          <Link href='/compare' onClick={closeSidePanel(false)}><BiBarChart />
+            {controlCount(totalCountCompare)}</Link>
+        </span>
+        <span>
+          <Link href='/favorites' onClick={closeSidePanel(false)}><BiHeart />
+            {controlCount(totalCountFavorites)}
+          </Link>
+        </span>
+        <span>
+          <Link href='/cart' onClick={closeSidePanel(false)}><BiCart />
+            {controlCount(totalCountProducts)}</Link>
+        </span>
       </div>
       <div className={navBarCallPhoneclass}><IoCallOutline /></div>
     </div>
     {
       isVisible && <div className={style.sidePanelContainer} >
         <div className={style.sidePanelContainerRelative}>
-          <div className={style.sidePanel} ref={rootEl}>
+          <div className={style.sidePanel} >
             <div className={style.sidePanelCatalog}>
               <div className={style.sidePanelCatalogElement}
                 onClick={closeSidePanel(!isVisible)}><Link href={'/categories'} onClick={closeSidePanel(!isVisible)}><h3>Категории</h3></Link></div>
@@ -148,8 +161,9 @@ const NavBar = ({ categories }: { categories: CategoryTypes }) => {
               </div>
             </div>
           </div>
-        </div><div className={style.closeIcon} onClick={closeSidePanel(!isVisible)}><BiXCircle /></div>
-
+        </div>
+        <div className={style.closeIcon} onClick={closeSidePanel(!isVisible)}><BiXCircle />
+        </div>
       </div>
     }
   </>
@@ -157,4 +171,8 @@ const NavBar = ({ categories }: { categories: CategoryTypes }) => {
 
 }
 
-export default NavBar 
+export default NavBar
+
+
+
+
