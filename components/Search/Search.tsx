@@ -3,7 +3,7 @@ import styles from "./Search.module.scss";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { searchProductResult } from "../../pages/api/search/[search]";
-import getSerchedProducts from "../../api/getSerchedProducts";
+import getSerchedProducts from "../../apiRequests/getSerchedProducts";
 import useClickOutsideDiv from "../../hooks/useClickOutsideDiv";
 import { GrClose } from "react-icons/gr";
 
@@ -44,7 +44,7 @@ function SearchComponent({ calb }: { calb: Dispatch<SetStateAction<boolean>> }) 
 
     return (
         <div className={styles.container} ref={rootEl}>
-            <input type="text" value={value} onChange={handleChange} onKeyDown={handleKeyDown} placeholder='Поиск'/><GrClose  onClick={() => calb(false)} />
+            <input type="text" value={value} onChange={handleChange} onKeyDown={handleKeyDown} placeholder='Поиск' /><GrClose onClick={() => calb(false)} />
             {products.length > 0 && (
                 <div className={styles.dropdown}>
                     {products.map((item) => (
