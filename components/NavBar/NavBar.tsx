@@ -24,9 +24,7 @@ export type CategoryTypes = { name: string; id: string }[];
 
 
 const NavBar = ({ categories }: { categories: CategoryTypes }) => {
-  /*   const rootEl: React.MutableRefObject<null> = useRef(null);
-   */
-
+  
   const router = useRouter();
   const [isVisible, setIsVisible] = useState(false)
   const [isSearch, setIsSearch] = useState(false)
@@ -36,9 +34,7 @@ const NavBar = ({ categories }: { categories: CategoryTypes }) => {
   const totalCountCompare = useAppSelector(rootCountInCompare)
 
   const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
-
-  const searchOrRedirect = isMobile ? () => router.push('search/s') : () => setIsSearch(true)
-
+  const isMobileMemo = useMemo(() => isMobile, [isMobile])
 
   const navBarAreaControlsClass = useMemo(
     () =>
@@ -67,12 +63,10 @@ const NavBar = ({ categories }: { categories: CategoryTypes }) => {
     return result
   }
   const closeSidePanel = (isClose: boolean) => () => setIsVisible(isClose)
-
-  /* useClickOutsideDiv(rootEl, () => {
-    console.log('UseCLick......' + isVisible)
-    //setIsVisible(false)
-  }) */
-
+  const searchOrRedirect = isMobileMemo ? () => {
+    setIsVisible(!isVisible)
+    return router.push('search')
+  } : () => setIsSearch(true)
 
   return (<>
     <div className={navBarContainerClass}>
@@ -167,8 +161,9 @@ const NavBar = ({ categories }: { categories: CategoryTypes }) => {
               </div>
             </div>
           </div>
-        </div><div className={style.closeIcon} onClick={closeSidePanel(!isVisible)}><BiXCircle /></div>
-
+        </div>
+        <div className={style.closeIcon} onClick={closeSidePanel(!isVisible)}><BiXCircle />
+        </div>
       </div>
     }
   </>
@@ -176,4 +171,8 @@ const NavBar = ({ categories }: { categories: CategoryTypes }) => {
 
 }
 
-export default NavBar 
+export default NavBar
+
+
+
+
