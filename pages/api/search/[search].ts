@@ -2,7 +2,10 @@ import { produtsDataType } from "../../../moc/moc";
 import { NextApiRequest, NextApiResponse } from "next";
 import { allProducts } from "../../../moc/moc";
 
-export type searchProductResult = { product: produtsDataType; category: string }[];
+export type searchProductResult = {
+  product: produtsDataType;
+  category: string;
+}[];
 
 export default function handler(req: NextApiRequest, res: NextApiResponse) {
   const { search } = req.query;
@@ -21,10 +24,10 @@ export default function handler(req: NextApiRequest, res: NextApiResponse) {
     return res.status(400).json({ error: "Invalid search query" });
   }
 
-  if (search.trim().length === 0) {
+  /*  if (search.trim().length === 0) {
     res.status(400).json({ message: 'Параметр "search" не может быть пустым' });
     return;
-  }
+  } */
   const bodyReq = search.toLowerCase();
 
   const result = [] as searchProductResult;
