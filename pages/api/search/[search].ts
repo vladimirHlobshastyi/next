@@ -15,10 +15,10 @@ export default function handler(req: NextApiRequest, res: NextApiResponse) {
     return;
   } */
 
-  if (!search) {
+  /* if (!search) {
     res.status(400).json({ message: 'Параметр "search" обязателен' });
     return;
-  }
+  } */
 
   /*   if (typeof search !== "string") {
     return res.status(400).json({ error: "Invalid search query" });

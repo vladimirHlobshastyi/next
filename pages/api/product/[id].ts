@@ -5,7 +5,7 @@ import { allProducts, produtsDataType } from "../../../moc/moc";
 export default function handler(req: NextApiRequest, res: NextApiResponse) {
   const { category, idProduct } = req.query;
   res.setHeader('Access-Control-Allow-Origin', '*');
-  if (!category || !idProduct || Array.isArray(category)) {
+  if (!category || !idProduct || Array.isArray(category)|| Array.isArray(idProduct)) {
     return res
       .status(400)
       .json({ message: "Missing category or idProduct parameter" });
