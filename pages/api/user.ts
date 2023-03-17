@@ -4,6 +4,7 @@ import { authToken } from "../../moc/moc";
 export default function handler(req: NextApiRequest, res: NextApiResponse) {
   const { authKey } = req.body;
   const { token } = authToken;
+  res.setHeader('Access-Control-Allow-Origin', '*');
 
   if (req.method !== "POST") {
     return res.status(405).json({ message: "Method not allowed" });
