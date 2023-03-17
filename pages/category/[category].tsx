@@ -59,7 +59,7 @@ export async function getStaticProps({ params }: {
 
 
   return {
-    props: { products }, revalidate: 86400,
+    props: { products }, /* revalidate: 86400, */
   };
 }
 
