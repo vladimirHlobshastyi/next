@@ -15,6 +15,6 @@
     "jsx": "preserve",
     "incremental": true
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "components/NavBar/NavBar.tsx", "pages/productOne/[id].tsx", "pages/category/category/[productName].tsx"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "components/NavBar/NavBar.tsx", "pages/productOne/[id].tsx", "pages/category/category/[productName].tsx", "components/ArrowDropup"],
   "exclude": ["node_modules"]
 }

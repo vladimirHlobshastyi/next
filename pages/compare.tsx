@@ -10,9 +10,11 @@ import { RiDeleteBin6Line } from 'react-icons/ri';
 import { compareState, removeCompareProduct } from '../store/compare/compareSlice'
 import { AiOutlineStar } from 'react-icons/ai'
 import HeadComponent from '../components/Head/HeadComponent';
+import Router from 'next/router';
 
 
 const CompareProduct = ({ product }: { product: dataCartProduct }) => {
+    const router = Router
     const dispatch = useRootDispatch()
     const favoritesProducts = useAppSelector(rootFavoritesProducts)
 
@@ -27,8 +29,8 @@ const CompareProduct = ({ product }: { product: dataCartProduct }) => {
     }
 
 
-    return <div className={style.containerCompare}>
-        <div className={style.logoImage}><Image src={product.images[0]} alt='imageLogo' /></div>
+    return <div className={style.containerCompare} >
+        <div className={style.logoImage} onClick={() => router.push(`/category/category1/${product.id}`)}><Image src={product.images[0]} alt='imageLogo' /></div>
         <div className={style.stars}>
             <AiOutlineStar />
             <AiOutlineStar />
@@ -47,7 +49,7 @@ const CompareProduct = ({ product }: { product: dataCartProduct }) => {
                 <RiDeleteBin6Line />
             </div>
         </div>
-    </div>
+    </div >
 }
 const Compare = () => {
     const compare = useAppSelector(compareState)

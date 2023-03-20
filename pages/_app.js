@@ -4,6 +4,7 @@ import { Provider } from "react-redux";
 import { store } from "../store/store.tsx";
 import { PersistGate } from "redux-persist/integration/react";
 import { persistor } from "../store/store";
+
 export default function MyApp({ Component, pageProps, categories }) {
   return (
     <Provider store={store}>
@@ -16,14 +17,9 @@ export default function MyApp({ Component, pageProps, categories }) {
   );
 }
 
-MyApp.getInitialProps = async ({ Component, ctx }) => {
+export async function getStaticProps() {
   const response = await fetch(`${process.env.API_URL}/api/categories`);
   const data = await response.json();
-  let pageProps = {};
 
-  if (Component.getInitialProps) {
-    pageProps = await Component.getInitialProps(ctx);
-  }
-
-  return { categories: data, pageProps };
-};
+  return { props: { categories: data }, revalidate: 86400 };
+}

@@ -1,4 +1,3 @@
-import { useRouter } from "next/router";
 import HeadComponent from "../../components/Head/HeadComponent";
 import ProductPreview from "../../components/ProductPreview/ProductPreview";
 import style from './searchProduct.module.scss'
@@ -8,10 +7,11 @@ import SearchComponent from "../Search/Search";
 
 
 type SearchProps = {
-    searchProducts: searchProductResult|[];
+    searchProducts: searchProductResult | [];
 }
 
 const SearchPage = ({ searchProducts }: SearchProps) => {
+
 
     return <div className={style.container}>
         <HeadComponent

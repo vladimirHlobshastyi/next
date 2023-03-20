@@ -9,6 +9,7 @@ import { GrClose } from "react-icons/gr";
 
 function SearchComponent({ calb }: { calb: Dispatch<SetStateAction<boolean>> }) {
     const rootEl = useRef<HTMLDivElement>(null);
+    const inputRef = useRef<HTMLInputElement>(null);
 
     const router = useRouter();
     const [value, setValue] = useState("");
@@ -42,9 +43,18 @@ function SearchComponent({ calb }: { calb: Dispatch<SetStateAction<boolean>> }) 
         calb(false)
     })
 
+    useEffect(() => {
+        if (inputRef.current) {
+            inputRef.current.focus();
+        }
+    }, []);
     return (
         <div className={styles.container} ref={rootEl}>
-            <input type="text" value={value} onChange={handleChange} onKeyDown={handleKeyDown} placeholder='Поиск' /><GrClose onClick={() => calb(false)} />
+            <input type="text" value={value}
+                onChange={handleChange}
+                onKeyDown={handleKeyDown}
+                placeholder='Поиск'
+                ref={inputRef} /><GrClose onClick={() => calb(false)} />
             {products.length > 0 && (
                 <div className={styles.dropdown}>
                     {products.map((item) => (

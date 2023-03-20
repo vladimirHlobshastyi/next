@@ -24,7 +24,7 @@ export type CategoryTypes = { name: string; id: string }[];
 
 
 const NavBar = ({ categories }: { categories: CategoryTypes }) => {
-  
+
   const router = useRouter();
   const [isVisible, setIsVisible] = useState(false)
   const [isSearch, setIsSearch] = useState(false)
@@ -98,7 +98,7 @@ const NavBar = ({ categories }: { categories: CategoryTypes }) => {
             {controlCount(totalCountProducts)}</Link>
         </span>
       </div>
-      <div className={navBarCallPhoneclass}><IoCallOutline /></div>
+      <div className={navBarCallPhoneclass}><Link href="tel:+380661206215"><IoCallOutline /></Link></div>
     </div>
     {
       isVisible && <div className={style.sidePanelContainer} >
