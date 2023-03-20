@@ -27,6 +27,7 @@ $bbt: 2px solid $svgcolor;
     align-items: center;
     .logoImage {
       margin-bottom: $mbt;
+      cursor: pointer;
     }
     .article {
       display: flex;
@@ -36,8 +37,8 @@ $bbt: 2px solid $svgcolor;
         margin: 0 2px;
       }
     }
-    .stars{
-        @extend%info;  
+    .stars {
+      @extend%info;
     }
     .description {
       @extend%info;
@@ -77,11 +78,11 @@ $bbt: 2px solid $svgcolor;
           height: 20px;
         }
       }
-      .stars{
+      .stars {
         height: auto;
         margin-bottom: 0;
         border-bottom: none;
-    }
+      }
 
       .description {
         height: 15.5%;

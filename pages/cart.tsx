@@ -2,13 +2,13 @@ import ProductPreview from '../components/ProductPreview/ProductPreview';
 import style from './../styles/cart.module.scss'
 import { AiOutlineCheck } from 'react-icons/ai';
 import CartProduct from '../components/CartProduct/CartProduct';
-import { dataCartProduct } from '../store/cart/cartSlice.types';
 import { cartState } from '../store/cart/cartSlice';
 import useAppSelector from '../hooks/useAppSelector';
 import HeadComponent from '../components/Head/HeadComponent';
+import { productsInCategory } from '../moc/moc';
 
 
-const Cart = ({ productsPreview }: { productsPreview: dataCartProduct[] }) => {
+const Cart = ({ productsPreview }: { productsPreview: productsInCategory }) => {
   const { products, totalCount, totalPrice } = useAppSelector(cartState);
 
   return <div className={style.container}>
@@ -41,7 +41,14 @@ const Cart = ({ productsPreview }: { productsPreview: dataCartProduct[] }) => {
       </div>
     </div>
     <div className={style.proposalProducts}>
-      {productsPreview.map((product, index) => <ProductPreview key={index} product={product} />)}
+      {productsPreview.data.map((product, index) => {
+        if (product === productsPreview.data[productsPreview.data.length - 1] && index % 2 === 1) {
+          return <><ProductPreview key={index} product={product} /><div className={style.proposalProductsLp}></div></>
+        }
+        return <ProductPreview key={index} product={product} />
+      }
+
+      )}
     </div>
 
   </div>;
@@ -49,11 +56,14 @@ const Cart = ({ productsPreview }: { productsPreview: dataCartProduct[] }) => {
 
 export default Cart
 
-export async function getServerSideProps() {
-  const response = await fetch(`${process.env.API_URL}/api/products`)
-  const productsPreview = await response.json()
+export const getStaticProps = async () => {
+  const getProducts = await fetch(`${process.env.API_URL}/api/category/category1`);
+  const productsPreview: productsInCategory = await getProducts.json();
 
   return {
-    props: { productsPreview },
-  }
-}
+    props: {
+      productsPreview,
+    }, revalidate: 86400,
+  };
+};
+

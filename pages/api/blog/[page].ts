@@ -1,7 +1,7 @@
 import { NextApiRequest, NextApiResponse } from "next";
 import { blogPosts, blogPostsTypes } from "../../../moc/moc";
 
-type responsType = {
+export type responsBlogType = {
   data: blogPostsTypes[];
   totalBlogs: number;
   totalPages: number;
@@ -11,7 +11,7 @@ const postsPerPage = 5;
 
 export default function handler(
   req: NextApiRequest,
-  res: NextApiResponse<responsType | { message: string }>
+  res: NextApiResponse<responsBlogType | { message: string }>
 ) {
   const page =
     typeof req.query.page === "string" ? Number(req.query.page) : undefined;
@@ -21,7 +21,7 @@ export default function handler(
   const totalPages = Math.ceil(blogPosts.length / 5);
 
   const data = blogPosts.slice(startIndex, endIndex);
-  const responsePosts: responsType = {
+  const responsePosts: responsBlogType = {
     data,
     totalBlogs: blogPosts.length,
     totalPages,

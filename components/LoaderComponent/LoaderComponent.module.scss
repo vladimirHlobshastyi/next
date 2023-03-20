@@ -1,0 +1,17 @@
+.container {
+  width: 100vw;
+  height: 100vh;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 999999;
+  background: rgba(207, 207, 207, 0.443);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+@media (max-width: 820px) {
+  .container {
+  }
+}

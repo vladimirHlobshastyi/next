@@ -9,7 +9,9 @@
   .proposalProductsContainer {
     margin: 30px 0;
     padding: 0 320px;
-
+    p {
+      padding: 25px 50px;
+    }
     .proposalProducts {
       width: 100%;
       display: flex;
@@ -18,7 +20,7 @@
     }
   }
   .favoritesProduct {
-    margin: 30px 0 150px;
+    margin: 30px 0 50px;
     padding: 0 5%;
     width: 100%;
     display: flex;
@@ -32,7 +34,7 @@
     .favoritesProduct {
       width: 100%;
       padding: 0 1.6%;
-      justify-content: space-around;
+      justify-content: space-between;
     }
     .proposalProductsContainer {
       padding: 0;

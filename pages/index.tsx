@@ -23,11 +23,17 @@ export default function Home({ products }: { products: productsInCategory }) {
         </div>
         <div className={style.wrapperContent}>
           <div className={style.wrapperContentPromotion}>
-            <Link href='/'>Акции</Link>
-            <Link href='/'>Популярные</Link>
+            <Link href='/'>Новинки</Link>
           </div>
           <div className={style.wrapperContentProducts}>
-            {products.data.map((product) => <ProductPreview key={product.id} {...{ product }} />)}
+            {products.data.map((product, index) => {
+              if (product === products.data[products.data.length - 1] && index % 2 === 1) {
+                return <><ProductPreview key={index} product={product} /><div className={style.proposalProductsLp}></div></>
+              }
+              return <ProductPreview key={index} product={product} />
+            }
+
+            )}
           </div>
           <div className={style.wrapperInfo}>
             <div className={style.wrapperInfoSvg}>
@@ -53,7 +59,7 @@ export const getStaticProps = async () => {
   return {
     props: {
       products,
-    }/* , revalidate: 86400, */
+    }, revalidate: 86400,
   };
 };
 

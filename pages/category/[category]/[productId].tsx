@@ -147,12 +147,10 @@ export const getStaticProps = async ({ params }: { params: paramsType }) => {
     const getProduct = await fetch
         (`${process.env.API_URL}/api/product/category?category=${category}&idProduct=${productId}`)
     const product: productsInCategory = await getProduct.json();
-    console.log('====================================');
-    console.log(product);
-    console.log('====================================');
+
     return {
         props: {
-            product, /* revalidate: 86400 */
+            product, revalidate: 86400
         },
     };
 };
