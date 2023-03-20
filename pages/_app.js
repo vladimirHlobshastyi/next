@@ -17,9 +17,14 @@ export default function MyApp({ Component, pageProps, categories }) {
   );
 }
 
-export async function getStaticProps() {
+MyApp.getInitialProps = async ({ Component, ctx }) => {
   const response = await fetch(`${process.env.API_URL}/api/categories`);
   const data = await response.json();
+  let pageProps = {};
 
-  return { props: { categories: data }, revalidate: 86400 };
-}
+  if (Component.getInitialProps) {
+    pageProps = await Component.getInitialProps(ctx);
+  }
+
+  return { categories: data, pageProps };
+};
