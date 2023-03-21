@@ -27,12 +27,13 @@ function SearchComponent({ calb }: { calb: Dispatch<SetStateAction<boolean>> }) 
         if (event.key === "Enter") {
             event.preventDefault();
             if (value) {
-                router.push(`/search/${value}`);
+                
+                router.push(`${process.env.API_URL}/search/${value}`);
                 calb(false);
             }
         }
     }
-
+    
     useEffect(() => {
         value ? fetchData() : setProducts([]);
 
