@@ -1,7 +1,7 @@
 import { GetServerSideProps, GetServerSidePropsContext } from "next";
 import getSerchedProducts from "../../apiRequests/getSerchedProducts";
 import { searchProductResult } from "../api/search/[search]";
-import SearchPage from "../../components/SearchPage/[searchProduct]";
+import SearchPage from "../../components/SearchPage/SearchPage";
 
 
 
