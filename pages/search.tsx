@@ -1,4 +1,4 @@
-import SearchPage from "../components/SearchPage/[searchProduct]"
+import SearchPage from "../components/SearchPage/SearchPage"
 
 const Search = () => {
     return <SearchPage searchProducts={[]} />

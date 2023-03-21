@@ -21,19 +21,22 @@ function SearchComponent({ calb }: { calb: Dispatch<SetStateAction<boolean>> }) 
     }
     function handleChange(event: ChangeEvent<HTMLInputElement>) {
         setValue(event.target.value);
+        if (!event.target.value) {
+
+            setProducts([]);
+        }
     }
 
     function handleKeyDown(event: KeyboardEvent<HTMLInputElement>) {
         if (event.key === "Enter") {
             event.preventDefault();
             if (value) {
-                
                 router.push(`${process.env.API_URL}/search/${value}`);
                 calb(false);
             }
         }
     }
-    
+
     useEffect(() => {
         value ? fetchData() : setProducts([]);
 

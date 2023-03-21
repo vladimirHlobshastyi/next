@@ -1,9 +1,8 @@
-import HeadComponent from "../../components/Head/HeadComponent";
-import ProductPreview from "../../components/ProductPreview/ProductPreview";
+import HeadComponent from "../Head/HeadComponent";
+import ProductPreview from "../ProductPreview/ProductPreview";
 import style from './searchProduct.module.scss'
 import { searchProductResult } from "../../pages/api/search/[search]";
 import SearchComponent from "../Search/Search";
-
 
 
 type SearchProps = {
