@@ -62,39 +62,40 @@ const NavBar = ({ categories }: { categories: CategoryTypes }) => {
     const result = useMemo(() => totalCount ? <ControlCountComponent countProductsInCart={totalCount} /> : null, [totalCount])
     return result
   }
-  const closeSidePanel = (isClose: boolean) => () => setIsVisible(isClose)
+  const closeSidePanel = (isClose: boolean) => setIsVisible(isClose)
   const searchOrRedirect = isMobileMemo ? () => {
+    
     setIsVisible(!isVisible)
-    return router.push('search')
+    router.push(`/search`)
   } : () => setIsSearch(true)
 
   return (<>
     <div className={navBarContainerClass}>
-      <div className={navBarMenuClass} onClick={closeSidePanel(!isVisible)} >
+      <div className={navBarMenuClass} onClick={() => closeSidePanel(!isVisible)} >
         <BiMenuAltLeft />
         <span>Меню</span>
       </div>
-      <div className={navBarLogoClass} onClick={closeSidePanel(false)}>
+      <div className={navBarLogoClass} onClick={() => closeSidePanel(false)}>
         {isSearch ? <SearchComponent calb={setIsSearch} /> : <Link href='/'> <Image src={Logo} width={180} height={39} alt='Logo' /></Link>}
       </div>
       <div className={navBarAreaControlsClass}>
-        <span>
-          <BiSearch onClick={searchOrRedirect} />
+        <span><div onClick={() =>{ searchOrRedirect()}}>
+          <BiSearch /></div>
         </span>
         <span>
           <Link href='/user' ><BiUser /></Link>
         </span>
         <span>
-          <Link href='/compare' onClick={closeSidePanel(false)}><BiBarChart />
+          <Link href='/compare' onClick={() => closeSidePanel(false)}><BiBarChart />
             {controlCount(totalCountCompare)}</Link>
         </span>
         <span>
-          <Link href='/favorites' onClick={closeSidePanel(false)}><BiHeart />
+          <Link href='/favorites' onClick={() => closeSidePanel(false)}><BiHeart />
             {controlCount(totalCountFavorites)}
           </Link>
         </span>
         <span>
-          <Link href='/cart' onClick={closeSidePanel(false)}><BiCart />
+          <Link href='/cart' onClick={() => closeSidePanel(false)}><BiCart />
             {controlCount(totalCountProducts)}</Link>
         </span>
       </div>
@@ -106,9 +107,9 @@ const NavBar = ({ categories }: { categories: CategoryTypes }) => {
           <div className={style.sidePanel} >
             <div className={style.sidePanelCatalog}>
               <div className={style.sidePanelCatalogElement}
-                onClick={closeSidePanel(!isVisible)}><Link href={'/categories'} onClick={closeSidePanel(!isVisible)}><h3>Категории</h3></Link></div>
+                onClick={() => closeSidePanel(!isVisible)}><Link href={'/categories'} onClick={() => closeSidePanel(!isVisible)}><h3>Категории</h3></Link></div>
               <div className={style.sidePanelCatalogElement} >
-                <Dropdown catalogName='Демонстрационный каталог' info={categories} calb={closeSidePanel(!isVisible)} />
+                <Dropdown catalogName='Демонстрационный каталог' info={categories} calb={() => closeSidePanel(!isVisible)} />
               </div>
               <div className={style.sidePanelCatalogElement}>
                 <Link href='/'> Каталог 2(пустой)</Link>
@@ -122,19 +123,19 @@ const NavBar = ({ categories }: { categories: CategoryTypes }) => {
               <div className={style.sidePanelCatalogMenuElement}>
                 <h3>Меню</h3>
               </div>
-              <div className={style.sidePanelCatalogMenuElement} onClick={closeSidePanel(!isVisible)}>
+              <div className={style.sidePanelCatalogMenuElement} onClick={() => closeSidePanel(!isVisible)}>
                 <Link href='/about-us'>О компании</Link>
               </div>
-              <div className={style.sidePanelCatalogMenuElement} onClick={closeSidePanel(!isVisible)}>
+              <div className={style.sidePanelCatalogMenuElement} onClick={() => closeSidePanel(!isVisible)}>
                 <Link href='/contacts'>Контакты</Link>
               </div>
-              <div className={style.sidePanelCatalogMenuElement} onClick={closeSidePanel(!isVisible)} >
+              <div className={style.sidePanelCatalogMenuElement} onClick={() => closeSidePanel(!isVisible)} >
                 <Link href='/'>Оплата</Link>
               </div>
-              <div className={style.sidePanelCatalogMenuElement} onClick={closeSidePanel(!isVisible)}>
+              <div className={style.sidePanelCatalogMenuElement} onClick={() => closeSidePanel(!isVisible)}>
                 <Link href='/'>Личный кабинет</Link>
               </div>
-              <div className={style.sidePanelCatalogMenuElement} onClick={closeSidePanel(!isVisible)}>
+              <div className={style.sidePanelCatalogMenuElement} onClick={() => closeSidePanel(!isVisible)}>
                 <Link href='/'>Блог</Link>
               </div>
             </div>
@@ -162,7 +163,7 @@ const NavBar = ({ categories }: { categories: CategoryTypes }) => {
             </div>
           </div>
         </div>
-        <div className={style.closeIcon} onClick={closeSidePanel(!isVisible)}><BiXCircle />
+        <div className={style.closeIcon} onClick={() => closeSidePanel(!isVisible)}><BiXCircle />
         </div>
       </div>
     }
