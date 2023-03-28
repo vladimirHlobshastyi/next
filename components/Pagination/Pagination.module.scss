@@ -8,6 +8,7 @@
 
 .active {
   background-color: #bfbfbf;
+  color: #ffffff;
 }
 
 .paginationButton {
@@ -19,6 +20,8 @@
   justify-content: center;
   align-items: center;
   margin: 5px;
+  padding: 15px;
+  font-weight: 300;
   &:hover {
     cursor: pointer;
   }
