@@ -28,9 +28,9 @@ export default function Home({ products }: { products: productsInCategory }) {
           <div className={style.wrapperContentProducts}>
             {products.data.map((product, index) => {
               if (product === products.data[products.data.length - 1] && index % 2 === 1) {
-                return <><ProductPreview key={index} product={product} /><div className={style.proposalProductsLp}></div></>
+                return <><ProductPreview key={product.id} product={product} /><div className={style.proposalProductsLp}></div></>
               }
-              return <ProductPreview key={index} product={product} />
+              return <ProductPreview key={product.id} product={product} />
             }
 
             )}
@@ -53,14 +53,36 @@ export default function Home({ products }: { products: productsInCategory }) {
 
 
 export const getStaticProps = async () => {
-  const getProducts = await fetch(`${process.env.API_URL}/api/category/category1`);
-  const products: productsInCategory = await getProducts.json();
+  try {
+    const getProducts = await fetch(`${process.env.API_URL}/api/category/category1`);
+    if (!getProducts.ok) {
+      throw new Error(`Failed to fetch products from API, status code: ${getProducts.status}`);
+    }
+    const products: productsInCategory = await getProducts.json();
 
-  return {
-    props: {
-      products,
-    }, revalidate: 86400,
-  };
+    return {
+      props: {
+        products,
+      },
+      revalidate: 86400,
+    };
+  } catch (error) {
+    console.error(error);
+    return {
+      props: {
+        products: {
+          data: [],
+        },
+      },
+      revalidate: 500,
+    };
+  }
 };
+
+
+
+
+
+
 
 

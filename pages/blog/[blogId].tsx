@@ -18,7 +18,7 @@ const Blog = ({ blogPage }: { blogPage: responsBlogType }) => {
         <div className={style.container}>
             <div className={style.blogTitle}><span>Блог</span></div>
             {blogPage.data.map((item) => {
-                return <div key={item.id}><BlogItem blogData={item} pageNumber={pageNumber} /></div>
+                return <BlogItem blogData={item} pageNumber={pageNumber} key={item.id} />
             })}
             <div className={style.pagination}>
                 <Pagination page={Number(blogId)} totalPage={blogPage.totalPages} callb={setPageNumber} />
@@ -57,7 +57,6 @@ export async function getStaticProps({ params }: pathType) {
         `${process.env.API_URL}/api/blog/${params.blogId}`
     );
     const blogPage = await getBlogPage.json();
-
 
     return {
         props: { blogPage }, revalidate: 86400,

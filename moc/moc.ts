@@ -54,7 +54,7 @@ export type allProductsTypes = {
 };
 
 export type blogPostsTypes = {
-  id: number | string;
+  id: string;
   title: string;
   description: string;
   content: string;
@@ -818,7 +818,7 @@ export const allProducts: allProductsTypes = {
 
 export const blogPosts: blogPostsTypes[] = [
   {
-    id: 1,
+    id: `id_of_blog_${Math.random()}`,
     title: "Новые тренды в мире кроссовок",
     description:
       "Рассказываем про новые модели кроссовок, которые уже успели завоевать сердца модников.",
@@ -828,7 +828,7 @@ export const blogPosts: blogPostsTypes[] = [
     date: new Date("2022-02-25"),
   },
   {
-    id: 2,
+    id: `id_of_blog_${Math.random()}`,
     title: "Тренды сезона: свитера с высоким воротником",
     description:
       "Рассказываем о модных свитерах с высоким воротником, которые стали настоящим хитом сезона.",
@@ -838,7 +838,7 @@ export const blogPosts: blogPostsTypes[] = [
     date: new Date("2022-02-20"),
   },
   {
-    id: 3,
+    id: `id_of_blog_${Math.random()}`,
     title: "Новые модели сумок от Louis Vuitton",
     description:
       "Рассказываем про новые модели сумок от Louis Vuitton, которые уже успели покорить сердца модников.",
@@ -848,7 +848,7 @@ export const blogPosts: blogPostsTypes[] = [
     date: new Date("2022-02-15"),
   },
   {
-    id: 4,
+    id: `id_of_blog_${Math.random()}`,
     title: "Новая коллекция обуви на лето",
     description:
       "Представляем новую коллекцию обуви на лето 2022 года. В ней вы найдете стильные и удобные модели для любого повода.",
@@ -859,7 +859,7 @@ export const blogPosts: blogPostsTypes[] = [
     date: new Date(2022, 5, 15),
   },
   {
-    id: 5,
+    id: `id_of_blog_${Math.random()}`,
     title: "Тренды осени 2021",
     description:
       "Какие тенденции будут актуальны в этом сезоне? Что выбрать, чтобы быть в тренде? Обо всем этом вы узнаете из нашей статьи.",
@@ -870,7 +870,7 @@ export const blogPosts: blogPostsTypes[] = [
     date: new Date(2021, 8, 1),
   },
   {
-    id: 6,
+    id: `id_of_blog_${Math.random()}`,
     title: "Мода на платья-миди",
     description:
       "Платья-миди стали настоящим хитом этого лета. В нашей статье вы найдете лучшие модели и советы по выбору аксессуаров.",
@@ -881,7 +881,7 @@ export const blogPosts: blogPostsTypes[] = [
     date: new Date(2021, 6, 10),
   },
   {
-    id: 7,
+    id: `id_of_blog_${Math.random()}`,
     title: "Новые тренды в мире обуви",
     description:
       "Что нового появилось на рынке обуви? Какие модели станут наиболее популярными в этом сезоне? Обо всем этом вы узнаете из нашей статьи.",
@@ -892,7 +892,7 @@ export const blogPosts: blogPostsTypes[] = [
     date: new Date(2021, 8, 20),
   },
   {
-    id: 8,
+    id: `id_of_blog_${Math.random()}`,
     title: "Стильные вариации джинсовой юбки",
     description:
       "Джинсовая юбка — вечный хит, который никогда не выходит из моды. В нашей статье мы расскажем обо всех вариациях этой модели и советы по выбору.",
@@ -903,7 +903,7 @@ export const blogPosts: blogPostsTypes[] = [
     date: new Date(2021, 7, 5),
   },
   {
-    id: 9,
+    id: `id_of_blog_${Math.random()}`,
     title: "Стильные вариации джинсовой юбки",
     description:
       "Джинсовая юбка — вечный хит, который никогда не выходит из моды. В нашей статье мы расскажем обо всех вариациях этой модели и советы по выбору.",
@@ -914,7 +914,7 @@ export const blogPosts: blogPostsTypes[] = [
     date: new Date(2021, 7, 5),
   },
   {
-    id: 10,
+    id: `id_of_blog_${Math.random()}`,
     title: "Стильные вариации джинсовой юбки",
     description:
       "Джинсовая юбка — вечный хит, который никогда не выходит из моды. В нашей статье мы расскажем обо всех вариациях этой модели и советы по выбору.",
@@ -925,7 +925,7 @@ export const blogPosts: blogPostsTypes[] = [
     date: new Date(2021, 7, 5),
   },
   {
-    id: 11,
+    id: `id_of_blog_${Math.random()}`,
     title: "Стильные вариации джинсовой юбки",
     description:
       "Джинсовая юбка — вечный хит, который никогда не выходит из моды. В нашей статье мы расскажем обо всех вариациях этой модели и советы по выбору.",
@@ -936,7 +936,7 @@ export const blogPosts: blogPostsTypes[] = [
     date: new Date(2021, 7, 5),
   },
   {
-    id: 12,
+    id: `id_of_blog_${Math.random()}`,
     title: "Стильные вариации джинсовой юбки",
     description:
       "Джинсовая юбка — вечный хит, который никогда не выходит из моды. В нашей статье мы расскажем обо всех вариациях этой модели и советы по выбору.",
@@ -947,7 +947,7 @@ export const blogPosts: blogPostsTypes[] = [
     date: new Date(2021, 7, 5),
   },
   {
-    id: 13,
+    id: `id_of_blog_${Math.random()}`,
     title: "Стильные вариации джинсовой юбки",
     description:
       "Джинсовая юбка — вечный хит, который никогда не выходит из моды. В нашей статье мы расскажем обо всех вариациях этой модели и советы по выбору.",
@@ -958,7 +958,7 @@ export const blogPosts: blogPostsTypes[] = [
     date: new Date(2021, 7, 5),
   },
   {
-    id: 14,
+    id: `id_of_blog_${Math.random()}`,
     title: "Стильные вариации джинсовой юбки",
     description:
       "Джинсовая юбка — вечный хит, который никогда не выходит из моды. В нашей статье мы расскажем обо всех вариациях этой модели и советы по выбору.",
@@ -969,7 +969,7 @@ export const blogPosts: blogPostsTypes[] = [
     date: new Date(2021, 7, 5),
   },
   {
-    id: 15,
+    id: `id_of_blog_${Math.random()}`,
     title: "Стильные вариации джинсовой юбки",
     description:
       "Джинсовая юбка — вечный хит, который никогда не выходит из моды. В нашей статье мы расскажем обо всех вариациях этой модели и советы по выбору.",
@@ -980,7 +980,7 @@ export const blogPosts: blogPostsTypes[] = [
     date: new Date(2021, 7, 5),
   },
   {
-    id: 16,
+    id: `id_of_blog_${Math.random()}`,
     title: "Стильные вариации джинсовой юбки",
     description:
       "Джинсовая юбка — вечный хит, который никогда не выходит из моды. В нашей статье мы расскажем обо всех вариациях этой модели и советы по выбору.",
@@ -991,7 +991,7 @@ export const blogPosts: blogPostsTypes[] = [
     date: new Date(2021, 7, 5),
   },
   {
-    id: 17,
+    id: `id_of_blog_${Math.random()}`,
     title: "Стильные вариации джинсовой юбки",
     description:
       "Джинсовая юбка — вечный хит, который никогда не выходит из моды. В нашей статье мы расскажем обо всех вариациях этой модели и советы по выбору.",
@@ -1002,7 +1002,7 @@ export const blogPosts: blogPostsTypes[] = [
     date: new Date(2021, 7, 5),
   },
   {
-    id: 18,
+    id: `id_of_blog_${Math.random()}`,
     title: "Стильные вариации джинсовой юбки",
     description:
       "Джинсовая юбка — вечный хит, который никогда не выходит из моды. В нашей статье мы расскажем обо всех вариациях этой модели и советы по выбору.",
@@ -1013,7 +1013,7 @@ export const blogPosts: blogPostsTypes[] = [
     date: new Date(2021, 7, 5),
   },
   {
-    id: 19,
+    id: `id_of_blog_${Math.random()}`,
     title: "Стильные вариации джинсовой юбки",
     description:
       "Джинсовая юбка — вечный хит, который никогда не выходит из моды. В нашей статье мы расскажем обо всех вариациях этой модели и советы по выбору.",
@@ -1024,7 +1024,7 @@ export const blogPosts: blogPostsTypes[] = [
     date: new Date(2021, 7, 5),
   },
   {
-    id: 20,
+    id: `id_of_blog_${Math.random()}`,
     title: "Стильные вариации джинсовой юбки",
     description:
       "Джинсовая юбка — вечный хит, который никогда не выходит из моды. В нашей статье мы расскажем обо всех вариациях этой модели и советы по выбору.",
@@ -1035,7 +1035,7 @@ export const blogPosts: blogPostsTypes[] = [
     date: new Date(2021, 7, 5),
   },
   {
-    id: 21,
+    id: `id_of_blog_${Math.random()}`,
     title: "Стильные вариации джинсовой юбки",
     description:
       "Джинсовая юбка — вечный хит, который никогда не выходит из моды. В нашей статье мы расскажем обо всех вариациях этой модели и советы по выбору.",
@@ -1046,19 +1046,7 @@ export const blogPosts: blogPostsTypes[] = [
     date: new Date(2021, 7, 5),
   },
   {
-    id: Math.random().toFixed(4),
-    title: "Стильные вариации джинсовой юбки",
-    description:
-      "Джинсовая юбка — вечный хит, который никогда не выходит из моды. В нашей статье мы расскажем обо всех вариациях этой модели и советы по выбору.",
-    content:
-      "Представляем новую коллекцию обуви на лето 2022 года. В ней вы найдете стильные и удобные модели для любого повода.",
-
-    imageUrl: logoForBlog,
-    date: new Date(2021, 7, 5),
-  },
-
-  {
-    id: Math.random().toFixed(4),
+    id: `id_of_blog_${Math.random()}`,
     title: "Стильные вариации джинсовой юбки",
     description:
       "Джинсовая юбка — вечный хит, который никогда не выходит из моды. В нашей статье мы расскажем обо всех вариациях этой модели и советы по выбору.",
@@ -1070,7 +1058,7 @@ export const blogPosts: blogPostsTypes[] = [
   },
 
   {
-    id: Math.random().toFixed(4),
+    id: `id_of_blog_${Math.random()}`,
     title: "Стильные вариации джинсовой юбки",
     description:
       "Джинсовая юбка — вечный хит, который никогда не выходит из моды. В нашей статье мы расскажем обо всех вариациях этой модели и советы по выбору.",
@@ -1082,7 +1070,7 @@ export const blogPosts: blogPostsTypes[] = [
   },
 
   {
-    id: Math.random().toFixed(4),
+    id: `id_of_blog_${Math.random()}`,
     title: "Стильные вариации джинсовой юбки",
     description:
       "Джинсовая юбка — вечный хит, который никогда не выходит из моды. В нашей статье мы расскажем обо всех вариациях этой модели и советы по выбору.",
@@ -1094,7 +1082,7 @@ export const blogPosts: blogPostsTypes[] = [
   },
 
   {
-    id: Math.random().toFixed(4),
+    id: `id_of_blog_${Math.random()}`,
     title: "Стильные вариации джинсовой юбки",
     description:
       "Джинсовая юбка — вечный хит, который никогда не выходит из моды. В нашей статье мы расскажем обо всех вариациях этой модели и советы по выбору.",
@@ -1106,7 +1094,7 @@ export const blogPosts: blogPostsTypes[] = [
   },
 
   {
-    id: Math.random().toFixed(4),
+    id: `id_of_blog_${Math.random()}`,
     title: "Стильные вариации джинсовой юбки",
     description:
       "Джинсовая юбка — вечный хит, который никогда не выходит из моды. В нашей статье мы расскажем обо всех вариациях этой модели и советы по выбору.",
@@ -1118,7 +1106,7 @@ export const blogPosts: blogPostsTypes[] = [
   },
 
   {
-    id: Math.random().toFixed(4),
+    id: `id_of_blog_${Math.random()}`,
     title: "Стильные вариации джинсовой юбки",
     description:
       "Джинсовая юбка — вечный хит, который никогда не выходит из моды. В нашей статье мы расскажем обо всех вариациях этой модели и советы по выбору.",
@@ -1130,7 +1118,7 @@ export const blogPosts: blogPostsTypes[] = [
   },
 
   {
-    id: Math.random().toFixed(4),
+    id: `id_of_blog_${Math.random()}`,
     title: "Стильные вариации джинсовой юбки",
     description:
       "Джинсовая юбка — вечный хит, который никогда не выходит из моды. В нашей статье мы расскажем обо всех вариациях этой модели и советы по выбору.",
@@ -1142,7 +1130,7 @@ export const blogPosts: blogPostsTypes[] = [
   },
 
   {
-    id: Math.random().toFixed(4),
+    id: `id_of_blog_${Math.random()}`,
     title: "Стильные вариации джинсовой юбки",
     description:
       "Джинсовая юбка — вечный хит, который никогда не выходит из моды. В нашей статье мы расскажем обо всех вариациях этой модели и советы по выбору.",
@@ -1154,7 +1142,7 @@ export const blogPosts: blogPostsTypes[] = [
   },
 
   {
-    id: Math.random().toFixed(4),
+    id: `id_of_blog_${Math.random()}`,
     title: "Стильные вариации джинсовой юбки",
     description:
       "Джинсовая юбка — вечный хит, который никогда не выходит из моды. В нашей статье мы расскажем обо всех вариациях этой модели и советы по выбору.",
@@ -1166,7 +1154,7 @@ export const blogPosts: blogPostsTypes[] = [
   },
 
   {
-    id: Math.random().toFixed(4),
+    id: `id_of_blog_${Math.random()}`,
     title: "Стильные вариации джинсовой юбки",
     description:
       "Джинсовая юбка — вечный хит, который никогда не выходит из моды. В нашей статье мы расскажем обо всех вариациях этой модели и советы по выбору.",
@@ -1178,7 +1166,7 @@ export const blogPosts: blogPostsTypes[] = [
   },
 
   {
-    id: Math.random().toFixed(4),
+    id: `id_of_blog_${Math.random()}`,
     title: "Стильные вариации джинсовой юбки",
     description:
       "Джинсовая юбка — вечный хит, который никогда не выходит из моды. В нашей статье мы расскажем обо всех вариациях этой модели и советы по выбору.",
@@ -1190,7 +1178,7 @@ export const blogPosts: blogPostsTypes[] = [
   },
 
   {
-    id: Math.random().toFixed(4),
+    id: `id_of_blog_${Math.random()}`,
     title: "Стильные вариации джинсовой юбки",
     description:
       "Джинсовая юбка — вечный хит, который никогда не выходит из моды. В нашей статье мы расскажем обо всех вариациях этой модели и советы по выбору.",
@@ -1202,7 +1190,7 @@ export const blogPosts: blogPostsTypes[] = [
   },
 
   {
-    id: Math.random().toFixed(4),
+    id: `id_of_blog_${Math.random()}`,
     title: "Стильные вариации джинсовой юбки",
     description:
       "Джинсовая юбка — вечный хит, который никогда не выходит из моды. В нашей статье мы расскажем обо всех вариациях этой модели и советы по выбору.",
@@ -1214,7 +1202,7 @@ export const blogPosts: blogPostsTypes[] = [
   },
 
   {
-    id: Math.random().toFixed(4),
+    id: `id_of_blog_${Math.random()}`,
     title: "Стильные вариации джинсовой юбки",
     description:
       "Джинсовая юбка — вечный хит, который никогда не выходит из моды. В нашей статье мы расскажем обо всех вариациях этой модели и советы по выбору.",
@@ -1226,7 +1214,7 @@ export const blogPosts: blogPostsTypes[] = [
   },
 
   {
-    id: Math.random().toFixed(4),
+    id: `id_of_blog_${Math.random()}`,
     title: "Стильные вариации джинсовой юбки",
     description:
       "Джинсовая юбка — вечный хит, который никогда не выходит из моды. В нашей статье мы расскажем обо всех вариациях этой модели и советы по выбору.",
@@ -1238,7 +1226,7 @@ export const blogPosts: blogPostsTypes[] = [
   },
 
   {
-    id: Math.random().toFixed(4),
+    id: `id_of_blog_${Math.random()}`,
     title: "Стильные вариации джинсовой юбки",
     description:
       "Джинсовая юбка — вечный хит, который никогда не выходит из моды. В нашей статье мы расскажем обо всех вариациях этой модели и советы по выбору.",
@@ -1250,7 +1238,7 @@ export const blogPosts: blogPostsTypes[] = [
   },
 
   {
-    id: Math.random().toFixed(4),
+    id: `id_of_blog_${Math.random()}`,
     title: "Стильные вариации джинсовой юбки",
     description:
       "Джинсовая юбка — вечный хит, который никогда не выходит из моды. В нашей статье мы расскажем обо всех вариациях этой модели и советы по выбору.",
@@ -1262,7 +1250,7 @@ export const blogPosts: blogPostsTypes[] = [
   },
 
   {
-    id: Math.random().toFixed(4),
+    id: `id_of_blog_${Math.random()}`,
     title: "Стильные вариации джинсовой юбки",
     description:
       "Джинсовая юбка — вечный хит, который никогда не выходит из моды. В нашей статье мы расскажем обо всех вариациях этой модели и советы по выбору.",
@@ -1274,7 +1262,7 @@ export const blogPosts: blogPostsTypes[] = [
   },
 
   {
-    id: Math.random().toFixed(4),
+    id: `id_of_blog_${Math.random()}`,
     title: "Стильные вариации джинсовой юбки",
     description:
       "Джинсовая юбка — вечный хит, который никогда не выходит из моды. В нашей статье мы расскажем обо всех вариациях этой модели и советы по выбору.",
@@ -1286,7 +1274,7 @@ export const blogPosts: blogPostsTypes[] = [
   },
 
   {
-    id: Math.random().toFixed(4),
+    id: `id_of_blog_${Math.random()}`,
     title: "Стильные вариации джинсовой юбки",
     description:
       "Джинсовая юбка — вечный хит, который никогда не выходит из моды. В нашей статье мы расскажем обо всех вариациях этой модели и советы по выбору.",
@@ -1298,7 +1286,7 @@ export const blogPosts: blogPostsTypes[] = [
   },
 
   {
-    id: Math.random().toFixed(4),
+    id: `id_of_blog_${Math.random()}`,
     title: "Стильные вариации джинсовой юбки",
     description:
       "Джинсовая юбка — вечный хит, который никогда не выходит из моды. В нашей статье мы расскажем обо всех вариациях этой модели и советы по выбору.",
@@ -1310,7 +1298,7 @@ export const blogPosts: blogPostsTypes[] = [
   },
 
   {
-    id: Math.random().toFixed(4),
+    id: `id_of_blog_${Math.random()}`,
     title: "Стильные вариации джинсовой юбки",
     description:
       "Джинсовая юбка — вечный хит, который никогда не выходит из моды. В нашей статье мы расскажем обо всех вариациях этой модели и советы по выбору.",
@@ -1322,7 +1310,7 @@ export const blogPosts: blogPostsTypes[] = [
   },
 
   {
-    id: Math.random().toFixed(4),
+    id: `id_of_blog_${Math.random()}`,
     title: "Стильные вариации джинсовой юбки",
     description:
       "Джинсовая юбка — вечный хит, который никогда не выходит из моды. В нашей статье мы расскажем обо всех вариациях этой модели и советы по выбору.",
@@ -1334,7 +1322,19 @@ export const blogPosts: blogPostsTypes[] = [
   },
 
   {
-    id: Math.random().toFixed(4),
+    id: `id_of_blog_${Math.random()}`,
+    title: "Стильные вариации джинсовой юбки",
+    description:
+      "Джинсовая юбка — вечный хит, который никогда не выходит из моды. В нашей статье мы расскажем обо всех вариациях этой модели и советы по выбору.",
+    content:
+      "Представляем новую коллекцию обуви на лето 2022 года. В ней вы найдете стильные и удобные модели для любого повода.",
+
+    imageUrl: logoForBlog,
+    date: new Date(2021, 7, 5),
+  },
+
+  {
+    id: `id_of_blog_${Math.random()}`,
     title: "Стильные вариации джинсовой юбки",
     description:
       "Джинсовая юбка — вечный хит, который никогда не выходит из моды. В нашей статье мы расскажем обо всех вариациях этой модели и советы по выбору.",
