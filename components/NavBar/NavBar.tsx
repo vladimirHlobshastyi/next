@@ -17,6 +17,7 @@ import { rootCountInCompare } from '../../store/compare/compareSlice';
 import Logo from '../../public/Logo.svg'
 import SearchComponent from '../Search/Search';
 import { useRouter } from 'next/router';
+import { useIsMobile } from '../../hooks/useIsMobile';
 
 
 export type CategoryTypes = { name: string; id: string }[];
@@ -32,9 +33,8 @@ const NavBar = ({ categories }: { categories: CategoryTypes }) => {
   const totalCountProducts = useAppSelector(rootTotalCountInCart)
   const totalCountFavorites = useAppSelector(rootCountInFavorites)
   const totalCountCompare = useAppSelector(rootCountInCompare)
+  const isMobile = useIsMobile()
 
-  const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
-  const isMobileMemo = useMemo(() => isMobile, [isMobile])
 
   const navBarAreaControlsClass = useMemo(
     () =>
@@ -63,11 +63,14 @@ const NavBar = ({ categories }: { categories: CategoryTypes }) => {
     return result
   }
   const closeSidePanel = (isClose: boolean) => setIsVisible(isClose)
-  const searchOrRedirect = isMobileMemo ? () => {
-    
-    setIsVisible(!isVisible)
-    router.push(`/search`)
-  } : () => setIsSearch(true)
+  const searchOrRedirect = () => {
+    if (isMobile) {
+      setIsVisible(!isVisible)
+      router.push(`/search`)
+    } else { setIsSearch(true) }
+
+  }
+
 
   return (<>
     <div className={navBarContainerClass}>
@@ -79,7 +82,7 @@ const NavBar = ({ categories }: { categories: CategoryTypes }) => {
         {isSearch ? <SearchComponent calb={setIsSearch} /> : <Link href='/'> <Image src={Logo} width={180} height={39} alt='Logo' /></Link>}
       </div>
       <div className={navBarAreaControlsClass}>
-        <span><div onClick={() =>{ searchOrRedirect()}}>
+        <span><div onClick={() => { searchOrRedirect() }}>
           <BiSearch /></div>
         </span>
         <span>
@@ -136,7 +139,7 @@ const NavBar = ({ categories }: { categories: CategoryTypes }) => {
                 <Link href='/'>Личный кабинет</Link>
               </div>
               <div className={style.sidePanelCatalogMenuElement} onClick={() => closeSidePanel(!isVisible)}>
-                <Link href='/'>Блог</Link>
+                <Link href='/blog/1'>Блог</Link>
               </div>
             </div>
             <div className={style.sidePanelCatalogMenu} >
