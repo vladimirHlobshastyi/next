@@ -67,7 +67,9 @@ export async function getStaticProps({ params }: pathType) {
     const blogPost: responsBlogType = await getBlogPage.json();
     const filterBlog = blogPost.data.filter((item) => item.id.toString() === params.postId)
 
-
+    if (filterBlog.length === 0) {
+        return { notFound: true };
+    }
     return {
         props: { blogPost: filterBlog[0] }, revalidate: 86400,
     };
