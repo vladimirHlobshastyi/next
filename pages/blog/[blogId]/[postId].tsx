@@ -6,7 +6,6 @@ import style from './blogPost.module.scss'
 
 const BlogItem = ({ blogPost }: { blogPost: blogPostsTypes }) => {
     return <div className={style.container}>
-
         <div className={style.wrapper}>
             <div className={style.wrapperImage}><Image src={blogPost.imageUrl} alt='Image of blog' /></div>
             <div className={style.wrapperInfo}>
@@ -53,7 +52,9 @@ export async function getStaticPaths() {
 
 
     }
-
+    console.log('====================================');
+    console.log(paths);
+    console.log('====================================');
     return {
         paths,
         fallback: false,
@@ -66,7 +67,12 @@ export async function getStaticProps({ params }: pathType) {
     );
     const blogPost: responsBlogType = await getBlogPage.json();
     const filterBlog = blogPost.data.filter((item) => item.id.toString() === params.postId)
-
+    console.log('================filterBlog====================');
+    console.log(filterBlog);
+    console.log('=================filterBlog===================');
+    console.log('================blogPost====================');
+    console.log(blogPost);
+    console.log('=================blogPost===================');
     if (filterBlog.length === 0) {
         return { notFound: true };
     }
