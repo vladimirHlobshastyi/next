@@ -819,7 +819,7 @@ export const allProducts: allProductsTypes = {
 
 export const blogPosts: blogPostsTypes[] = [
   {
-    id: `id_of_blog_${uuidv4()}`,
+    id: `1`,
     title: "Новые тренды в мире кроссовок",
     description:
       "Рассказываем про новые модели кроссовок, которые уже успели завоевать сердца модников.",
