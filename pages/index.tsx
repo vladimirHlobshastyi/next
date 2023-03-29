@@ -53,30 +53,17 @@ export default function Home({ products }: { products: productsInCategory }) {
 
 
 export const getStaticProps = async () => {
-  try {
-    const getProducts = await fetch(`${process.env.API_URL}/api/category/category1`);
-    if (!getProducts.ok) {
-      throw new Error(`Failed to fetch products from API, status code: ${getProducts.status}`);
-    }
-    const products: productsInCategory = await getProducts.json();
 
-    return {
-      props: {
-        products,
-      },
-      revalidate: 86400,
-    };
-  } catch (error) {
-    console.error(error);
-    return {
-      props: {
-        products: {
-          data: [],
-        },
-      },
-      revalidate: 500,
-    };
-  }
+  const getProducts = await fetch(`${process.env.API_URL}/api/category/category1`);
+  const products: productsInCategory = await getProducts.json();
+
+  return {
+    props: {
+      products,
+    },
+    revalidate: 86400,
+  };
+
 };
 
 
