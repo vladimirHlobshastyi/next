@@ -4,8 +4,7 @@ import { BsInstagram, BsTelegram } from "react-icons/bs";
 import { IoCallOutline } from "react-icons/io5";
 import { TfiYoutube } from "react-icons/tfi";
 import { BiXCircle, BiSearch, BiUser, BiHeart, BiCart, BiBarChart, BiMenuAltLeft } from "react-icons/bi";
-import { useEffect, useMemo, useRef, useState } from 'react'
-import useClickOutsideDiv from '../../hooks/useClickOutsideDiv'
+import { useMemo, useState } from 'react'
 import Image from 'next/image'
 import Dropdown from '../Dropdown/Dropdown'
 import useAppSelector from '../../hooks/useAppSelector';

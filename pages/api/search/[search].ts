@@ -10,29 +10,11 @@ export type searchProductResult = {
 export default function handler(req: NextApiRequest, res: NextApiResponse) {
   const { search } = req.query;
   res.setHeader("Access-Control-Allow-Origin", "*");
-  /*  if (req.method !== "GET") {
-    res.status(405).end();
-    return;
-  } */
-
-  /* if (!search) {
-    res.status(400).json({ message: 'Параметр "search" обязателен' });
-    return;
-  } */
-
-  /*   if (typeof search !== "string") {
-    return res.status(400).json({ error: "Invalid search query" });
-  } */
-
-  /*  if (search.trim().length === 0) {
-    res.status(400).json({ message: 'Параметр "search" не может быть пустым' });
-    return;
-  } */
   const bodyReq = search as string;
 
   const result = [] as searchProductResult;
 
-  for (let keyItem in allProducts) {
+  for (const keyItem in allProducts) {
     allProducts[keyItem].data.forEach((product) => {
       const isIncludes = product.description
         .toLowerCase()

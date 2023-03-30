@@ -5,14 +5,14 @@ import useRootDispatch from '../../hooks/useRootDispatch'
 import { addProduct, minusProduct, rootProductsInCart } from '../../store/cart/cartSlice'
 import { dataCartProduct } from '../../store/cart/cartSlice.types'
 import style from './AddCartCornerButton.module.scss'
-import { OrderCartButton, OrderCheckButton } from './AddCartCornerButton.types'
+import { OrderCartButtonType, OrderCheckButtonType } from './AddCartCornerButton.types'
 import { BsHeart, BsHeartFill } from "react-icons/bs";
 import { useRouter } from 'next/router'
 import useIsFavorites from '../../hooks/useIsFavorites'
 import { addFavoritesProduct, removeFavoritesProduct, rootFavoritesProducts } from '../../store/favorites/favoritesSlice'
 
 
-const OrderCheckButton = ({ productCount, dispatch, product }: OrderCheckButton) => {
+const OrderCheckButton = ({ productCount, dispatch, product }: OrderCheckButtonType) => {
     const router = useRouter()
     return <div className={style.orderNumber}>
         <div className={style.orderNumberMinus}
@@ -25,14 +25,14 @@ const OrderCheckButton = ({ productCount, dispatch, product }: OrderCheckButton)
 
 }
 
-const OrderCartButton = ({ dispatch, product }: OrderCartButton) => {
+const OrderCartButton = ({ dispatch, product }: OrderCartButtonType) => {
     return <div className={style.cartButton} onClick={() => dispatch(addProduct(product))} ><span >В корзину</span></div>
 }
 
 const AddCartCornerButton = ({ product }: { product: dataCartProduct }) => {
     const products = useAppSelector(rootProductsInCart)
     const favoritesProducts = useAppSelector(rootFavoritesProducts)
-   
+
     const countItemInCart = useIsProductInCart(products, product)
     const dispatch = useRootDispatch()
     const changeIsLakes = () => useIsFavorites(favoritesProducts, product) ? dispatch(removeFavoritesProduct(product)) : dispatch(addFavoritesProduct(product))
