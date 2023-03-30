@@ -15,7 +15,7 @@ module.exports = {
     /* "http://localhost:3001", */
     API_URL:
       /*  "http://localhost:3000"  */
-      /* "https://backend-for-next.vercel.app" */
-      "https://next-lime-delta.vercel.app",
+      "https://backend-for-next.vercel.app",
+    /*  "https://next-lime-delta.vercel.app", */
   },
 };
