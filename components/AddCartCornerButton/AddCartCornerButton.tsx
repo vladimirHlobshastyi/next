@@ -5,7 +5,7 @@ import useRootDispatch from '../../hooks/useRootDispatch'
 import { addProduct, minusProduct, rootProductsInCart } from '../../store/cart/cartSlice'
 import { dataCartProduct } from '../../store/cart/cartSlice.types'
 import style from './AddCartCornerButton.module.scss'
-import { OrderCartButtonType, OrderCheckButtonType } from './AddCartCornerButton.types'
+import { OrderCartButtonType, OrderCheckButtonType } from './AddCartCornerButton.types.ts'
 import { BsHeart, BsHeartFill } from "react-icons/bs";
 import { useRouter } from 'next/router'
 import useIsFavorites from '../../hooks/useIsFavorites'
