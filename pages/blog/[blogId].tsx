@@ -19,7 +19,7 @@ const Blog = ({ blogPage }: { blogPage: responsBlogType }) => {
         <div className={style.container}>
             <div className={style.blogTitle}><span>Блог</span></div>
             {blogPage.data.map((item) => {
-                return <Link href={`${pageNumber}`} key={item.id} ><BlogItem blogData={item} pageNumber={pageNumber} /></Link>
+                return <div key={item.id} onClick={() => router.push(`${pageNumber}`)} ><BlogItem blogData={item} pageNumber={pageNumber} /></div>
             })}
             <div className={style.pagination}>
                 <Pagination page={Number(blogId)} totalPage={blogPage.totalPages} callb={setPageNumber} />
