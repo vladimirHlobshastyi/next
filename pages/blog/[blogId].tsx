@@ -1,5 +1,5 @@
 import { useRouter } from 'next/router'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import style from './blog.module.scss'
 import { responsBlogType } from '../api/blog/[page]'
 import Pagination from '../../components/Pagination/Pagination';
@@ -11,7 +11,7 @@ const Blog = ({ blogPage }: { blogPage: responsBlogType }) => {
     const { blogId } = router.query
     const [pageNumber, setPageNumber] = useState(Number(blogId));
 
-    /*  useEffect(() => { router.push(`${pageNumber}`) }, [pageNumber]) */
+    useEffect(() => { router.push(`${pageNumber}`) }, [pageNumber])
 
 
 
