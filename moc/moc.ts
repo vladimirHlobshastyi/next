@@ -819,7 +819,7 @@ export const allProducts: allProductsTypes = {
 
 export const blogPosts: blogPostsTypes[] = [
   {
-    id: `id_of_blog_${uuidv4()}`,
+    id: `1`,
     title: "Новые тренды в мире кроссовок",
     description:
       "Рассказываем про новые модели кроссовок, которые уже успели завоевать сердца модников.",
@@ -829,7 +829,7 @@ export const blogPosts: blogPostsTypes[] = [
     date: new Date("2022-02-25"),
   },
   {
-    id: `id_of_blog_${uuidv4()}`,
+    id: `2`,
     title: "Тренды сезона: свитера с высоким воротником",
     description:
       "Рассказываем о модных свитерах с высоким воротником, которые стали настоящим хитом сезона.",
@@ -839,7 +839,7 @@ export const blogPosts: blogPostsTypes[] = [
     date: new Date("2022-02-20"),
   },
   {
-    id: `id_of_blog_${uuidv4()}`,
+    id: `3`,
     title: "Новые модели сумок от Louis Vuitton",
     description:
       "Рассказываем про новые модели сумок от Louis Vuitton, которые уже успели покорить сердца модников.",
@@ -849,7 +849,7 @@ export const blogPosts: blogPostsTypes[] = [
     date: new Date("2022-02-15"),
   },
   {
-    id: `id_of_blog_${uuidv4()}`,
+    id: `4`,
     title: "Новая коллекция обуви на лето",
     description:
       "Представляем новую коллекцию обуви на лето 2022 года. В ней вы найдете стильные и удобные модели для любого повода.",
@@ -860,7 +860,7 @@ export const blogPosts: blogPostsTypes[] = [
     date: new Date(2022, 5, 15),
   },
   {
-    id: `id_of_blog_${uuidv4()}`,
+    id: `5`,
     title: "Тренды осени 2021",
     description:
       "Какие тенденции будут актуальны в этом сезоне? Что выбрать, чтобы быть в тренде? Обо всем этом вы узнаете из нашей статьи.",
@@ -869,7 +869,7 @@ export const blogPosts: blogPostsTypes[] = [
 
     imageUrl: logoForBlog,
     date: new Date(2021, 8, 1),
-  },
+  } /* 
   {
     id: `id_of_blog_${uuidv4()}`,
     title: "Мода на платья-миди",
@@ -1344,7 +1344,7 @@ export const blogPosts: blogPostsTypes[] = [
 
     imageUrl: logoForBlog,
     date: new Date(2021, 7, 5),
-  },
+  }, */,
 ];
 
 export const authToken = {

@@ -4,12 +4,10 @@ import { BsInstagram, BsTelegram } from "react-icons/bs";
 import { IoCallOutline } from "react-icons/io5";
 import { TfiYoutube } from "react-icons/tfi";
 import { BiXCircle, BiSearch, BiUser, BiHeart, BiCart, BiBarChart, BiMenuAltLeft } from "react-icons/bi";
-import { useEffect, useMemo, useRef, useState } from 'react'
-import useClickOutsideDiv from '../../hooks/useClickOutsideDiv'
+import { useMemo, useState } from 'react'
 import Image from 'next/image'
 import Dropdown from '../Dropdown/Dropdown'
 import useAppSelector from '../../hooks/useAppSelector';
-import ControlCountComponent from '../ControlCountComponent/ControlCountComponent';
 import classNames from 'classnames';
 import { rootTotalCountInCart } from '../../store/cart/cartSlice';
 import { rootCountInFavorites } from '../../store/favorites/favoritesSlice';
@@ -18,6 +16,7 @@ import Logo from '../../public/Logo.svg'
 import SearchComponent from '../Search/Search';
 import { useRouter } from 'next/router';
 import { useIsMobile } from '../../hooks/useIsMobile';
+import useControlCount from '../../hooks/useControlCount';
 
 
 export type CategoryTypes = { name: string; id: string }[];
@@ -58,10 +57,7 @@ const NavBar = ({ categories }: { categories: CategoryTypes }) => {
     () => classNames(style.navBarContainer, isVisible ? style.navBarContainerDropDown : ''),
     [isVisible]
   );
-  const controlCount = (totalCount: number) => {
-    const result = useMemo(() => totalCount ? <ControlCountComponent countProductsInCart={totalCount} /> : null, [totalCount])
-    return result
-  }
+
   const closeSidePanel = (isClose: boolean) => setIsVisible(isClose)
   const searchOrRedirect = () => {
     if (isMobile) {
@@ -82,25 +78,25 @@ const NavBar = ({ categories }: { categories: CategoryTypes }) => {
         {isSearch ? <SearchComponent calb={setIsSearch} /> : <Link href='/'> <Image src={Logo} width={180} height={39} alt='Logo' /></Link>}
       </div>
       <div className={navBarAreaControlsClass}>
-        <span><div onClick={() => { searchOrRedirect() }}>
+        <li><div onClick={() => { searchOrRedirect() }}>
           <BiSearch /></div>
-        </span>
-        <span>
+        </li>
+        <li>
           <Link href='/user' ><BiUser /></Link>
-        </span>
-        <span>
+        </li>
+        <li>
           <Link href='/compare' onClick={() => closeSidePanel(false)}><BiBarChart />
-            {controlCount(totalCountCompare)}</Link>
-        </span>
-        <span>
+            {useControlCount(totalCountCompare)}</Link>
+        </li>
+        <li>
           <Link href='/favorites' onClick={() => closeSidePanel(false)}><BiHeart />
-            {controlCount(totalCountFavorites)}
+            {useControlCount(totalCountFavorites)}
           </Link>
-        </span>
-        <span>
+        </li>
+        <li>
           <Link href='/cart' onClick={() => closeSidePanel(false)}><BiCart />
-            {controlCount(totalCountProducts)}</Link>
-        </span>
+            {useControlCount(totalCountProducts)}</Link>
+        </li>
       </div>
       <div className={navBarCallPhoneclass}><Link href="tel:+380661206215"><IoCallOutline /></Link></div>
     </div>

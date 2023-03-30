@@ -1,13 +1,14 @@
 .container {
+  position: absolute;
+  right: -8px;
+  top: -8px;
   span {
     width: 18px;
     height: 18px;
-    position: absolute;
-    right: -8px;
-    top: -8px;
     display: flex;
     justify-content: center;
     align-items: center;
+    margin: 0;
     background-color: #364f71;
     border-radius: 50%;
     font-size: 0.9em;

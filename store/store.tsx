@@ -4,33 +4,34 @@ import compareSlice from './compare/compareSlice'
 import favoritesSlice from './favorites/favoritesSlice'
 import { persistReducer, persistStore } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
+import session from 'redux-persist/lib/storage/session';
 
 const cartPersistConfig = {
     key: "cart",
-    storage: storage,
+    storage: session,
 };
 
 const favoritesPersistConfig = {
     key: "favorites",
-    storage: storage,
+    storage: session,
 };
 
 const comparePersistConfig = {
     key: "compare",
-    storage: storage,
+    storage: session,
 };
 
+const persistConfig = {
+    key: 'root',
+    storage: session,
+    whitelist: ["cart", "favorites", "compare"],
+};
 const rootReducer = combineReducers({
     cart: persistReducer(cartPersistConfig, cartSlice),
     favorites: persistReducer(favoritesPersistConfig, favoritesSlice),
     compare: persistReducer(comparePersistConfig, compareSlice),
 });
 
-const persistConfig = {
-    key: 'root',
-    storage,
-    whitelist: ["cart", "favorites", "compare"],
-};
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);
 

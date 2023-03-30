@@ -55,7 +55,8 @@
   width: 25%;
   display: flex;
   justify-content: flex-end;
-  span {
+  li {
+    list-style-type: none;
     margin: 0 10px;
     position: relative;
     cursor: pointer;
