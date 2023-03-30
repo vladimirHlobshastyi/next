@@ -35,7 +35,8 @@ const AddCartCornerButton = ({ product }: { product: dataCartProduct }) => {
 
     const countItemInCart = useIsProductInCart(products, product)
     const dispatch = useRootDispatch()
-    const changeIsLakes = () => useIsFavorites(favoritesProducts, product) ? dispatch(removeFavoritesProduct(product)) : dispatch(addFavoritesProduct(product))
+    const isFavorites = useIsFavorites(favoritesProducts, product)
+    const changeIsLakes = () => isFavorites ? dispatch(removeFavoritesProduct(product)) : dispatch(addFavoritesProduct(product))
 
 
     return <div className={style.container}>
@@ -45,7 +46,7 @@ const AddCartCornerButton = ({ product }: { product: dataCartProduct }) => {
             <OrderCartButton
                 dispatch={dispatch}
                 product={product} />}
-        <div className={style.likes} onClick={changeIsLakes}>{useIsFavorites(favoritesProducts, product) ? <BsHeartFill /> : <BsHeart />}</div>
+        <div className={style.likes} onClick={changeIsLakes}>{isFavorites ? <BsHeartFill /> : <BsHeart />}</div>
     </div>
 }
 
