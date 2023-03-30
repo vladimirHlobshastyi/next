@@ -8,7 +8,6 @@ import { useMemo, useState } from 'react'
 import Image from 'next/image'
 import Dropdown from '../Dropdown/Dropdown'
 import useAppSelector from '../../hooks/useAppSelector';
-import ControlCountComponent from '../ControlCountComponent/ControlCountComponent';
 import classNames from 'classnames';
 import { rootTotalCountInCart } from '../../store/cart/cartSlice';
 import { rootCountInFavorites } from '../../store/favorites/favoritesSlice';
@@ -17,6 +16,7 @@ import Logo from '../../public/Logo.svg'
 import SearchComponent from '../Search/Search';
 import { useRouter } from 'next/router';
 import { useIsMobile } from '../../hooks/useIsMobile';
+import useControlCount from '../../hooks/useControlCount';
 
 
 export type CategoryTypes = { name: string; id: string }[];
@@ -57,10 +57,7 @@ const NavBar = ({ categories }: { categories: CategoryTypes }) => {
     () => classNames(style.navBarContainer, isVisible ? style.navBarContainerDropDown : ''),
     [isVisible]
   );
-  const controlCount = (totalCount: number) => {
-    const result = useMemo(() => totalCount ? <ControlCountComponent countProductsInCart={totalCount} /> : null, [totalCount])
-    return result
-  }
+
   const closeSidePanel = (isClose: boolean) => setIsVisible(isClose)
   const searchOrRedirect = () => {
     if (isMobile) {
@@ -89,16 +86,16 @@ const NavBar = ({ categories }: { categories: CategoryTypes }) => {
         </span>
         <span>
           <Link href='/compare' onClick={() => closeSidePanel(false)}><BiBarChart />
-            {controlCount(totalCountCompare)}</Link>
+            {useControlCount(totalCountCompare)}</Link>
         </span>
         <span>
           <Link href='/favorites' onClick={() => closeSidePanel(false)}><BiHeart />
-            {controlCount(totalCountFavorites)}
+            {useControlCount(totalCountFavorites)}
           </Link>
         </span>
         <span>
           <Link href='/cart' onClick={() => closeSidePanel(false)}><BiCart />
-            {controlCount(totalCountProducts)}</Link>
+            {useControlCount(totalCountProducts)}</Link>
         </span>
       </div>
       <div className={navBarCallPhoneclass}><Link href="tel:+380661206215"><IoCallOutline /></Link></div>

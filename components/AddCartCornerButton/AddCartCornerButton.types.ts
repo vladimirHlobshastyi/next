@@ -4,7 +4,7 @@ import {
   initialStateTypes,
 } from "../../store/cart/cartSlice.types";
 
-export type OrderCheckButton = {
+export type OrderCheckButtonType = {
   productCount: number | false;
   dispatch: ThunkDispatch<
     {
@@ -17,7 +17,7 @@ export type OrderCheckButton = {
   product: dataCartProduct;
 };
 
-export type OrderCartButton = {
+export type OrderCartButtonType = {
   dispatch: ThunkDispatch<
     {
       cart: initialStateTypes;

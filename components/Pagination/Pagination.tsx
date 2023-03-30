@@ -15,11 +15,11 @@ const Pagination = ({ page, totalPage, callb }: paginationProps) => {
     const endIndex = Math.min(totalPage, startIndex + maxPages - 1);
 
     const pages = useMemo(() => {
-        let res = [];
+        const result = [];
         for (let i = startIndex; i <= endIndex; i++) {
-            res.push(i);
+            result.push(i);
         }
-        return res;
+        return result;
     }, [startIndex, endIndex]);
 
     const isActiveClass = (item: number) => (item === page ? style.active : style.disabled);
