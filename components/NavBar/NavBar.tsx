@@ -78,25 +78,25 @@ const NavBar = ({ categories }: { categories: CategoryTypes }) => {
         {isSearch ? <SearchComponent calb={setIsSearch} /> : <Link href='/'> <Image src={Logo} width={180} height={39} alt='Logo' /></Link>}
       </div>
       <div className={navBarAreaControlsClass}>
-        <span><div onClick={() => { searchOrRedirect() }}>
+        <li><div onClick={() => { searchOrRedirect() }}>
           <BiSearch /></div>
-        </span>
-        <span>
+        </li>
+        <li>
           <Link href='/user' ><BiUser /></Link>
-        </span>
-        <span>
+        </li>
+        <li>
           <Link href='/compare' onClick={() => closeSidePanel(false)}><BiBarChart />
             {useControlCount(totalCountCompare)}</Link>
-        </span>
-        <span>
+        </li>
+        <li>
           <Link href='/favorites' onClick={() => closeSidePanel(false)}><BiHeart />
             {useControlCount(totalCountFavorites)}
           </Link>
-        </span>
-        <span>
+        </li>
+        <li>
           <Link href='/cart' onClick={() => closeSidePanel(false)}><BiCart />
             {useControlCount(totalCountProducts)}</Link>
-        </span>
+        </li>
       </div>
       <div className={navBarCallPhoneclass}><Link href="tel:+380661206215"><IoCallOutline /></Link></div>
     </div>
