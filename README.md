@@ -39,4 +39,4 @@ SEO optimization and easy site navigation
 The site has implemented SEO optimization and meta tags for search engines, as well as easy site navigation and quick access to information.
 
 # Developer
-Hlobshastyi Volodymyr(vladimirhlobchastyi@gmail.com)
+Hlobshastyi Volodymyr ( vladimirhlobchastyi@gmail.com )
