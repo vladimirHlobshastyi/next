@@ -1,36 +1,42 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+MONO 1.1
 
-## Getting Started
+#Welcome to the MONO demo site!
 
-First, run the development server:
+This site is an online store for selling clothes with PWA functionality for use on mobile devices. The site is built on the Next.js framework and has static generation to provide maximum performance.
 
-```bash
-npm run dev
-# or
-yarn dev
-```
+#Development plans
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+*The following features will be implemented in future versions of MONO:
+*Payment system for products
+*Chatbot system
+*Login under your account and administrator account
 
-You can start editing the page by modifying `pages/index.tsx`. The page auto-updates as you edit the file.
+#Current functionality
+At the moment, MONO already has the following functionality:
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.ts`.
+*Product pages and product categories
+*Product search
+*Adding a product to favorites, cart, and comparing products
+*Internal blog to increase site traffic
+*Removed information about the author and license
+*Information about the author and license has been removed at the request of the copyright owner.
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+#Pages
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+*Home
+*Products
+*Product Categories
+*Cart
+*Blogs
+*Compare Products
+*Favorites
+*Search Products
 
-## Learn More
+#State Management
 
-To learn more about Next.js, take a look at the following resources:
+Redux Toolkit and Redux Persist are used for state management.
+SEO optimization and easy site navigation
+The site has implemented SEO optimization and meta tags for search engines, as well as easy site navigation and quick access to information.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+#Developers
+Hlobshastyi Volodymyr(vladimirhlobchastyi@gmail.com)
