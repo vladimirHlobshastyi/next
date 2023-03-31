@@ -32,7 +32,7 @@ At the moment, MONO already has the following functionality:
 * Favorites
 * Search Products
 
-#State Management
+# State Management
 
 Redux Toolkit and Redux Persist are used for state management.
 SEO optimization and easy site navigation
