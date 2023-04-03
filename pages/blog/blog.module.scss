@@ -3,7 +3,20 @@
   height: calc(100% - 160px);
   min-height: calc(100vh - 160px);
   padding: 0 20%;
-
+  .contentNavigate {
+    padding: 5% 10% 2%;
+    a {
+      text-decoration: none;
+      color: #1b1b1bbb;
+      &:hover {
+        color: #000000;
+      }
+    }
+    .contentNavigateCheck {
+      font-weight: 500;
+      font-size: 1.1em;
+    }
+  }
   span {
     display: flex;
     justify-content: flex-start;

@@ -3,9 +3,20 @@ import useFormattedDate from "../../../hooks/useFormattedDate";
 import { blogPostsTypes } from "../../../moc/moc";
 import { responsBlogType } from "../../api/blog/[page]";
 import style from './blogPost.module.scss'
+import Link from "next/link";
+import { useRouter } from "next/router";
 
 const BlogItem = ({ blogPost }: { blogPost: blogPostsTypes }) => {
+    const router = useRouter()
+    const { blogId, postId } = router.query
+
     return <div className={style.container}>
+        <div className={style.contentNavigate}>
+            <Link href={`/`}>Главная / </Link>
+            <Link href={`/blog/1`}>Блоги / </Link>
+            <Link href={`/blog/${blogId}`}> Страница {blogId} /</Link>
+            <Link href={`${postId}`} className={style.contentNavigateCheck}> Пост {postId}</Link>
+        </div>
         <div className={style.wrapper}>
             <div className={style.wrapperImage}><Image src={blogPost.imageUrl} alt='Image of blog' /></div>
             <div className={style.wrapperInfo}>
