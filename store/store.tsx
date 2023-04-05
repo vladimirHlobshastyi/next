@@ -5,6 +5,8 @@ import favoritesSlice from './favorites/favoritesSlice'
 import { persistReducer, persistStore } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
 import session from 'redux-persist/lib/storage/session';
+import authSlice from './auth/authSlice';
+import userContactsSlice from './userContactsSlice/userContactsSlice';
 
 const cartPersistConfig = {
     key: "cart",
@@ -30,6 +32,8 @@ const rootReducer = combineReducers({
     cart: persistReducer(cartPersistConfig, cartSlice),
     favorites: persistReducer(favoritesPersistConfig, favoritesSlice),
     compare: persistReducer(comparePersistConfig, compareSlice),
+    auth: authSlice,
+    userContacts: userContactsSlice
 });
 
 

@@ -1,8 +1,5 @@
 import { NextApiRequest, NextApiResponse } from "next";
-import bcrypt from "bcryptjs";
-import jwt from "jsonwebtoken";
 import { authToken } from "../../moc/moc";
-
 
 const loginMock = "user";
 const passwordMock: string = "password";
@@ -33,5 +30,5 @@ export default function handler(req: NextApiRequest, res: NextApiResponse) {
   }
 
   // отправка ответа с токеном
-  res.status(200).json({ token });
+  res.status(200).json(token);
 }

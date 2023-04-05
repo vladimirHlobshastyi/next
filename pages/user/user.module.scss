@@ -1,0 +1,19 @@
+.container {
+  // background-color: #f7f7f7;
+  width: 100%;
+  height: calc(100% - 160px);
+  min-height: calc(100vh - 160px);
+  display: flex;
+  padding: 20px;
+  .navigate {
+    width: 20%;
+    height: 100%;
+    .navigateEl {
+      cursor: pointer;
+    }
+  }
+  .wrapper {
+    width: 80%;
+    height: 100%;
+  }
+}

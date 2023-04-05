@@ -22,7 +22,6 @@ import useControlCount from '../../hooks/useControlCount';
 export type CategoryTypes = { name: string; id: string }[];
 
 
-
 const NavBar = ({ categories }: { categories: CategoryTypes }) => {
 
   const router = useRouter();
@@ -68,6 +67,8 @@ const NavBar = ({ categories }: { categories: CategoryTypes }) => {
   }
 
 
+
+
   return (<>
     <div className={navBarContainerClass}>
       <div className={navBarMenuClass} onClick={() => closeSidePanel(!isVisible)} >
@@ -81,8 +82,8 @@ const NavBar = ({ categories }: { categories: CategoryTypes }) => {
         <li><div onClick={() => { searchOrRedirect() }}>
           <BiSearch /></div>
         </li>
-        <li>
-          <Link href='/user' ><BiUser /></Link>
+        <li >
+          <Link href='/user' onClick={() => closeSidePanel(false)}><BiUser /></Link>
         </li>
         <li>
           <Link href='/compare' onClick={() => closeSidePanel(false)}><BiBarChart />

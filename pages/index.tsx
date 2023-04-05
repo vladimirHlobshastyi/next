@@ -28,7 +28,7 @@ export default function Home({ products }: { products: productsInCategory }) {
           <div className={style.wrapperContentProducts}>
             {products.data.map((product, index) => {
               if (product === products.data[products.data.length - 1] && index % 2 === 1) {
-                return <><ProductPreview key={product.id} product={product} /><div className={style.proposalProductsLp}></div></>
+                return <div key={product.id}><ProductPreview product={product} /><div className={style.proposalProductsLp}></div></div>
               }
               return <ProductPreview key={product.id} product={product} />
             }

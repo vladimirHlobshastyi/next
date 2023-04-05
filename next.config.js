@@ -12,9 +12,8 @@ const nextConfig = {
 module.exports = nextConfig;
 module.exports = {
   env: {
-    API_URL:
-      /*  "http://localhost:3000"  */
-      /* "https://backend-for-next.vercel.app", */
-      "https://next-lime-delta.vercel.app",
+    API_URL: "http://localhost:3000",
+    /* "https://backend-for-next.vercel.app", */
+    /* "https://next-lime-delta.vercel.app", */
   },
 };
