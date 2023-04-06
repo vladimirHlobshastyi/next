@@ -66,9 +66,6 @@ const NavBar = ({ categories }: { categories: CategoryTypes }) => {
 
   }
 
-
-
-
   return (<>
     <div className={navBarContainerClass}>
       <div className={navBarMenuClass} onClick={() => closeSidePanel(!isVisible)} >
@@ -83,7 +80,7 @@ const NavBar = ({ categories }: { categories: CategoryTypes }) => {
           <BiSearch /></div>
         </li>
         <li >
-          <Link href='/user' onClick={() => closeSidePanel(false)}><BiUser /></Link>
+          <Link href='/user/history_of_orders' onClick={() => closeSidePanel(false)}><BiUser /></Link>
         </li>
         <li>
           <Link href='/compare' onClick={() => closeSidePanel(false)}><BiBarChart />

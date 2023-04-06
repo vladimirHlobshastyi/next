@@ -28,10 +28,16 @@ function contacts() {
     const dispatch = useRootDispatch()
 
     const onSubmit = (data: FormInputsType) => {
-        dispatch(changeContacts(data))
-        setSubmitting(false);
-        setSuccess(true);
-        setError(null);
+        try {
+            dispatch(changeContacts(data))
+            setSubmitting(false);
+            setSuccess(true);
+            setError(null);
+        } catch (error: any) {
+            setError(error.message);
+        } finally {
+            setSubmitting(false);
+        }
     };
 
     useEffect(() => {
@@ -96,10 +102,10 @@ function contacts() {
                             defaultValue={emailOfUser !== undefined && emailOfUser !== null ? emailOfUser : ''}
                         />
                         {errors.email && errors.email.type === 'required' && (
-                            <span>This field is required</span>
+                            <span className={styles.error}>Поле обязательно для заполнения</span>
                         )}
                         {errors.email && errors.email.type === 'pattern' && (
-                            <span>Please enter a valid email address</span>
+                            <span className={styles.error}>Пожалуйста введите валидный email</span>
                         )}
                     </div>
                     {error && <span className={styles.error}>{error}</span>}

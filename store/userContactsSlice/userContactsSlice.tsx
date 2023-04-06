@@ -1,14 +1,17 @@
 import { PayloadAction, createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import axios from "axios";
 import { RootState } from "../store";
-import { changeContactsPayload } from "./userContactsSlice.types";
+import { changeAdressPayload, changeContactsPayload } from "./userContactsSlice.types";
 
 
 
 const initialState = {
   fullName: '',
   email: '',
-  phone: ''
+  phone: '',
+  city: '',
+  street: '',
+  houseNumber: '',
+  apartmentNumber: ''
 }
 
 const userContactsSlice = createSlice({
@@ -19,26 +22,31 @@ const userContactsSlice = createSlice({
       state.fullName = action.payload.fullName;
       state.email = action.payload.email;
       state.phone = action.payload.phone;
+    },
+    changeAdress(state, action: PayloadAction<changeAdressPayload>) {
+      state.city = action.payload.city;
+      state.street = action.payload.street;
+      state.houseNumber = action.payload.houseNumber;
+      if (action.payload.apartmentNumber.length > 0) {
+        state.apartmentNumber = action.payload.apartmentNumber
+      }
+
     }
   },
   extraReducers:
     (builder) => {
-      /*  builder.addCase(loginThunk.pending, (state) => { state.isLoading = true })
-       builder.addCase(loginThunk.fulfilled, (state, PayloadAction) => {
-         state.token = PayloadAction.payload.getToken
-         state.isAuth = PayloadAction.payload.isAuthResponse
-         state.isLoading = false
-       })
-       builder.addCase(loginThunk.rejected, (state) => { state.isLoading = false })
-    */
     },
 
 });
 
-export const { changeContacts } = userContactsSlice.actions;
+export const { changeContacts, changeAdress } = userContactsSlice.actions;
 export const fullNameState = (state: RootState) => state.userContacts.fullName
 export const emailameState = (state: RootState) => state.userContacts.email
 export const phoneState = (state: RootState) => state.userContacts.phone
+export const cityOfUserState = (state: RootState) => state.userContacts.city
+export const streetOfUserState = (state: RootState) => state.userContacts.street
+export const houseNumberOfUserState = (state: RootState) => state.userContacts.houseNumber
+export const apartmentNumberOfUserState = (state: RootState) => state.userContacts.apartmentNumber
 
 
 

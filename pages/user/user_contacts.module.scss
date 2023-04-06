@@ -11,12 +11,12 @@
     flex-direction: column;
   }
   .formContainer {
-    width: 80%;
+    width: 90%;
     height: 100%;
     .form {
       display: flex;
       flex-direction: column;
-      width: 400px;
+      width: 90%;
       margin: 0 auto;
 
       h2 {
@@ -51,7 +51,8 @@
       }
 
       button[type="submit"] {
-        padding: 10px 20px;
+        width: 25%;
+        padding: 10px 10px;
         border: none;
         border-radius: 5px;
         background-color: #007bff;
@@ -74,6 +75,18 @@
         font-size: 1rem;
         margin-top: 10px;
       }
+    }
+  }
+}
+
+@media (max-width: 830px) {
+  .container {
+    display: flex;
+    flex-direction: column;
+    padding: 0;
+
+    .navigate {
+      width: 100%;
     }
   }
 }

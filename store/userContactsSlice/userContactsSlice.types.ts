@@ -3,3 +3,10 @@ export type changeContactsPayload = {
   email: string;
   phone: string;
 };
+
+export type changeAdressPayload = {
+  city: string;
+  street: string;
+  houseNumber: string;
+  apartmentNumber: string;
+};
