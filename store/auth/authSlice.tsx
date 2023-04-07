@@ -6,7 +6,7 @@ import { RootState } from "../store";
 
 
 const initialState = {
-  isAuth: true,
+  isAuth: false,
   isLoading: false,
   token: ''
 }
