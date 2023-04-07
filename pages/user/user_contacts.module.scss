@@ -13,6 +13,8 @@
   .formContainer {
     width: 90%;
     height: 100%;
+    padding: 20px;
+
     .form {
       display: flex;
       flex-direction: column;
@@ -84,7 +86,18 @@
     display: flex;
     flex-direction: column;
     padding: 0;
-
+    .formContainer {
+      width: 100%;
+      .form {
+        align-items: center;
+        .inputContainer {
+          width: 100%;
+        }
+        button[type="submit"] {
+          width: 75%;
+        }
+      }
+    }
     .navigate {
       width: 100%;
     }

@@ -5,13 +5,15 @@ import useAppSelector from "../../hooks/useAppSelector";
 import { changeContacts, emailameState, fullNameState, phoneState } from "../../store/userContactsSlice/userContactsSlice";
 import useRootDispatch from "../../hooks/useRootDispatch";
 import NavbarInUserComponent from "../../components/NavbarInUserComponent/NavbarInUserComponent";
+import useIsAuth from "../../hooks/useIsAuth";
+import { useRouter } from "next/router";
 
 type FormInputsType = {
     fullName: string;
     phone: string;
     email: string;
 };
-function contacts() {
+function Contacts() {
     const {
         register,
         handleSubmit,
@@ -25,7 +27,10 @@ function contacts() {
     const emailOfUser = useAppSelector(emailameState)
     const fullnameOfUser = useAppSelector(fullNameState)
 
+    const router = useRouter()
+    const { isAuth } = useIsAuth()
     const dispatch = useRootDispatch()
+    const phoneRef = useRef<HTMLInputElement>(null);
 
     const onSubmit = (data: FormInputsType) => {
         try {
@@ -40,10 +45,25 @@ function contacts() {
         }
     };
 
-    useEffect(() => {
+    if (!isAuth) {
+        router.push('/login')
+        return <div className={styles.container}></div>
+    }
+
+    /* useEffect(() => {
         const phoneInput = document.getElementById("phone");
         if (phoneInput) {
             phoneInput.addEventListener("input", (event: Event) => {
+                const phoneValue = (event.target as HTMLInputElement).value;
+                if (phoneValue && !phoneValue.startsWith("+38") && !phoneValue.startsWith("+7") && !phoneValue.startsWith("8")) {
+                    (event.target as HTMLInputElement).value = "+38" + phoneValue;
+                }
+            });
+        }
+    }, []); */
+    useEffect(() => {
+        if (phoneRef.current) {
+            phoneRef.current.addEventListener("input", (event: Event) => {
                 const phoneValue = (event.target as HTMLInputElement).value;
                 if (phoneValue && !phoneValue.startsWith("+38") && !phoneValue.startsWith("+7") && !phoneValue.startsWith("8")) {
                     (event.target as HTMLInputElement).value = "+38" + phoneValue;
@@ -63,7 +83,7 @@ function contacts() {
                             id="fullName"
                             type="text"
                             {...register("fullName", { required: true })}
-                            defaultValue={fullnameOfUser !== undefined && fullnameOfUser !== null ? fullnameOfUser : ''}
+                            defaultValue={fullnameOfUser ?? ''}
                         />
                         {errors.fullName && (
                             <span className={styles.error}>Поле обязательно для заполнения</span>
@@ -82,6 +102,7 @@ function contacts() {
                                 },
                             })}
                             defaultValue={phoneOfUser !== undefined && phoneOfUser !== null ? phoneOfUser : ''}
+                            ref={phoneRef}
                         />
                         {errors.phone && typeof errors.phone.message === 'string' && (
                             <span className={styles.error}>{errors.phone.message}</span>
@@ -119,4 +140,4 @@ function contacts() {
     );
 }
 
-export default contacts
+export default Contacts

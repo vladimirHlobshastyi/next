@@ -4,7 +4,6 @@
   min-height: calc(100vh - 160px);
   display: flex;
   padding: 20px;
-
   .navigate {
     width: 20%;
     height: 100%;
@@ -15,6 +14,7 @@
   .formContainer {
     width: 90%;
     height: 100%;
+    padding: 20px;
     .formContainerTitle {
       width: 90%;
       display: flex;
@@ -112,5 +112,12 @@
   .container {
     display: flex;
     flex-direction: column;
+    padding: 0;
+    .formContainer {
+      width: 100%;
+    }
+    .navigate {
+      width: 100%;
+    }
   }
 }

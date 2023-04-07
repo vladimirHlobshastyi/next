@@ -3,8 +3,10 @@ import style from './NavbarInUserComponent.module.scss'
 import useRootDispatch from '../../hooks/useRootDispatch'
 import { logout } from '../../store/auth/authSlice'
 import classNames from "classnames";
-import { useCallback, useMemo, useState } from 'react';
+import { useState } from 'react';
 import useIsActiveNavbar from '../../hooks/useIsActiveNavbar';
+import { IoIosArrowDown, IoIosArrowUp } from "react-icons/io";
+import { useIsMobile } from '../../hooks/useIsMobile';
 
 const CONTACTS = '/user/user_contacts'
 const BONUSES = '/user/bonuses'
@@ -15,6 +17,7 @@ const NavbarInUserComponent = () => {
 
     const [isOpenDropdown, setIsOpenDropdown] = useState(false)
     const router = useRouter()
+    const isMobile = useIsMobile()
     const path = router.asPath
 
     const dispatch = useRootDispatch()
@@ -25,14 +28,14 @@ const NavbarInUserComponent = () => {
     const bonusesClass = classNames(style.navigateEl, isActive(BONUSES) ? style.active : '');
     const contactsClass = classNames(style.navigateEl, isActive(CONTACTS) ? style.active : '');
     const titleClass = classNames(style.navigateEl, style.title);
-    const isDropdownClass = isOpenDropdown ? '' : style.dropDownNavigateNone
+    const isDropdownClass = isOpenDropdown ? style.dropDownNavigate : style.dropDownNavigateNone
 
     const logoutFunc = () => {
         dispatch(logout())
         router.push('/')
     }
     const changeDropdown = () => setIsOpenDropdown(prevIsOpenDropdown => !prevIsOpenDropdown)
-
+    const mobileDropDownIcon = isMobile && (isOpenDropdown ? <IoIosArrowUp /> : <IoIosArrowDown />)
 
     const pushToContacts = () => router.push(CONTACTS)
     const pushToBonuses = () => router.push(BONUSES)
@@ -40,7 +43,7 @@ const NavbarInUserComponent = () => {
     const pushToHistoryOfOrders = () => router.push(HISTORY_OF_ORDERS)
 
     return <div className={style.navigate}>
-        <div className={titleClass} onClick={changeDropdown}>Линый кабинет</div>
+        <div className={titleClass} onClick={changeDropdown}><span>Линый кабинет</span>{mobileDropDownIcon}</div>
         <div className={isDropdownClass} >
             <div className={historyOrdersClass} onClick={pushToHistoryOfOrders}>История заказов</div>
             <div className={adressClass} onClick={pushToAdress}>Адрес доставки</div>

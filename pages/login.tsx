@@ -26,7 +26,7 @@ const Login = () => {
         setShowPassword(!showPassword);
     };
 
-    useEffect(() => { if (isAuth) { router.push('/user') } }, [isAuth])
+    useEffect(() => { if (isAuth) { router.push('/user/history_of_orders') } }, [isAuth])
 
     return (
         <div className={style.container}>

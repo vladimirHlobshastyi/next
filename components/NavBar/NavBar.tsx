@@ -3,7 +3,7 @@ import style from './NavBar.module.scss'
 import { BsInstagram, BsTelegram } from "react-icons/bs";
 import { IoCallOutline } from "react-icons/io5";
 import { TfiYoutube } from "react-icons/tfi";
-import { BiXCircle, BiSearch, BiUser, BiHeart, BiCart, BiBarChart, BiMenuAltLeft } from "react-icons/bi";
+import { BiXCircle, BiSearch, BiUser, BiUserCheck, BiHeart, BiCart, BiBarChart, BiMenuAltLeft } from "react-icons/bi";
 import { useMemo, useState } from 'react'
 import Image from 'next/image'
 import Dropdown from '../Dropdown/Dropdown'
@@ -17,6 +17,7 @@ import SearchComponent from '../Search/Search';
 import { useRouter } from 'next/router';
 import { useIsMobile } from '../../hooks/useIsMobile';
 import useControlCount from '../../hooks/useControlCount';
+import { isAuthState } from '../../store/auth/authSlice';
 
 
 export type CategoryTypes = { name: string; id: string }[];
@@ -31,6 +32,7 @@ const NavBar = ({ categories }: { categories: CategoryTypes }) => {
   const totalCountProducts = useAppSelector(rootTotalCountInCart)
   const totalCountFavorites = useAppSelector(rootCountInFavorites)
   const totalCountCompare = useAppSelector(rootCountInCompare)
+  const isAuth = useAppSelector(isAuthState)
   const isMobile = useIsMobile()
 
 
@@ -80,7 +82,7 @@ const NavBar = ({ categories }: { categories: CategoryTypes }) => {
           <BiSearch /></div>
         </li>
         <li >
-          <Link href='/user/history_of_orders' onClick={() => closeSidePanel(false)}><BiUser /></Link>
+          <Link href='/user/history_of_orders' onClick={() => closeSidePanel(false)}>{isAuth ? <BiUserCheck /> : <BiUser />}</Link>
         </li>
         <li>
           <Link href='/compare' onClick={() => closeSidePanel(false)}><BiBarChart />
@@ -130,7 +132,7 @@ const NavBar = ({ categories }: { categories: CategoryTypes }) => {
                 <Link href='/'>Оплата</Link>
               </div>
               <div className={style.sidePanelCatalogMenuElement} onClick={() => closeSidePanel(!isVisible)}>
-                <Link href='/'>Личный кабинет</Link>
+                <Link href='/user/history_of_orders'>Личный кабинет</Link>
               </div>
               <div className={style.sidePanelCatalogMenuElement} onClick={() => closeSidePanel(!isVisible)}>
                 <Link href='/blog/1'>Блог</Link>

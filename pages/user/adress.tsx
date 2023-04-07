@@ -11,6 +11,8 @@ import {
     streetOfUserState,
 } from "../../store/userContactsSlice/userContactsSlice";
 import useRootDispatch from "../../hooks/useRootDispatch";
+import useIsAuth from "../../hooks/useIsAuth";
+import { useRouter } from "next/router";
 
 type FormInputsType = {
     city: string;
@@ -23,6 +25,8 @@ const Adress = () => {
     const [submitting, setSubmitting] = useState(false);
     const [success, setSuccess] = useState(false);
     const [error, setError] = useState(null);
+    const { isAuth } = useIsAuth()
+    const router = useRouter()
 
     const {
         register,
@@ -50,6 +54,10 @@ const Adress = () => {
         }
     };
 
+    if (!isAuth) {
+        router.push('/login')
+        return <div className={styles.container}></div>
+    }
     return (
         <div className={styles.container}>
             <div className={styles.navigate}>
