@@ -13,6 +13,7 @@ import {
 import useRootDispatch from "../../hooks/useRootDispatch";
 import useIsAuth from "../../hooks/useIsAuth";
 import { useRouter } from "next/router";
+import Error from "next/error";
 
 type FormInputsType = {
     city: string;
@@ -41,16 +42,17 @@ const Adress = () => {
 
     const dispatch = useRootDispatch()
 
-    const onSubmit = async (data: FormInputsType) => {
+    const onSubmit = (data: FormInputsType) => {
+
         try {
-            setSubmitting(true);
+            setSubmitting(false);
+            setSuccess(true);
+            setError(null);
             dispatch(changeAdress(data))
         } catch (error: any) {
             setError(error.message);
         } finally {
             setSubmitting(false);
-            setSuccess(true);
-            setError(null);
         }
     };
 

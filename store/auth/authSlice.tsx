@@ -6,7 +6,7 @@ import { RootState } from "../store";
 
 
 const initialState = {
-  isAuth: false,
+  isAuth: true,
   isLoading: false,
   token: ''
 }
@@ -27,6 +27,7 @@ axios.interceptors.request.use((config) => {
 });
 
 async function setLogin(username: string, password: string) {
+
   try {
     const { data } = await axiosInstance.post(`${process.env.API_URL}/api/auth`, { username, password });
     localStorage.setItem("token", data.token);
@@ -37,6 +38,7 @@ async function setLogin(username: string, password: string) {
 }
 
 async function getAuth() {
+
   try {
     const token = localStorage.getItem("token");
     const { data } = await axios.post(`${process.env.API_URL}/api/user`, { authKey: token });
@@ -51,6 +53,7 @@ async function getAuth() {
 export const loginThunk = createAsyncThunk(
   'auth/login',
   async ({ login, password }: loginThunkType, { rejectWithValue }) => {
+
     try {
       const getToken = await setLogin(login, password);
       const isAuthResponse = await getAuth();
