@@ -1,19 +1,21 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import styles from './user_contacts.module.scss'
 import useAppSelector from "../../hooks/useAppSelector";
 import { changeContacts, emailameState, fullNameState, phoneState } from "../../store/userContactsSlice/userContactsSlice";
 import useRootDispatch from "../../hooks/useRootDispatch";
 import NavbarInUserComponent from "../../components/NavbarInUserComponent/NavbarInUserComponent";
-import useIsAuth from "../../hooks/useIsAuth";
-import { useRouter } from "next/router";
 
 type FormInputsType = {
     fullName: string;
     phone: string;
     email: string;
 };
-function Contacts() {
+interface FormError {
+    type: string;
+    message: string;
+}
+function Сontacts() {
     const {
         register,
         handleSubmit,
@@ -27,17 +29,14 @@ function Contacts() {
     const emailOfUser = useAppSelector(emailameState)
     const fullnameOfUser = useAppSelector(fullNameState)
 
-    const router = useRouter()
-    const { isAuth } = useIsAuth()
     const dispatch = useRootDispatch()
-    const phoneRef = useRef<HTMLInputElement>(null);
 
     const onSubmit = (data: FormInputsType) => {
         try {
-            dispatch(changeContacts(data))
             setSubmitting(false);
             setSuccess(true);
             setError(null);
+            dispatch(changeContacts(data))
         } catch (error: any) {
             setError(error.message);
         } finally {
@@ -45,32 +44,6 @@ function Contacts() {
         }
     };
 
-    if (!isAuth) {
-        router.push('/login')
-        return <div className={styles.container}></div>
-    }
-
-    /* useEffect(() => {
-        const phoneInput = document.getElementById("phone");
-        if (phoneInput) {
-            phoneInput.addEventListener("input", (event: Event) => {
-                const phoneValue = (event.target as HTMLInputElement).value;
-                if (phoneValue && !phoneValue.startsWith("+38") && !phoneValue.startsWith("+7") && !phoneValue.startsWith("8")) {
-                    (event.target as HTMLInputElement).value = "+38" + phoneValue;
-                }
-            });
-        }
-    }, []); */
-    useEffect(() => {
-        if (phoneRef.current) {
-            phoneRef.current.addEventListener("input", (event: Event) => {
-                const phoneValue = (event.target as HTMLInputElement).value;
-                if (phoneValue && !phoneValue.startsWith("+38") && !phoneValue.startsWith("+7") && !phoneValue.startsWith("8")) {
-                    (event.target as HTMLInputElement).value = "+38" + phoneValue;
-                }
-            });
-        }
-    }, []);
     return (
         <div className={styles.container}>
             <div className={styles.navigate}><NavbarInUserComponent /></div>
@@ -101,8 +74,8 @@ function Contacts() {
                                     message: "Введите номер в формате +380XXXXXXXXX",
                                 },
                             })}
-                            defaultValue={phoneOfUser !== undefined && phoneOfUser !== null ? phoneOfUser : ''}
-                            ref={phoneRef}
+
+                            defaultValue={phoneOfUser ?? ''}
                         />
                         {errors.phone && typeof errors.phone.message === 'string' && (
                             <span className={styles.error}>{errors.phone.message}</span>
@@ -120,18 +93,18 @@ function Contacts() {
                                     message: "Введите корректный email",
                                 },
                             })}
-                            defaultValue={emailOfUser !== undefined && emailOfUser !== null ? emailOfUser : ''}
+                            defaultValue={emailOfUser ?? ''}
                         />
                         {errors.email && errors.email.type === 'required' && (
-                            <span className={styles.error}>Поле обязательно для заполнения</span>
+                            <span>This field is required</span>
                         )}
                         {errors.email && errors.email.type === 'pattern' && (
-                            <span className={styles.error}>Пожалуйста введите валидный email</span>
+                            <span>Please enter a valid email address</span>
                         )}
                     </div>
                     {error && <span className={styles.error}>{error}</span>}
                     {success && <span className={styles.success}>Данные успешно сохранены</span>}
-                    <button type="submit" disabled={submitting}>
+                    <button type="submit" disabled={submitting} aria-label="Сохранить изменения">
                         {submitting ? "Сохранение..." : "Сохранить изменения"}
                     </button>
                 </ form>
@@ -140,4 +113,4 @@ function Contacts() {
     );
 }
 
-export default Contacts
+export default Сontacts
