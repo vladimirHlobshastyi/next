@@ -17,7 +17,7 @@ const favoritesSlice = createSlice({
     addFavoritesProduct(state, action: PayloadAction<dataCartProduct>) {
 
       let sheckIdentical = state.data.some(
-        (item) => item.id === action.payload.id
+        (productItem) => productItem.id === action.payload.id
       );
 
       if (!sheckIdentical) {
@@ -27,7 +27,7 @@ const favoritesSlice = createSlice({
     },
     removeFavoritesProduct(state, action: PayloadAction<{ id: string, price: number }>) {
 
-      const minusFavoritesProduct = state.data.filter((item) => item.id !== action.payload.id)
+      const minusFavoritesProduct = state.data.filter((productItem) => productItem.id !== action.payload.id)
       state.data = minusFavoritesProduct
       --state.count
 

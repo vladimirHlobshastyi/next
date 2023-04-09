@@ -14,7 +14,7 @@ const compareSlice = createSlice({
   reducers: {
     addCompareProduct(state, action: PayloadAction<dataCartProduct>) {
       let sheckIdentical = state.data.some(
-        (item) => item.id === action.payload.id
+        (productItem) => productItem.id === action.payload.id
       );
 
       if (!sheckIdentical) {
@@ -27,7 +27,7 @@ const compareSlice = createSlice({
       action: PayloadAction<{ id: string; price: number }>
     ) {
       const minusCompareProduct = state.data.filter(
-        (item) => item.id !== action.payload.id
+        (productItem) => productItem.id !== action.payload.id
       );
       state.data = minusCompareProduct;
       --state.count;

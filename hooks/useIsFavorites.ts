@@ -6,7 +6,7 @@ const useIsFavorites = (
   product: dataCartProduct
 ) => {
   const countIsFavoritesArray = favorites.data.filter(
-    (item) => item.id === product.id
+    (productItem) => productItem.id === product.id
   );
 
   if (favorites.count) {
