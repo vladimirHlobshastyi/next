@@ -32,9 +32,9 @@ const SwiperComponent = () => {
                 modules={[Navigation]}
                 className="mySwiper"
             >
-                {mocFrame.map((item) => {
-                    return <SwiperSlide key={item.id} className={style.swaperItem}>
-                        <Image src={item.img} alt="image" width={1000} height={1000} priority />
+                {mocFrame.map((frame) => {
+                    return <SwiperSlide key={frame.id} className={style.swaperItem}>
+                        <Image src={frame.img} alt="image" width={1000} height={1000} priority />
                     </SwiperSlide>
                 })}
 

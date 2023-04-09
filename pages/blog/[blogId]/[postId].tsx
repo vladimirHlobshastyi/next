@@ -54,13 +54,12 @@ export async function getStaticPaths() {
 
         const response = await fetch(`${process.env.API_URL}/api/blog/${index}`);
         const blogs: responsBlogType = await response.json();
-        blogs.data.forEach((item) => {
+        blogs.data.forEach((blogPostItem) => {
 
             paths.push({
-                params: { blogId: index.toString(), postId: item.id.toString() },
+                params: { blogId: index.toString(), postId: blogPostItem.id.toString() },
             })
         })
-
 
     }
 
@@ -75,11 +74,12 @@ export async function getStaticProps({ params }: pathType) {
         `${process.env.API_URL}/api/blog/${params.blogId}`
     );
     const blogPost: responsBlogType = await getBlogPage.json();
-    const filterBlog = blogPost.data.filter((item) => item.id.toString() === params.postId)
+    const filterBlog = blogPost.data.filter((postItem) => postItem.id.toString() === params.postId)
 
     if (filterBlog.length === 0) {
         return { notFound: true };
     }
+
     return {
         props: { blogPost: filterBlog[0] }, revalidate: 86400,
     };

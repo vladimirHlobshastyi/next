@@ -61,9 +61,9 @@ function SearchComponent({ calb }: { calb: Dispatch<SetStateAction<boolean>> }) 
                 ref={inputRef} /><GrClose onClick={() => calb(false)} />
             {products.length > 0 && (
                 <div className={styles.dropdown}>
-                    {products.map((item) => (
-                        <Link href={`/category/${item.category}/${item.product.id}`} key={item.product.id}
-                            onClick={() => calb(false)}>{item.product.description}</Link>
+                    {products.map((productItem) => (
+                        <Link href={`/category/${productItem.category}/${productItem.product.id}`} key={productItem.product.id}
+                            onClick={() => calb(false)}>{productItem.product.description}</Link>
                     ))}
                 </div>
             )}

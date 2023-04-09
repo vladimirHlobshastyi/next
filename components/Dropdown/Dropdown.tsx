@@ -14,9 +14,9 @@ const Dropdown = ({ catalogName, info, infoForProduct, calb }: DropdownTypes) =>
             <div className={style.sidePanelCatalogElementSvg}><GoChevronDown /></div>
         </div>
         {isVisibleCategory && <div className={style.sidePanelCatalogElementOpen}>
-            {info?.map((item) => {
-                return <div className={style.sidePanelCatalogElementOpenСategory} key={item.id} onClick={calb}>
-                    <Link href={`/category/${item.name}`}>{item.name}</Link>
+            {info?.map((navigateCategory) => {
+                return <div className={style.sidePanelCatalogElementOpenСategory} key={navigateCategory.id} onClick={calb}>
+                    <Link href={`/category/${navigateCategory.name}`}>{navigateCategory.name}</Link>
                 </div>
             })}
             {infoForProduct?.dropDownItem}

@@ -19,7 +19,7 @@ const CartProduct = ({ product }: { product: dataCartProduct }) => {
 
 
     const countProduct = () => {
-        const isProductInCart = products.find((item) => item.data.id === product.id);
+        const isProductInCart = products.find((productItem) => productItem.data.id === product.id);
         if (isProductInCart?.count) {
             return isProductInCart.count;
         }

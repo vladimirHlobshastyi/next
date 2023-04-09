@@ -17,17 +17,17 @@ const cartSlice = createSlice({
 
     addProduct(state, action: PayloadAction<dataCartProduct>) {
       let sheckIdentical = state.products.some(
-        (item) => item.data.id === action.payload.id
+        (productItem) => productItem.data.id === action.payload.id
       );
 
       if (sheckIdentical) {
-        state.products = state.products.map((item) => {
+        state.products = state.products.map((productItem) => {
 
-          if (item.data.id === action.payload.id) {
-            item.data = action.payload
-            ++item.count;
+          if (productItem.data.id === action.payload.id) {
+            productItem.data = action.payload
+            ++productItem.count;
           }
-          return item;
+          return productItem;
         });
       } else {
         state.products = [...state.products, { data: action.payload, count: 1 }]
@@ -40,15 +40,15 @@ const cartSlice = createSlice({
     minusProduct(state, action: PayloadAction<{ id: number | string, price: number }>) {
 
       if (state.totalCount !== 0) {
-        const minusProduct = state.products.map((item) => {
-          if (item.data.id === action.payload.id) {
-            --item.count
+        const minusProduct = state.products.map((productItem) => {
+          if (productItem.data.id === action.payload.id) {
+            --productItem.count
             --state.totalCount
             state.totalPrice -= action.payload.price
           }
-          return item
+          return productItem
         })
-        state.products = minusProduct.filter((item) => item.count !== 0)
+        state.products = minusProduct.filter((productItem) => productItem.count !== 0)
       }
     },
     removeProduct(state, action: PayloadAction<{
@@ -56,7 +56,7 @@ const cartSlice = createSlice({
       id: number | string, price: number, quantity: number
     }>) {
 
-      const newState = state.products.filter((item) => item.data.id !== action.payload.id)
+      const newState = state.products.filter((productItem) => productItem.data.id !== action.payload.id)
       state.totalCount -= action.payload.quantity
       state.totalPrice -= action.payload.price * action.payload.quantity
       state.products = newState

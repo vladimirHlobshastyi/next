@@ -24,9 +24,9 @@ const Pagination = ({ page, totalPage, callb }: paginationProps) => {
 
     const isActiveClass = (item: number) => (item === page ? style.active : style.disabled);
 
-    const renderPaginationButton = (item: number) => (
-        <div onClick={() => callb(item)} className={`${style.paginationButton} ${isActiveClass(item)}`} key={item}>
-            {item}
+    const renderPaginationButton = (pageItem: number) => (
+        <div onClick={() => callb(pageItem)} className={`${style.paginationButton} ${isActiveClass(pageItem)}`} key={pageItem}>
+            {pageItem}
         </div>
     );
 
@@ -38,7 +38,7 @@ const Pagination = ({ page, totalPage, callb }: paginationProps) => {
                     {startIndex > 2 && <div className={style.paginationButton}>...</div>}
                 </>
             )}
-            {pages.map((item) => renderPaginationButton(item))}
+            {pages.map((pagesItem) => renderPaginationButton(pagesItem))}
             {endIndex < totalPage && (
                 <>
                     {endIndex < totalPage - 1 && <div className={style.paginationButton}>...</div>}
