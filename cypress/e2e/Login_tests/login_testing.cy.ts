@@ -8,25 +8,38 @@ const INCORRECT_PASSWORD: string = "incorrectPassword";
 const CORRECT_USERNAME: "user" = "user";
 const CORRECT_PASSWORD: "password" = "password";
 
+export const login = (
+  login: string = CORRECT_USERNAME,
+  password: string = CORRECT_PASSWORD
+) => {
+  cy.visit("/login");
+
+  cy.get('input[name="login"]').type(login);
+  cy.get('input[name="password"]').type(password);
+
+  cy.get('button[type="submit"]').click();
+};
+
 describe("login_testing", () => {
   it("should successfully login with correct credentials", () => {
-    cy.visit("/login");
-
-    cy.get('input[name="login"]').type(CORRECT_USERNAME);
-    cy.get('input[name="password"]').type(CORRECT_PASSWORD);
-
-    cy.get('button[type="submit"]').click();
+    login();
 
     cy.url().should("include", "/user/history_of_orders");
   });
 
+  it("should not navigate after logout", () => {
+    login();
+
+    cy.url().should("include", "/user/history_of_orders");
+    cy.get(
+      ".NavbarInUserComponent_dropDownNavigateNone__pHfgS > :nth-child(5)"
+    ).click();
+    cy.visit("/user/adress");
+    cy.url().should("include", "/login");
+  });
+
   it("should display error message with incorrect credentials", () => {
-    cy.visit("/login");
-
-    cy.get('input[name="login"]').type(INCORRECT_USERNAME);
-    cy.get('input[name="password"]').type(INCORRECT_PASSWORD);
-
-    cy.get('button[type="submit"]').click();
+    login(INCORRECT_USERNAME, INCORRECT_PASSWORD);
 
     cy.request({
       method: "POST",
@@ -53,12 +66,8 @@ describe("login_testing", () => {
   });
 
   it("should not be allowed into a private component", () => {
-    cy.visit("/login");
+    login(INCORRECT_USERNAME, INCORRECT_PASSWORD);
 
-    cy.get('input[name="login"]').type(INCORRECT_USERNAME);
-    cy.get('input[name="password"]').type(INCORRECT_PASSWORD);
-
-    cy.get('button[type="submit"]').click();
     cy.get(".NavBar_navBarAreaControls__hv1tc > :nth-child(2) > a").click();
     cy.url().should("include", "/login");
   });
@@ -69,21 +78,5 @@ describe("login_testing", () => {
       cy.visit("/user/adress");
       cy.url().should("include", "/login");
     }
-  });
-
-  it("should not navigate after logout", () => {
-    cy.visit("/login");
-
-    cy.get('input[name="login"]').type(CORRECT_USERNAME);
-    cy.get('input[name="password"]').type(CORRECT_PASSWORD);
-
-    cy.get('button[type="submit"]').click();
-
-    cy.url().should("include", "/user/history_of_orders");
-    cy.get(
-      ".NavbarInUserComponent_dropDownNavigateNone__pHfgS > :nth-child(5)"
-    ).click();
-    cy.visit("/user/adress");
-    cy.url().should("include", "/login");
   });
 });
