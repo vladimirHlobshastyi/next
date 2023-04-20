@@ -1,4 +1,5 @@
 import { store } from "../../../store/store";
+import "../../support/commands";
 
 describe("products_functionality", () => {
   const productsInCart = store.getState().cart.products;
@@ -17,16 +18,9 @@ describe("products_functionality", () => {
     `:nth-child(${index}) > .ProductPreview_favorit__mCoU1`;
   const addProductInCompare = (index: number) =>
     `:nth-child(${index}) > .ProductPreview_compare__6mew7`;
-  const clearCash = () => {
-    cy.clearCookies();
-    cy.clearLocalStorage();
-    cy.window().then((win) => {
-      win.sessionStorage.clear();
-    });
-  };
 
   beforeEach(() => {
-    clearCash();
+    cy.myClearCache();
     it("should show the product after checking the item", () => {
       cy.visit("/");
       cy.get(".Home_wrapperContentProducts__ij3_j").find("img").first().click();

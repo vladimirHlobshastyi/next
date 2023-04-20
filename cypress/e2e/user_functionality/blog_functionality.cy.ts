@@ -1,7 +1,7 @@
-import { login } from "../Login_tests/login_testing.cy";
+import "../../support/commands";
 
 describe("blog_functionality", () => {
-  beforeEach(() => login());
+  beforeEach(() => cy.myLogin());
   it("should successfully transition and open blogs", () => {
     cy.url().should("include", "/user/history_of_orders");
 
