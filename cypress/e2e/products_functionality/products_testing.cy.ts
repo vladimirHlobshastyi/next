@@ -1,5 +1,6 @@
 import { store } from "../../../store/store";
 import "../../support/commands";
+/// <reference types="cypress" />
 
 describe("products_functionality", () => {
   const productsInCart = store.getState().cart.products;
