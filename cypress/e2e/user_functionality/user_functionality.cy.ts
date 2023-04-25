@@ -1,5 +1,3 @@
-import { responsBlogType } from "./../../../pages/api/blog/[page]";
-import { Interception } from "cypress/types/net-stubbing";
 import "../../support/commands";
 /// <reference types="cypress" />
 
@@ -39,29 +37,65 @@ describe("user_functionality", () => {
   });
 
   it("should successfully open all posts at posts category", () => {
+    //intercept for data request
     cy.intercept("GET", "/api/blog/1").as("blogRequest");
 
+    //receive data from backend
     cy.request({
       method: "GET",
       url: "/api/blog/1",
-    })
-      .then((request) => {
-        return request.body;
-      })
-      .then((bodyRespons: responsBlogType) => {
-        const totalPage = bodyRespons.totalPages;
-        expect(totalPage).to.be.a("number");
-        expect(totalPage).to.be.at.least(1);
+    }).then((request) => {
+      const totalPages: number = request.body.totalPages;
+      const totalBlogs: number = request.body.totalBlogs;
 
-        for (let page = 1; page <= totalPage; page++) {
-          cy.visit(`/blog/${page}`);
-          cy.get("[data-cy-blog-id]").each((blog) => {
-            const blogId = blog.attr("data-cy-blog-id");
-            cy.wrap(blog).click();
-            cy.url().should("include", `/blog/1/${blogId}`);
-            cy.go("back");
-          });
+      //check is correct data
+      expect(totalPages).to.be.a("number");
+      expect(totalPages).to.be.at.least(1);
+
+      let page = 1;
+      const getPostForId = (id: number) =>
+        cy.get(
+          `[data-cy-blog-id="${id}"] > .BlogItem_blogContainer__OwE1U > .BlogItem_blogLogo__qKVm1 > img`
+        );
+
+      for (let postId = 1; postId <= totalBlogs; postId++) {
+        cy.wait(1000);
+        cy.visit(`/blog/${page}`);
+
+        getPostForId(postId).click();
+        cy.wait(1000);
+        cy.url().should("include", `/blog/${page}/${postId}`);
+        cy.go("back");
+
+        //change post page
+        if (postId % 5 === 0) {
+          page++;
         }
-      });
+      }
+    });
+  });
+  it("should successfully rendering dropdown elements of search", () => {
+    cy.visit("/");
+
+    cy.get(".NavBar_navBarAreaControls__hv1tc > :nth-child(1) > div")
+      .should("be.visible")
+      .click();
+    cy.get("input").type("тов");
+    cy.get(".Search_dropdown__SV_XV").should("exist");
+  });
+
+  it("should successfully search product in search page", () => {
+    //The search element it is in data
+    const searchTitle = "рубашка";
+
+    cy.visit("/");
+
+    //click on serach button
+    cy.get(".NavBar_navBarAreaControls__hv1tc > :nth-child(1) > div")
+      .should("be.visible")
+      .click();
+
+    cy.get("input").type(searchTitle + "{enter}");
+    cy.url().should("include", `/search/${encodeURIComponent(searchTitle)}`);
   });
 });

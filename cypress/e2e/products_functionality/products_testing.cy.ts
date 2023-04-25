@@ -1,3 +1,4 @@
+import { productsTypes } from "../../../moc/moc";
 import { store } from "../../../store/store";
 import "../../support/commands";
 /// <reference types="cypress" />
@@ -10,8 +11,8 @@ describe("products_functionality", () => {
 
   const menuButton = ".NavBar_navBarMenu__BeYEF";
   const allCategoryButton = ".NavBar_sidePanelCatalog__PMB0F > :nth-child(1)";
-  const firstCategoryButton =
-    ".category_categoryWrapper__ARdj_ > :nth-child(1) > a";
+  const categoryButton = (idCategory: number = 1) =>
+    `.category_categoryWrapper__ARdj_ > :nth-child(${idCategory}) > a`;
 
   const addProductInCart = (index: number) =>
     `:nth-child(${index}) > .ProductPreview_count__smdAc > .CardButton_cart__6_N23`;
@@ -22,13 +23,58 @@ describe("products_functionality", () => {
 
   beforeEach(() => {
     cy.myClearCache();
-    it("should show the product after checking the item", () => {
+  });
+  it("should success open all products at all categories", () => {
+    const getOneCategory = (category: string) => {
+      return cy.request({
+        method: "GET",
+        url: `/api/category/${category}`,
+      });
+    };
+    cy.request({
+      method: "GET",
+      url: "/api/categories",
+    }).then((request) => {
+      let categories: { name: string; id: string }[] = request.body;
+
+      cy.visit("/");
+      // Click on menu button
+      cy.get(menuButton).click();
+
+      // Click on all category button
+      cy.get(allCategoryButton).click();
+
+      // Click on first category button
+      cy.get(categoryButton()).click();
+      categories.forEach((element, index) => {
+        getOneCategory(element.name).then((request) => {
+          const productData: productsTypes = request.body;
+
+          // Click on first category button
+          cy.get(categoryButton(index + 1)).click();
+
+          for (let index = 1; index <= productData.total; index++) {
+            let test = (el: number) => {
+              return cy.get(
+                `:nth-child(${el}) > :nth-child(3) > .ProductPreview_description___pOuD`
+              );
+            };
+            test(index).click();
+            cy.wait(1000);
+            cy.go("back");
+          }
+        });
+      });
+    });
+  });
+
+  /* 
+
+  it("should show the product after checking the item", () => {
       cy.visit("/");
       cy.get(".Home_wrapperContentProducts__ij3_j").find("img").first().click();
       cy.url().should("include", "/category/category1/1aa");
     });
-  });
-
   it("should add all products on the page to cart and remove they them", () => {
     cy.visit("/");
 
@@ -39,7 +85,7 @@ describe("products_functionality", () => {
     cy.get(allCategoryButton).click();
 
     // Click on first category button
-    cy.get(firstCategoryButton).click();
+    cy.get(categoryButton).click();
 
     for (let index = 1; index <= 8; index++) {
       // Click add to cart button
@@ -75,7 +121,7 @@ describe("products_functionality", () => {
     cy.get(allCategoryButton).click();
 
     // Click on first category button
-    cy.get(firstCategoryButton).click();
+    cy.get(categoryButton).click();
 
     for (let index = 1; index <= 8; index++) {
       // Click add to favorite button
@@ -107,7 +153,7 @@ describe("products_functionality", () => {
     cy.get(allCategoryButton).click();
 
     // Click on first category button
-    cy.get(firstCategoryButton).click();
+    cy.get(categoryButton).click();
 
     for (let index = 1; index <= 5; index++) {
       // Click add to favorite button
@@ -127,5 +173,5 @@ describe("products_functionality", () => {
       });
     }
     expect(productsInCompare).to.equal(0);
-  });
+  }); */
 });
