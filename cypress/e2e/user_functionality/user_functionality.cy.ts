@@ -5,7 +5,7 @@ describe("user_functionality", () => {
   beforeEach(() => {
     cy.myClearCache();
   });
-
+  
   it("should successfully save user adress", () => {
     cy.myLogin();
 

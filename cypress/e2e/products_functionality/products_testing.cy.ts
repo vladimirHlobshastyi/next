@@ -1,4 +1,3 @@
-import { productsTypes } from "../../../moc/moc";
 import { store } from "../../../store/store";
 import "../../support/commands";
 /// <reference types="cypress" />
@@ -9,8 +8,6 @@ describe("products_functionality", () => {
   const productsInFavorite = store.getState().favorites.count;
   const productsInCompare = store.getState().compare.count;
 
-  const menuButton = ".NavBar_navBarMenu__BeYEF";
-  const allCategoryButton = ".NavBar_sidePanelCatalog__PMB0F > :nth-child(1)";
   const categoryButton = (idCategory: number = 1) =>
     `.category_categoryWrapper__ARdj_ > :nth-child(${idCategory}) > a`;
 
@@ -23,50 +20,57 @@ describe("products_functionality", () => {
 
   beforeEach(() => {
     cy.myClearCache();
+    //go to the all categories
+    cy.myOpenCategories();
   });
 
   it("should navigate to all categories and products", () => {
-    cy.visit("/");
+    // check all categories
+    cy.get("[data-cy-category-id]").each(($category) => {
+      const dataCyCategory = $category.attr("data-cy-category-id");
 
-    // Click on menu button
-    cy.get(menuButton).click();
+      const getCategory = (id: string | undefined) =>
+        cy.get(`[data-cy-category-id="${id}"] > a`);
 
-    // Click on all category button
-    cy.get(allCategoryButton).click();
+      //click on iteration category
+      getCategory(dataCyCategory).click();
 
-    cy.get(categoryButton(1)).click();
+      //check all product in iteration category
+      cy.get("[data-cy-product-preview]").each(($productPreview) => {
+        const dataCyValue = $productPreview.attr("data-cy-product-preview");
 
-    cy.get("[data-cy-product-preview]").each(($productPreview) => {
-      const dataCyValue = $productPreview.attr("data-cy-product-preview");
-      let getProduct = (id: string | undefined) =>
-        cy.get(
-          `[data-cy-product-preview="${id}"] > :nth-child(3) > :nth-child(1) > img`
+        const getProduct = (id: string | undefined) =>
+          cy.get(
+            `[data-cy-product-preview="${id}"] > :nth-child(3) > :nth-child(1) > img`
+          );
+
+        //click at iteration product
+        getProduct(dataCyValue).click();
+        cy.wait(200);
+
+        //check info of product
+        cy.url().should(
+          "include",
+          `/category/${dataCyCategory}/${dataCyValue}`
         );
-      getProduct(dataCyValue).click();
-      cy.wait(500);
-      cy.url().should("include", `/category/category1/${dataCyValue}`);
+        cy.wait(500);
+        cy.get(".Product_wrapperProductInfoCurrency__g9D59").should(
+          "be.visible"
+        );
+        cy.get(".Product_wrapperProductInfoLabel__lygPI").should("be.visible");
+
+        //back to the iteration category
+        cy.go("back");
+      });
+
+      //go to the all categories
       cy.go("back");
     });
   });
 
-  /* 
-
-  it("should show the product after checking the item", () => {
-      cy.visit("/");
-      cy.get(".Home_wrapperContentProducts__ij3_j").find("img").first().click();
-      cy.url().should("include", "/category/category1/1aa");
-    });
   it("should add all products on the page to cart and remove they them", () => {
-    cy.visit("/");
-
-    // Click on menu button
-    cy.get(menuButton).click();
-
-    // Click on all category button
-    cy.get(allCategoryButton).click();
-
     // Click on first category button
-    cy.get(categoryButton).click();
+    cy.get(categoryButton()).click();
 
     for (let index = 1; index <= 8; index++) {
       // Click add to cart button
@@ -93,16 +97,8 @@ describe("products_functionality", () => {
   });
 
   it("should add all products on the page to favorite and remove they them", () => {
-    cy.visit("/");
-
-    // Click on menu button
-    cy.get(menuButton).click();
-
-    // Click on all category button
-    cy.get(allCategoryButton).click();
-
     // Click on first category button
-    cy.get(categoryButton).click();
+    cy.get(categoryButton()).click();
 
     for (let index = 1; index <= 8; index++) {
       // Click add to favorite button
@@ -125,16 +121,8 @@ describe("products_functionality", () => {
   });
 
   it("should add all products on the page to compare and remove they them", () => {
-    cy.visit("/");
-
-    // Click on menu button
-    cy.get(menuButton).click();
-
-    // Click on all category button
-    cy.get(allCategoryButton).click();
-
     // Click on first category button
-    cy.get(categoryButton).click();
+    cy.get(categoryButton()).click();
 
     for (let index = 1; index <= 5; index++) {
       // Click add to favorite button
@@ -154,5 +142,11 @@ describe("products_functionality", () => {
       });
     }
     expect(productsInCompare).to.equal(0);
-  }); */
+  });
+
+  it("should show the product after checking the item", () => {
+    cy.visit("/");
+    cy.get(".Home_wrapperContentProducts__ij3_j").find("img").first().click();
+    cy.url().should("include", "/category/category1/1aa");
+  });
 });

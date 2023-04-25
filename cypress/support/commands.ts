@@ -13,11 +13,25 @@ const clearCache = () => {
   cy.window().its("sessionStorage").invoke("clear");
 };
 
+const openCategories = () => {
+  const menuButton = ".NavBar_navBarMenu__BeYEF";
+  const allCategoryButton = ".NavBar_sidePanelCatalog__PMB0F > :nth-child(1)";
+
+  cy.visit("/");
+
+  // Click on menu button
+  cy.get(menuButton).click();
+
+  // Click on all category button
+  cy.get(allCategoryButton).click();
+};
+
 declare global {
   namespace Cypress {
     interface Chainable<Subject> {
       myLogin(username?: string, password?: string): Chainable<Subject>;
       myClearCache(): Chainable<Subject>;
+      myOpenCategories(): Chainable<Subject>;
     }
   }
 }
@@ -28,6 +42,10 @@ Cypress.Commands.add("myLogin", (username, password) => {
 
 Cypress.Commands.add("myClearCache", () => {
   clearCache();
+});
+
+Cypress.Commands.add("myOpenCategories", () => {
+  openCategories();
 });
 
 export {};
