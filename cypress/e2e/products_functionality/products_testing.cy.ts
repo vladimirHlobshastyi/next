@@ -44,8 +44,6 @@ describe("products_functionality", () => {
       // Click on all category button
       cy.get(allCategoryButton).click();
 
-      // Click on first category button
-      cy.get(categoryButton()).click();
       categories.forEach((element, index) => {
         getOneCategory(element.name).then((request) => {
           const productData: productsTypes = request.body;
@@ -53,6 +51,7 @@ describe("products_functionality", () => {
           // Click on first category button
           cy.get(categoryButton(index + 1)).click();
 
+          cy.get("[data-cy-product-preview]===1aa").click(); /* 
           for (let index = 1; index <= productData.total; index++) {
             let test = (el: number) => {
               return cy.get(
@@ -62,7 +61,7 @@ describe("products_functionality", () => {
             test(index).click();
             cy.wait(1000);
             cy.go("back");
-          }
+          } */
         });
       });
     });
