@@ -24,46 +24,28 @@ describe("products_functionality", () => {
   beforeEach(() => {
     cy.myClearCache();
   });
-  it("should success open all products at all categories", () => {
-    const getOneCategory = (category: string) => {
-      return cy.request({
-        method: "GET",
-        url: `/api/category/${category}`,
-      });
-    };
-    cy.request({
-      method: "GET",
-      url: "/api/categories",
-    }).then((request) => {
-      let categories: { name: string; id: string }[] = request.body;
 
-      cy.visit("/");
-      // Click on menu button
-      cy.get(menuButton).click();
+  it("should navigate to all categories and products", () => {
+    cy.visit("/");
 
-      // Click on all category button
-      cy.get(allCategoryButton).click();
+    // Click on menu button
+    cy.get(menuButton).click();
 
-      categories.forEach((element, index) => {
-        getOneCategory(element.name).then((request) => {
-          const productData: productsTypes = request.body;
+    // Click on all category button
+    cy.get(allCategoryButton).click();
 
-          // Click on first category button
-          cy.get(categoryButton(index + 1)).click();
+    cy.get(categoryButton(1)).click();
 
-          cy.get("[data-cy-product-preview]===1aa").click(); /* 
-          for (let index = 1; index <= productData.total; index++) {
-            let test = (el: number) => {
-              return cy.get(
-                `:nth-child(${el}) > :nth-child(3) > .ProductPreview_description___pOuD`
-              );
-            };
-            test(index).click();
-            cy.wait(1000);
-            cy.go("back");
-          } */
-        });
-      });
+    cy.get("[data-cy-product-preview]").each(($productPreview) => {
+      const dataCyValue = $productPreview.attr("data-cy-product-preview");
+      let getProduct = (id: string | undefined) =>
+        cy.get(
+          `[data-cy-product-preview="${id}"] > :nth-child(3) > :nth-child(1) > img`
+        );
+      getProduct(dataCyValue).click();
+      cy.wait(500);
+      cy.url().should("include", `/category/category1/${dataCyValue}`);
+      cy.go("back");
     });
   });
 
