@@ -149,21 +149,31 @@ describe("user_functionality", () => {
     cy.visit("/category/category1/1aa");
 
     //click on descr info menu
-    cy.get("[data-cy-info-descr]").click();
+    cy.myGetElByDataAttr("Описание").click();
     //check is open
     cy.get(".Dropdown_sidePanelCatalogElementOpen__Ap0mN").should("be.visible");
 
     //click on param info menu
-    cy.get("[data-cy-info-param]").click();
+    cy.myGetElByDataAttr("Характеристики").click();
     //check is open
     cy.get(
       ".Product_wrapperProductInfoParametres__o4SZR > :nth-child(1) > .Dropdown_sidePanelCatalogElementOpen__Ap0mN"
     ).should("be.visible");
 
     //close descr info menu
-    cy.get("[data-cy-info-descr]").click();
-    /* cy.get(".Dropdown_sidePanelCatalogElementOpen__Ap0mN").should(
-      "not.be.visible"
-    ); */
+    cy.get(
+      '[data-cy="Описание"] > .Dropdown_sidePanelCatalogElementC1__5OqgK'
+    ).click();
+    cy.get(
+      '[data-cy="dropDown Описание"] > .Dropdown_sidePanelCatalogElementC1__5OqgK'
+    ).should("not.exist");
+
+    //close param info menu
+    cy.get(
+      '[data-cy="Характеристики"] > .Dropdown_sidePanelCatalogElementC1__5OqgK'
+    ).click();
+    cy.get(
+      '[data-cy="dropDown Характеристики"] > .Dropdown_sidePanelCatalogElementC1__5OqgK'
+    ).should("not.exist");
   });
 });
