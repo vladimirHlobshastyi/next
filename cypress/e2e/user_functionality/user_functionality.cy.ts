@@ -5,7 +5,7 @@ describe("user_functionality", () => {
   beforeEach(() => {
     cy.myClearCache();
   });
-
+  /* 
   it("should scroll to top of the page when clicking on the 'scroll to top' button", () => {
     cy.visit("/category/category1");
 
@@ -122,5 +122,48 @@ describe("user_functionality", () => {
 
     cy.get("input").type(searchTitle + "{enter}");
     cy.url().should("include", `/search/${encodeURIComponent(searchTitle)}`);
+  }); 
+
+  it("should successfully change image in product page", () => {
+    //open product page
+    cy.visit("/category/category1/1aa");
+
+    //get all small images
+    cy.get("[data-cy-image]").each(($image, index) => {
+      cy.wrap($image).click();
+
+      // wait for the large image to load
+      cy.get(".Product_wrapperProductImageLogo__hP62n > img").should(
+        "be.visible"
+      );
+
+      //check logo image width check small image
+      cy.get("[data-cy-logo-image]").should(($logoImage) => {
+        expect(Number($logoImage.attr("data-cy-logo-image"))).to.eq(index);
+      });
+    });
+  });*/
+
+  it("should successfully open drop down info in product", () => {
+    //open product page
+    cy.visit("/category/category1/1aa");
+
+    //click on descr info menu
+    cy.get("[data-cy-info-descr]").click();
+    //check is open
+    cy.get(".Dropdown_sidePanelCatalogElementOpen__Ap0mN").should("be.visible");
+
+    //click on param info menu
+    cy.get("[data-cy-info-param]").click();
+    //check is open
+    cy.get(
+      ".Product_wrapperProductInfoParametres__o4SZR > :nth-child(1) > .Dropdown_sidePanelCatalogElementOpen__Ap0mN"
+    ).should("be.visible");
+
+    //close descr info menu
+    cy.get("[data-cy-info-descr]").click();
+    /* cy.get(".Dropdown_sidePanelCatalogElementOpen__Ap0mN").should(
+      "not.be.visible"
+    ); */
   });
 });

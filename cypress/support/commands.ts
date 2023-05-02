@@ -26,12 +26,15 @@ const openCategories = () => {
   cy.get(allCategoryButton).click();
 };
 
+const getElByDataAttr = (dataAttr: string) => cy.get(`[data-cy=${dataAttr}]`);
+
 declare global {
   namespace Cypress {
     interface Chainable<Subject> {
       myLogin(username?: string, password?: string): Chainable<Subject>;
       myClearCache(): Chainable<Subject>;
       myOpenCategories(): Chainable<Subject>;
+      myGetElByDataAttr(dataAttr: string): Chainable<Subject>;
     }
   }
 }
@@ -46,6 +49,10 @@ Cypress.Commands.add("myClearCache", () => {
 
 Cypress.Commands.add("myOpenCategories", () => {
   openCategories();
+});
+
+Cypress.Commands.add("myGetElByDataAttr", (dataAttr: string) => {
+  getElByDataAttr(dataAttr);
 });
 
 export {};
