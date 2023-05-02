@@ -1,11 +1,14 @@
+import { Interception } from "cypress/types/net-stubbing";
 import "../../support/commands";
 /// <reference types="cypress" />
+
+const SEARCH_WORD = "рубашка";
 
 describe("user_functionality", () => {
   beforeEach(() => {
     cy.myClearCache();
   });
-  /* 
+
   it("should scroll to top of the page when clicking on the 'scroll to top' button", () => {
     cy.visit("/category/category1");
 
@@ -102,9 +105,12 @@ describe("user_functionality", () => {
   it("should successfully rendering dropdown elements of search", () => {
     cy.visit("/");
 
+    //click on search button
     cy.get(".NavBar_navBarAreaControls__hv1tc > :nth-child(1) > div")
       .should("be.visible")
       .click();
+
+    //type search text
     cy.get("input").type("тов");
     cy.get(".Search_dropdown__SV_XV").should("exist");
   });
@@ -122,7 +128,7 @@ describe("user_functionality", () => {
 
     cy.get("input").type(searchTitle + "{enter}");
     cy.url().should("include", `/search/${encodeURIComponent(searchTitle)}`);
-  }); 
+  });
 
   it("should successfully change image in product page", () => {
     //open product page
@@ -142,9 +148,9 @@ describe("user_functionality", () => {
         expect(Number($logoImage.attr("data-cy-logo-image"))).to.eq(index);
       });
     });
-  });*/
+  });
 
-  it("should successfully open drop down info in product", () => {
+  it("should open description and parameters dropdowns", () => {
     //open product page
     cy.visit("/category/category1/1aa");
 
@@ -175,5 +181,36 @@ describe("user_functionality", () => {
     cy.get(
       '[data-cy="dropDown Характеристики"] > .Dropdown_sidePanelCatalogElementC1__5OqgK'
     ).should("not.exist");
+  });
+
+  it("should successfully open and close navigate menu", () => {
+    cy.visit("/");
+
+    //click on menu button
+    cy.get(".NavBar_navBarMenu__BeYEF").click();
+    cy.get(".NavBar_sidePanel__kHV5b").should("be.visible");
+
+    //sheck is close menu
+    cy.get(".NavBar_closeIcon__zAL3P").click();
+    cy.get(".NavBar_sidePanel__kHV5b").should("not.exist");
+  });
+
+  it("should successfully send search request", () => {
+    cy.visit("/");
+
+    cy.intercept("/api/search/*").as("searchRequest");
+
+    //click on search button
+    cy.get(".NavBar_navBarAreaControls__hv1tc > :nth-child(1) > div")
+      .should("be.visible")
+      .click();
+
+    //type search word
+    cy.get("input").type(SEARCH_WORD + "{enter}");
+
+    //check intercept respons
+    cy.wait("@searchRequest").then((interception: Interception) => {
+      expect(interception.response?.statusCode).to.be.equal(200);
+    });
   });
 });
