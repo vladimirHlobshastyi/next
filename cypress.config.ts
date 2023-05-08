@@ -4,6 +4,6 @@ export default defineConfig({
   video: false,
   e2e: {
     setupNodeEvents(on, config) {},
-    baseUrl: "https://next-lime-delta.vercel.app",
+    baseUrl: /* "https://next-lime-delta.vercel.app" */ "http://localhost:3000",
   },
 });
