@@ -9,7 +9,7 @@ describe("user_functionality", () => {
     cy.myClearCache();
   });
 
-  /*   it("should scroll to top of the page when clicking on the 'scroll to top' button", () => {
+  it("should scroll to top of the page when clicking on the 'scroll to top' button", () => {
     cy.visit("/category/category1");
 
     cy.window().scrollTo("bottom");
@@ -69,7 +69,7 @@ describe("user_functionality", () => {
     cy.intercept("GET", "/blog/1").as("blog");
     cy.visit("/blog/1");
     cy.wait("@blog").its("response.statusCode").should("eq", 200);
-  }); */
+  });
 
   it("should successfully open all posts at posts category", () => {
     //receive totalPages from backend
@@ -103,7 +103,7 @@ describe("user_functionality", () => {
       }
     });
   });
-  /* 
+
   it("should successfully rendering dropdown elements of search", () => {
     cy.visit("/");
 
@@ -214,5 +214,5 @@ describe("user_functionality", () => {
     cy.wait("@searchRequest").then((interception: Interception) => {
       expect(interception.response?.statusCode).to.be.equal(200);
     });
-  }); */
+  });
 });

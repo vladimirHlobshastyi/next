@@ -24,7 +24,7 @@ describe("products_functionality", () => {
     cy.myOpenCategories();
   });
 
-  /*  it("should navigate to all categories and products", () => {
+  it("should navigate to all categories and products", () => {
     // check all categories
     cy.get("[data-cy-category-id]").each(($category) => {
       const dataCyCategory = $category.attr("data-cy-category-id");
@@ -148,5 +148,5 @@ describe("products_functionality", () => {
     cy.visit("/");
     cy.get(".Home_wrapperContentProducts__ij3_j").find("img").first().click();
     cy.url().should("include", "/category/category1/1aa");
-  }); */
+  });
 });
