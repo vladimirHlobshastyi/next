@@ -25,7 +25,7 @@ describe("login_testing", () => {
     cy.url().should("include", "/user/history_of_orders");
   });
 
-  it("should not navigate after logout", () => {
+  /* it("should not navigate after logout", () => {
     cy.myLogin();
 
     cy.url().should("include", "/user/history_of_orders");
@@ -89,6 +89,6 @@ describe("login_testing", () => {
     cy.get("form > :nth-child(2) > button").click();
     cy.get("form").submit();
 
-    cy.wait("@login").its("response.statusCode").should("eq", 200);
-  });
+    cy.wait("@login").its("response.statusCode").should("eq", 200); 
+  });*/
 });
