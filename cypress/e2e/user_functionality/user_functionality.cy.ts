@@ -1,5 +1,6 @@
 import { Interception } from "cypress/types/net-stubbing";
 import "../../support/commands";
+import { ceil } from "cypress/types/lodash";
 /// <reference types="cypress" />
 
 const SEARCH_WORD = "рубашка";
@@ -72,6 +73,39 @@ describe("user_functionality", () => {
   });
 
   it("should successfully open all posts at posts category", () => {
+    cy.visit("/");
+
+    // Open menu and go to the blog page
+    cy.get(".NavBar_navBarMenu__BeYEF").click();
+    cy.get(":nth-child(6) > a").click();
+
+    // Wait for the loading data and check all pages of blogs
+    cy.wait(3000);
+    cy.get("[data-cy-pagination]").each(($paginationButton) => {
+      cy.wait(1500);
+      const pageBtnNumber = $paginationButton.attr("data-cy-pagination");
+      cy.get(`[data-cy-pagination='${pageBtnNumber}']`).click();
+
+      cy.wait(1500);
+      // Check all blog items and click on each one
+      cy.get("[data-cy-blog]").each(($element) => {
+        const blogItem = $element.attr("data-cy-blog");
+
+        // Click on the blog item
+        cy.get(`[data-cy-blog="${blogItem}"]`).click({ multiple: true });
+
+        // Wait for content to load
+        cy.wait(1000);
+
+        // Check content
+        cy.get(".blogPost_wrapperInfoDate__Uc_qb").should("be.visible");
+        cy.get(".blogPost_wrapperInfoContenet__fPh7i > p").should("be.visible");
+        cy.go("back");
+      });
+    });
+  });
+
+  it("should successfully open all posts at posts category", () => {
     //receive totalPages from backend
 
     cy.request({
@@ -96,6 +130,7 @@ describe("user_functionality", () => {
             );
 
           //click at iteration product
+          cy.wait(1000);
           getBlog(blogCyId).click();
           cy.wait(1000);
           cy.go("back");

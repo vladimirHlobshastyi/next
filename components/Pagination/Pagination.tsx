@@ -25,7 +25,7 @@ const Pagination = ({ page, totalPage, callb }: paginationProps) => {
     const isActiveClass = (item: number) => (item === page ? style.active : style.disabled);
 
     const renderPaginationButton = (pageItem: number) => (
-        <div onClick={() => callb(pageItem)} className={`${style.paginationButton} ${isActiveClass(pageItem)}`} key={pageItem}>
+        <div onClick={() => callb(pageItem)} data-cy-pagination={pageItem} className={`${style.paginationButton} ${isActiveClass(pageItem)}`} key={pageItem} >
             {pageItem}
         </div>
     );
