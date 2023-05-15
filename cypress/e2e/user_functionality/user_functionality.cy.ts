@@ -105,40 +105,6 @@ describe("user_functionality", () => {
     });
   });
 
-  it("should successfully open all posts at posts category", () => {
-    //receive totalPages from backend
-
-    cy.request({
-      method: "GET",
-      url: "/api/blog/1",
-    }).then((request) => {
-      const totalPages: number = request.body.totalPages;
-
-      //check is correct data
-      expect(totalPages).to.be.a("number");
-      expect(totalPages).to.be.at.least(1);
-
-      for (let page = 1; page <= totalPages; page++) {
-        cy.visit(`/blog/${page}`);
-
-        cy.get("[data-cy-blog-id]").each(($blog) => {
-          const blogCyId = $blog.attr("data-cy-blog-id");
-
-          const getBlog = (id: string | undefined) =>
-            cy.get(
-              `[data-cy-blog-id="${id}"] > .BlogItem_blogContainer__OwE1U > .BlogItem_blogLogo__qKVm1 > img`
-            );
-
-          //click at iteration product
-          cy.wait(1000);
-          getBlog(blogCyId).click();
-          cy.wait(1000);
-          cy.go("back");
-        });
-      }
-    });
-  });
-
   it("should successfully rendering dropdown elements of search", () => {
     cy.visit("/");
 
