@@ -8,7 +8,7 @@ const BlogItem = ({ blogData, pageNumber }: { blogData: blogPostsTypes, pageNumb
     const router = useRouter()
 
     return (
-        <div className={style.blogContainer} onClick={() => router.push(`${pageNumber}/${blogData.id.toString()}`)}>
+        <div className={style.blogContainer} onClick={() => router.push(`${pageNumber}/${blogData.id.toString()}`)} >
             <div className={style.blogLogo}>
                 <Image src={blogData.imageUrl} alt='logo of blog' width={200} height={200} />
             </div>

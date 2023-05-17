@@ -8,9 +8,9 @@ const Categories = ({ categories }: { categories: categoryTypes[] }) => {
     return <div className={style.container}>
         <div className={style.title}>Категории</div>
         <div className={style.categoryWrapper}>
-            {categories.map((item) => {
-                return <div className={style.categoryWrapperItem} key={item.id}>
-                    <Link href={`/category/${item.id}`} >{item.name}</Link>
+            {categories.map((categoryItem) => {
+                return <div className={style.categoryWrapperItem} key={categoryItem.id} data-cy-category-id={categoryItem.id}>
+                    <Link href={`/category/${categoryItem.id}`} >{categoryItem.name}</Link>
                 </div>
             })
 

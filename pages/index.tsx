@@ -6,6 +6,7 @@ import Link from 'next/link'
 import { BsFillInfoCircleFill } from 'react-icons/bs'
 import ProductPreview from '../components/ProductPreview/ProductPreview'
 import { productsInCategory } from '../moc/moc'
+import React from 'react'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -26,12 +27,11 @@ export default function Home({ products }: { products: productsInCategory }) {
             <Link href='/'>Новинки</Link>
           </div>
           <div className={style.wrapperContentProducts}>
-            {products.data.map((product, index) => {
-              if (product === products.data[products.data.length - 1] && index % 2 === 1) {
-                return <div key={product.id}><ProductPreview product={product} /><div className={style.proposalProductsLp}></div></div>
-              }
-              return <ProductPreview key={product.id} product={product} />
-            }
+            {products.data.map((product, index) =>
+              <React.Fragment key={product.id}>
+                <ProductPreview product={product} />
+                {index === products.data.length - 1 && <div className={style.proposalProductsLp} />}
+              </React.Fragment>
 
             )}
           </div>

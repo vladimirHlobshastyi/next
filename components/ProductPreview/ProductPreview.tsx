@@ -38,7 +38,7 @@ const ProductPreview = ({ product }: { product: dataCartProduct }) => {
     }
 
 
-    return <div className={style.container}>
+    return <div className={style.container} data-cy-product-preview={product.id}>
         <div className={style.favorit}
             onClick={useIsFavorites(favoritesProducts, product) ? removeFromeFavorites : addToFavorites}>
             {useIsFavorites(favoritesProducts, product) ? <BsHeartFill /> : <BsHeart />}

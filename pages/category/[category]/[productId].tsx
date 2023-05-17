@@ -63,8 +63,8 @@ const ProductComponent = ({ product }: { product: produtsDataType }) => {
                 <div className={style.wrapper}>
                     <div className={style.wrapperProduct}>
                         <div className={style.wrapperProductImage}>
-                            <div className={style.wrapperProductImageLogo}>
-                                <Image src={product.images[indexImage]} alt='logo product' />
+                            <div className={style.wrapperProductImageLogo} >
+                                <Image src={product.images[indexImage]} alt='logo product' data-cy-logo-image={indexImage} />
                                 <div className={style.compare}
                                     onClick={useIsFavorites(compareProducts, product) ? removeFromeCompare : addToCompare}>
                                     {useIsFavorites(compareProducts, product) ? <BiBarChartAlt /> : <BiBarChart />}
@@ -72,7 +72,7 @@ const ProductComponent = ({ product }: { product: produtsDataType }) => {
                             </div>
                             <div className={style.wrapperProductImagesMin}>
                                 {product.images.map((smallImage, index: number) =>
-                                    <Image src={smallImage} alt='logo product' key={index} onClick={() => {
+                                    <Image src={smallImage} data-cy-image={index} alt='logo product' key={index} onClick={() => {
                                         setIndexImage(index)
                                     }} />)}
                             </div>

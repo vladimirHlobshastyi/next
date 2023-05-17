@@ -84,3 +84,11 @@
     margin: 0;
   }
 }
+
+@media (max-width: 450px) {
+  .wrapperContent {
+    .proposalProductsLp {
+      display: none;
+    }
+  }
+}

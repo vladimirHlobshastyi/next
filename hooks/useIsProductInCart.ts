@@ -13,7 +13,7 @@ const useIsProductInCart = (
   product: dataCartProduct
 ) => {
   const filteredProducts = useMemo(
-    () => products.filter((item) => item.data.id === product.id),
+    () => products.filter((productItem) => productItem.data.id === product.id),
     [products, product.id]
   );
 
