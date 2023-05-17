@@ -6,7 +6,7 @@ module.exports = {
     'react/react-in-jsx-scope': 'off',
     'react/jsx-filename-extension': [
       1,
-      { extensions: ['.js', '.jsx', 'tsx', 'ts'] },
+      { extensions: ['.js', '.jsx', '.tsx', '.ts'] },
     ],
     'react/jsx-props-no-spreading': 'off',
     'import/extensions': 'off',
