@@ -1,6 +1,6 @@
-import { PayloadAction, createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import axios from "axios";
-import { RootState } from "../store";
+import { PayloadAction, createAsyncThunk, createSlice } from '@reduxjs/toolkit';
+import axios from 'axios';
+import { RootState } from '../store';
 
 interface AuthState {
   isAuth: boolean;
@@ -17,15 +17,15 @@ interface LoginResponse {
 const initialState: AuthState = {
   isAuth: false,
   isLoading: false,
-  token: "",
-  error: { isError: false, message: "" },
+  token: '',
+  error: { isError: false, message: '' },
 };
 
 const axiosInstance = axios.create();
 
 axiosInstance.interceptors.request.use(
   (config) => {
-    const token = localStorage.getItem("token");
+    const token = localStorage.getItem('token');
     if (token) {
       if (!config.headers) {
         config.headers = {};
@@ -45,23 +45,23 @@ async function setLogin(username: string, password: string) {
       `${process.env.API_URL}/api/auth`,
       { username, password }
     );
-    localStorage.setItem("token", data.token);
+    localStorage.setItem('token', data.token);
     return data.token;
   } catch (error) {
-    console.log("setLogin false", error);
-    throw new Error("Failed to login");
+    console.log('setLogin false', error);
+    throw new Error('Failed to login');
   }
 }
 
 async function getAuth() {
   try {
-    const token = localStorage.getItem("token");
+    const token = localStorage.getItem('token');
     const { data } = await axios.post(`${process.env.API_URL}/api/user`, {
       authKey: token,
     });
-    return data.message === "auth";
+    return data.message === 'auth';
   } catch (error) {
-    throw new Error("Failed to authenticate");
+    throw new Error('Failed to authenticate');
   }
 }
 
@@ -69,28 +69,25 @@ export const loginThunk = createAsyncThunk<
   LoginResponse,
   { login: string; password: string },
   { rejectValue: { message: string } }
->(
-  "auth/login",
-  async ({ login, password }, { rejectWithValue }) => {
-    try {
-      const getToken = await setLogin(login, password);
-      const isAuthResponse = await getAuth();
-      return { isAuthResponse, getToken };
-    } catch (err: any) {
-      console.log("thunk false", err);
-      return rejectWithValue({ message: err.message });
-    }
+>('auth/login', async ({ login, password }, { rejectWithValue }) => {
+  try {
+    const getToken = await setLogin(login, password);
+    const isAuthResponse = await getAuth();
+    return { isAuthResponse, getToken };
+  } catch (err: any) {
+    console.log('thunk false', err);
+    return rejectWithValue({ message: err.message });
   }
-);
+});
 
 const authSlice = createSlice({
-  name: "auth",
+  name: 'auth',
   initialState,
   reducers: {
     logout(state) {
       state.isLoading = true;
       state.isAuth = false;
-      state.token = "";
+      state.token = '';
       state.isLoading = false;
     },
   },
@@ -105,18 +102,15 @@ const authSlice = createSlice({
     });
     builder.addCase(loginThunk.rejected, (state, action) => {
       state.error.isError = true;
-      state.error.message = action.payload?.message ?? "";
+      state.error.message = action.payload?.message ?? '';
       state.isLoading = false;
     });
   },
 });
 
-
 export const { logout } = authSlice.actions;
-export const isAuthState = (state: RootState) => state.auth.isAuth
-export const isLoadingAuthState = (state: RootState) => state.auth.isLoading
-export const errorAuthState = (state: RootState) => state.auth.error
+export const isAuthState = (state: RootState) => state.auth.isAuth;
+export const isLoadingAuthState = (state: RootState) => state.auth.isLoading;
+export const errorAuthState = (state: RootState) => state.auth.error;
 
 export default authSlice.reducer;
-
-

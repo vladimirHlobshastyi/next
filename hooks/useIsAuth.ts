@@ -1,5 +1,5 @@
-import useAppSelector from "./useAppSelector";
-import { isAuthState, isLoadingAuthState } from "../store/auth/authSlice";
+import useAppSelector from './useAppSelector';
+import { isAuthState, isLoadingAuthState } from '../store/auth/authSlice';
 
 const useIsAuth = () => {
   const isAuth = useAppSelector(isAuthState);

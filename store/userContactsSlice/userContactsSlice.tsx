@@ -1,8 +1,9 @@
-import { PayloadAction, createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import { RootState } from "../store";
-import { changeAdressPayload, changeContactsPayload } from "./userContactsSlice.types";
-
-
+import { PayloadAction, createAsyncThunk, createSlice } from '@reduxjs/toolkit';
+import { RootState } from '../store';
+import {
+  changeAdressPayload,
+  changeContactsPayload,
+} from './userContactsSlice.types';
 
 const initialState = {
   fullName: '',
@@ -11,11 +12,11 @@ const initialState = {
   city: '',
   street: '',
   houseNumber: '',
-  apartmentNumber: ''
-}
+  apartmentNumber: '',
+};
 
 const userContactsSlice = createSlice({
-  name: "auth",
+  name: 'auth',
   initialState,
   reducers: {
     changeContacts(state, action: PayloadAction<changeContactsPayload>) {
@@ -28,28 +29,23 @@ const userContactsSlice = createSlice({
       state.street = action.payload.street;
       state.houseNumber = action.payload.houseNumber;
       if (action.payload.apartmentNumber.length > 0) {
-        state.apartmentNumber = action.payload.apartmentNumber
+        state.apartmentNumber = action.payload.apartmentNumber;
       }
-
-    }
-  },
-  extraReducers:
-    (builder) => {
     },
-
+  },
+  extraReducers: (builder) => {},
 });
 
 export const { changeContacts, changeAdress } = userContactsSlice.actions;
-export const fullNameState = (state: RootState) => state.userContacts.fullName
-export const emailameState = (state: RootState) => state.userContacts.email
-export const phoneState = (state: RootState) => state.userContacts.phone
-export const cityOfUserState = (state: RootState) => state.userContacts.city
-export const streetOfUserState = (state: RootState) => state.userContacts.street
-export const houseNumberOfUserState = (state: RootState) => state.userContacts.houseNumber
-export const apartmentNumberOfUserState = (state: RootState) => state.userContacts.apartmentNumber
-
-
+export const fullNameState = (state: RootState) => state.userContacts.fullName;
+export const emailameState = (state: RootState) => state.userContacts.email;
+export const phoneState = (state: RootState) => state.userContacts.phone;
+export const cityOfUserState = (state: RootState) => state.userContacts.city;
+export const streetOfUserState = (state: RootState) =>
+  state.userContacts.street;
+export const houseNumberOfUserState = (state: RootState) =>
+  state.userContacts.houseNumber;
+export const apartmentNumberOfUserState = (state: RootState) =>
+  state.userContacts.apartmentNumber;
 
 export default userContactsSlice.reducer;
-
-

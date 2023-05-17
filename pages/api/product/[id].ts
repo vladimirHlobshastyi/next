@@ -1,9 +1,9 @@
-import { NextApiRequest, NextApiResponse } from "next";
-import { allProducts, produtsDataType } from "../../../moc/moc";
+import { NextApiRequest, NextApiResponse } from 'next';
+import { allProducts, produtsDataType } from '../../../moc/moc';
 
 export default function handler(req: NextApiRequest, res: NextApiResponse) {
   const { category, idProduct } = req.query;
-  res.setHeader("Access-Control-Allow-Origin", "*");
+  res.setHeader('Access-Control-Allow-Origin', '*');
   if (
     !category ||
     !idProduct ||
@@ -12,9 +12,9 @@ export default function handler(req: NextApiRequest, res: NextApiResponse) {
   ) {
     return res
       .status(400)
-      .json({ message: "Missing category or idProduct parameter" });
+      .json({ message: 'Missing category or idProduct parameter' });
   } else if (!allProducts[category]) {
-    return res.status(404).json({ message: "Category not found" });
+    return res.status(404).json({ message: 'Category not found' });
   }
 
   if (idProduct) {
@@ -24,7 +24,7 @@ export default function handler(req: NextApiRequest, res: NextApiResponse) {
     if (product) {
       return res.status(200).json(product);
     } else {
-      return res.status(404).json({ message: "Product not found" });
+      return res.status(404).json({ message: 'Product not found' });
     }
   } else {
     return res.status(200).json(allProducts[category].data);

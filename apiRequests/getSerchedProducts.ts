@@ -1,4 +1,4 @@
-import { searchProductResult } from "../pages/api/search/[search]";
+import { searchProductResult } from '../pages/api/search/[search]';
 
 const getSerchedProducts = async (value: string) => {
   try {
@@ -6,8 +6,8 @@ const getSerchedProducts = async (value: string) => {
     const data: searchProductResult = await request.json();
     return data;
   } catch (error) {
-    console.error(error + "<<<<<");
-    throw new Error("Failed to get searched products");
+    console.error(error + '<<<<<');
+    throw new Error('Failed to get searched products');
   }
 };
 

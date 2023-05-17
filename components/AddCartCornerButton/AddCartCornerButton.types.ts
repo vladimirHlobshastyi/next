@@ -1,8 +1,8 @@
-import { AnyAction, Dispatch, ThunkDispatch } from "@reduxjs/toolkit";
+import { AnyAction, Dispatch, ThunkDispatch } from '@reduxjs/toolkit';
 import {
   dataCartProduct,
   initialStateTypes,
-} from "../../store/cart/cartSlice.types";
+} from '../../store/cart/cartSlice.types';
 
 export type OrderCheckButtonType = {
   productCount: number | false;

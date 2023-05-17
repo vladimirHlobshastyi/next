@@ -1,7 +1,7 @@
-import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { dataCartProduct } from "../cart/cartSlice.types";
-import { RootState } from "../store";
-import { initialStateTypes } from "./compareSlice.types";
+import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { dataCartProduct } from '../cart/cartSlice.types';
+import { RootState } from '../store';
+import { initialStateTypes } from './compareSlice.types';
 
 const initialState: initialStateTypes = {
   data: [],
@@ -9,7 +9,7 @@ const initialState: initialStateTypes = {
 };
 
 const compareSlice = createSlice({
-  name: "compare",
+  name: 'compare',
   initialState,
   reducers: {
     addCompareProduct(state, action: PayloadAction<dataCartProduct>) {

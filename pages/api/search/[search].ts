@@ -1,6 +1,6 @@
-import { produtsDataType } from "../../../moc/moc";
-import { NextApiRequest, NextApiResponse } from "next";
-import { allProducts } from "../../../moc/moc";
+import { produtsDataType } from '../../../moc/moc';
+import { NextApiRequest, NextApiResponse } from 'next';
+import { allProducts } from '../../../moc/moc';
 
 export type searchProductResult = {
   product: produtsDataType;
@@ -9,7 +9,7 @@ export type searchProductResult = {
 
 export default function handler(req: NextApiRequest, res: NextApiResponse) {
   const { search } = req.query;
-  res.setHeader("Access-Control-Allow-Origin", "*");
+  res.setHeader('Access-Control-Allow-Origin', '*');
   const bodyReq = search as string;
 
   const result = [] as searchProductResult;

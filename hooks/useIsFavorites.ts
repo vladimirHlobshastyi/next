@@ -1,5 +1,5 @@
-import { dataCartProduct } from "../store/cart/cartSlice.types";
-import { initialStateTypes } from "../store/favorites/favoritesSlice.types";
+import { dataCartProduct } from '../store/cart/cartSlice.types';
+import { initialStateTypes } from '../store/favorites/favoritesSlice.types';
 
 const useIsFavorites = (
   favorites: initialStateTypes,

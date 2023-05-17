@@ -1,7 +1,7 @@
-import SearchPage from "../components/SearchPage/SearchPage"
+import SearchPage from '../components/SearchPage/SearchPage';
 
 const Search = () => {
-    return <SearchPage searchProducts={[]} />
-}
+  return <SearchPage searchProducts={[]} />;
+};
 
-export default Search
+export default Search;

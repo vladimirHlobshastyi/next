@@ -1,5 +1,5 @@
-import { useMemo } from "react";
-import { dataCartProduct } from "../store/cart/cartSlice.types";
+import { useMemo } from 'react';
+import { dataCartProduct } from '../store/cart/cartSlice.types';
 
 type useIsProductInCartPropType =
   | []
