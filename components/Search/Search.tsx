@@ -15,11 +15,7 @@ import getSerchedProducts from '../../apiRequests/getSerchedProducts';
 import useClickOutsideDiv from '../../hooks/useClickOutsideDiv';
 import { GrClose } from 'react-icons/gr';
 
-function SearchComponent({
-  calb,
-}: {
-  calb: Dispatch<SetStateAction<boolean>>;
-}) {
+function SearchComponent({ calb }: { calb: Dispatch<SetStateAction<boolean>> }) {
   const rootEl = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
 

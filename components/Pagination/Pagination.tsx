@@ -22,8 +22,7 @@ const Pagination = ({ page, totalPage, callb }: paginationProps) => {
     return result;
   }, [startIndex, endIndex]);
 
-  const isActiveClass = (item: number) =>
-    item === page ? style.active : style.disabled;
+  const isActiveClass = (item: number) => (item === page ? style.active : style.disabled);
 
   const renderPaginationButton = (pageItem: number) => (
     <div
@@ -47,9 +46,7 @@ const Pagination = ({ page, totalPage, callb }: paginationProps) => {
       {pages.map((pagesItem) => renderPaginationButton(pagesItem))}
       {endIndex < totalPage && (
         <>
-          {endIndex < totalPage - 1 && (
-            <div className={style.paginationButton}>...</div>
-          )}
+          {endIndex < totalPage - 1 && <div className={style.paginationButton}>...</div>}
           {renderPaginationButton(totalPage)}
         </>
       )}

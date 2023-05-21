@@ -47,44 +47,19 @@ const ProductPreview = ({ product }: { product: dataCartProduct }) => {
     <div className={style.container} data-cy-product-preview={product.id}>
       <div
         className={style.favorit}
-        onClick={
-          useIsFavorites(favoritesProducts, product)
-            ? removeFromeFavorites
-            : addToFavorites
-        }
+        onClick={useIsFavorites(favoritesProducts, product) ? removeFromeFavorites : addToFavorites}
       >
-        {useIsFavorites(favoritesProducts, product) ? (
-          <BsHeartFill />
-        ) : (
-          <BsHeart />
-        )}
+        {useIsFavorites(favoritesProducts, product) ? <BsHeartFill /> : <BsHeart />}
       </div>
       <div
         className={style.compare}
-        onClick={
-          useIsFavorites(compareProducts, product)
-            ? removeFromeCompare
-            : addToCompare
-        }
+        onClick={useIsFavorites(compareProducts, product) ? removeFromeCompare : addToCompare}
       >
-        {useIsFavorites(compareProducts, product) ? (
-          <BiBarChartAlt />
-        ) : (
-          <BiBarChart />
-        )}
+        {useIsFavorites(compareProducts, product) ? <BiBarChartAlt /> : <BiBarChart />}
       </div>
-      <div
-        onClick={() =>
-          router.push(`/category/${category || 'category1'}/${product.id}`)
-        }
-      >
+      <div onClick={() => router.push(`/category/${category || 'category1'}/${product.id}`)}>
         <div className={style.image}>
-          <Image
-            src={product.images[0]}
-            alt="large_tovar"
-            width={164}
-            height={164}
-          />
+          <Image src={product.images[0]} alt="large_tovar" width={164} height={164} />
         </div>
         <div className={style.description}>{product.description}</div>
       </div>
@@ -93,10 +68,7 @@ const ProductPreview = ({ product }: { product: dataCartProduct }) => {
           {product.price}
           <span>{product.currency}</span>
         </div>
-        <CardButton
-          product={product}
-          countProductsInCart={useIsProductInCart(products, product)}
-        />
+        <CardButton product={product} countProductsInCart={useIsProductInCart(products, product)} />
       </div>
     </div>
   );

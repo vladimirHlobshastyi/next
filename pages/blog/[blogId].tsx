@@ -40,11 +40,7 @@ const Blog = ({ blogPage }: { blogPage: responsBlogType }) => {
         );
       })}
       <div className={style.pagination}>
-        <Pagination
-          page={Number(blogId)}
-          totalPage={blogPage.totalPages}
-          callb={setPageNumber}
-        />
+        <Pagination page={Number(blogId)} totalPage={blogPage.totalPages} callb={setPageNumber} />
       </div>
     </div>
   );
@@ -71,9 +67,7 @@ export async function getStaticPaths() {
   };
 }
 export async function getStaticProps({ params }: pathType) {
-  const getBlogPage = await fetch(
-    `${process.env.API_URL}/api/blog/${params.blogId}`
-  );
+  const getBlogPage = await fetch(`${process.env.API_URL}/api/blog/${params.blogId}`);
   const blogPage = await getBlogPage.json();
 
   return {

@@ -1,9 +1,6 @@
 import { PayloadAction, createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import { RootState } from '../store';
-import {
-  changeAdressPayload,
-  changeContactsPayload,
-} from './userContactsSlice.types';
+import { changeAdressPayload, changeContactsPayload } from './userContactsSlice.types';
 
 const initialState = {
   fullName: '',
@@ -41,11 +38,8 @@ export const fullNameState = (state: RootState) => state.userContacts.fullName;
 export const emailameState = (state: RootState) => state.userContacts.email;
 export const phoneState = (state: RootState) => state.userContacts.phone;
 export const cityOfUserState = (state: RootState) => state.userContacts.city;
-export const streetOfUserState = (state: RootState) =>
-  state.userContacts.street;
-export const houseNumberOfUserState = (state: RootState) =>
-  state.userContacts.houseNumber;
-export const apartmentNumberOfUserState = (state: RootState) =>
-  state.userContacts.apartmentNumber;
+export const streetOfUserState = (state: RootState) => state.userContacts.street;
+export const houseNumberOfUserState = (state: RootState) => state.userContacts.houseNumber;
+export const apartmentNumberOfUserState = (state: RootState) => state.userContacts.apartmentNumber;
 
 export default userContactsSlice.reducer;

@@ -13,8 +13,7 @@ export default function handler(
   req: NextApiRequest,
   res: NextApiResponse<responsBlogType | { message: string }>
 ) {
-  const page =
-    typeof req.query.page === 'string' ? Number(req.query.page) : undefined;
+  const page = typeof req.query.page === 'string' ? Number(req.query.page) : undefined;
 
   const startIndex = (Number(page) - 1) * postsPerPage;
   const endIndex = startIndex + postsPerPage;
@@ -29,13 +28,11 @@ export default function handler(
 
   if (!page) {
     res.status(400).json({
-      message:
-        'не верный формат страницы. Убедитесь в правильности указанных параметров',
+      message: 'не верный формат страницы. Убедитесь в правильности указанных параметров',
     });
   } else if (page > totalPages) {
     res.status(400).json({
-      message:
-        'не валидный номер страницы, убедитесь что вы указали правильный номер страницы',
+      message: 'не валидный номер страницы, убедитесь что вы указали правильный номер страницы',
     });
   } else if (req.method !== 'GET') {
     res.status(405).json({ message: 'Метод не поддерживается' });

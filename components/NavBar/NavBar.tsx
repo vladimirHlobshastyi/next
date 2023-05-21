@@ -42,37 +42,23 @@ const NavBar = ({ categories }: { categories: CategoryTypes }) => {
   const isMobile = useIsMobile();
 
   const navBarAreaControlsClass = useMemo(
-    () =>
-      classNames(
-        style.navBarAreaControls,
-        isVisible ? style.navBarAreaControlsMobile : ''
-      ),
+    () => classNames(style.navBarAreaControls, isVisible ? style.navBarAreaControlsMobile : ''),
     [isVisible]
   );
   const navBarCallPhoneclass = useMemo(
-    () =>
-      classNames(
-        style.navBarCallPhone,
-        isVisible ? style.navBarCallPhoneDropDown : ''
-      ),
+    () => classNames(style.navBarCallPhone, isVisible ? style.navBarCallPhoneDropDown : ''),
     [isVisible]
   );
   const navBarLogoClass = useMemo(
-    () =>
-      classNames(style.navBarLogo, isVisible ? style.navBarLogoDropDown : ''),
+    () => classNames(style.navBarLogo, isVisible ? style.navBarLogoDropDown : ''),
     [isVisible]
   );
   const navBarMenuClass = useMemo(
-    () =>
-      classNames(style.navBarMenu, isVisible ? style.navBarMenuDropDown : ''),
+    () => classNames(style.navBarMenu, isVisible ? style.navBarMenuDropDown : ''),
     [isVisible]
   );
   const navBarContainerClass = useMemo(
-    () =>
-      classNames(
-        style.navBarContainer,
-        isVisible ? style.navBarContainerDropDown : ''
-      ),
+    () => classNames(style.navBarContainer, isVisible ? style.navBarContainerDropDown : ''),
     [isVisible]
   );
 
@@ -89,10 +75,7 @@ const NavBar = ({ categories }: { categories: CategoryTypes }) => {
   return (
     <>
       <div className={navBarContainerClass}>
-        <div
-          className={navBarMenuClass}
-          onClick={() => closeSidePanel(!isVisible)}
-        >
+        <div className={navBarMenuClass} onClick={() => closeSidePanel(!isVisible)}>
           <BiMenuAltLeft />
           <span>Меню</span>
         </div>
@@ -117,10 +100,7 @@ const NavBar = ({ categories }: { categories: CategoryTypes }) => {
             </div>
           </li>
           <li>
-            <Link
-              href="/user/history_of_orders"
-              onClick={() => closeSidePanel(false)}
-            >
+            <Link href="/user/history_of_orders" onClick={() => closeSidePanel(false)}>
               {isAuth ? <BiUserCheck /> : <BiUser />}
             </Link>
           </li>
@@ -158,10 +138,7 @@ const NavBar = ({ categories }: { categories: CategoryTypes }) => {
                   className={style.sidePanelCatalogElement}
                   onClick={() => closeSidePanel(!isVisible)}
                 >
-                  <Link
-                    href={'/categories'}
-                    onClick={() => closeSidePanel(!isVisible)}
-                  >
+                  <Link href={'/categories'} onClick={() => closeSidePanel(!isVisible)}>
                     <h3>Категории</h3>
                   </Link>
                 </div>
@@ -219,12 +196,8 @@ const NavBar = ({ categories }: { categories: CategoryTypes }) => {
                 <div className={style.sidePanelCatalogMenuElement}>
                   <h3>Контакты</h3>
                 </div>
-                <div className={style.sidePanelCatalogMenuElement}>
-                  +38(066) 800-80-80
-                </div>
-                <div className={style.sidePanelCatalogMenuElement}>
-                  г.Киев, ул.Барабулица 100
-                </div>
+                <div className={style.sidePanelCatalogMenuElement}>+38(066) 800-80-80</div>
+                <div className={style.sidePanelCatalogMenuElement}>г.Киев, ул.Барабулица 100</div>
               </div>
               <div className={style.sidePanelCatalogSoclinks}>
                 <div className={style.sidePanelCatalogSoclinksLink}>
@@ -247,10 +220,7 @@ const NavBar = ({ categories }: { categories: CategoryTypes }) => {
               </div>
             </div>
           </div>
-          <div
-            className={style.closeIcon}
-            onClick={() => closeSidePanel(!isVisible)}
-          >
+          <div className={style.closeIcon} onClick={() => closeSidePanel(!isVisible)}>
             <BiXCircle />
           </div>
         </div>

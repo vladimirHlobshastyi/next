@@ -41,10 +41,10 @@ axiosInstance.interceptors.request.use(
 
 async function setLogin(username: string, password: string) {
   try {
-    const { data } = await axiosInstance.post(
-      `${process.env.API_URL}/api/auth`,
-      { username, password }
-    );
+    const { data } = await axiosInstance.post(`${process.env.API_URL}/api/auth`, {
+      username,
+      password,
+    });
     localStorage.setItem('token', data.token);
     return data.token;
   } catch (error) {

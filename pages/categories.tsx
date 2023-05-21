@@ -15,9 +15,7 @@ const Categories = ({ categories }: { categories: categoryTypes[] }) => {
               key={categoryItem.id}
               data-cy-category-id={categoryItem.id}
             >
-              <Link href={`/category/${categoryItem.id}`}>
-                {categoryItem.name}
-              </Link>
+              <Link href={`/category/${categoryItem.id}`}>{categoryItem.name}</Link>
             </div>
           );
         })}

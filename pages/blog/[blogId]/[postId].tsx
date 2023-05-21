@@ -33,26 +33,20 @@ const BlogItem = ({ blogPost }: { blogPost: blogPostsTypes }) => {
             {' '}
             <p>{blogPost.content}</p>
           </div>
-          <div className={style.wrapperInfoDate}>
-            {useFormattedDate(blogPost.date)}
-          </div>
+          <div className={style.wrapperInfoDate}>{useFormattedDate(blogPost.date)}</div>
         </div>
       </div>
       <div className={style.content}>
         <p>
-          В интернет-магазине вы можете вести блог магазина или новостную ленту
-          – это отличный способ привлекать дополнительных покупателей из
-          поисковых систем не только за счет коммерческих запросов, но и за счет
-          информационных.
+          В интернет-магазине вы можете вести блог магазина или новостную ленту – это отличный
+          способ привлекать дополнительных покупателей из поисковых систем не только за счет
+          коммерческих запросов, но и за счет информационных.
         </p>
         <p>
-          Рассказывайте вашим покупателям о новинках в вашем магазине, или
-          просто полезную информацию о товарах вашей тематики и новостях рынка!
+          Рассказывайте вашим покупателям о новинках в вашем магазине, или просто полезную
+          информацию о товарах вашей тематики и новостях рынка!
         </p>
-        <p>
-          Желательно публиковать статьи в блоге магазина не реже, чем 1 раз в
-          месяц.
-        </p>
+        <p>Желательно публиковать статьи в блоге магазина не реже, чем 1 раз в месяц.</p>
         <p>Статьи блога поддерживают следующий функционал:</p>
         <ul>
           <li>теги к статьям для дополнительной перелинковки и навигации</li>
@@ -91,13 +85,9 @@ export async function getStaticPaths() {
   };
 }
 export async function getStaticProps({ params }: pathType) {
-  const getBlogPage = await fetch(
-    `${process.env.API_URL}/api/blog/${params.blogId}`
-  );
+  const getBlogPage = await fetch(`${process.env.API_URL}/api/blog/${params.blogId}`);
   const blogPost: responsBlogType = await getBlogPage.json();
-  const filterBlog = blogPost.data.filter(
-    (postItem) => postItem.id.toString() === params.postId
-  );
+  const filterBlog = blogPost.data.filter((postItem) => postItem.id.toString() === params.postId);
 
   if (filterBlog.length === 0) {
     return { notFound: true };

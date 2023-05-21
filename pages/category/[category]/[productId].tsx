@@ -64,10 +64,7 @@ const ProductComponent = ({ product }: { product: produtsDataType }) => {
           <div className={style.contentNavigateWrapper}>
             <Link href={`/categories`}>Категории / </Link>
             <Link href={`/category/${category}`}>{category} / </Link>
-            <Link href={`/category/${category}/${productId}`}>
-              {' '}
-              {productId}
-            </Link>
+            <Link href={`/category/${category}/${productId}`}> {productId}</Link>
           </div>
         </div>
         <div className={style.wrapper}>
@@ -82,16 +79,10 @@ const ProductComponent = ({ product }: { product: produtsDataType }) => {
                 <div
                   className={style.compare}
                   onClick={
-                    useIsFavorites(compareProducts, product)
-                      ? removeFromeCompare
-                      : addToCompare
+                    useIsFavorites(compareProducts, product) ? removeFromeCompare : addToCompare
                   }
                 >
-                  {useIsFavorites(compareProducts, product) ? (
-                    <BiBarChartAlt />
-                  ) : (
-                    <BiBarChart />
-                  )}
+                  {useIsFavorites(compareProducts, product) ? <BiBarChartAlt /> : <BiBarChart />}
                 </div>
               </div>
               <div className={style.wrapperProductImagesMin}>
@@ -119,9 +110,7 @@ const ProductComponent = ({ product }: { product: produtsDataType }) => {
                 </div>
                 арт.{product.article}
               </div>
-              <div className={style.wrapperProductInfoLabel}>
-                {product.description}
-              </div>
+              <div className={style.wrapperProductInfoLabel}>{product.description}</div>
               <div className={style.wrapperProductInfoCurrency}>
                 <h4>{product.price}</h4>
                 <span>{product.currency}</span>
@@ -152,9 +141,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
   const paths = [] as productPathType[];
 
   for (const category of categories) {
-    const getProducts = await fetch(
-      `${process.env.API_URL}/api/category/${category.name}`
-    );
+    const getProducts = await fetch(`${process.env.API_URL}/api/category/${category.name}`);
     const products: productsInCategory = await getProducts.json();
 
     products.data.forEach((product) => {

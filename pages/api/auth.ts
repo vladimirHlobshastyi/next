@@ -10,8 +10,7 @@ export default function handler(req: NextApiRequest, res: NextApiResponse) {
     return res.status(405).json({ message: 'Method not allowed' });
   }
 
-  const { username, password }: { username: string; password: string } =
-    req.body;
+  const { username, password }: { username: string; password: string } = req.body;
 
   if (!username || !password) {
     return res.status(400).json({

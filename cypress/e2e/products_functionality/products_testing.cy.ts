@@ -29,8 +29,7 @@ describe('products_functionality', () => {
     cy.get('[data-cy-category-id]').each(($category) => {
       const dataCyCategory = $category.attr('data-cy-category-id');
 
-      const getCategory = (id: string | undefined) =>
-        cy.get(`[data-cy-category-id="${id}"] > a`);
+      const getCategory = (id: string | undefined) => cy.get(`[data-cy-category-id="${id}"] > a`);
 
       //click on iteration category
       getCategory(dataCyCategory).click();
@@ -40,23 +39,16 @@ describe('products_functionality', () => {
         const dataCyValue = $productPreview.attr('data-cy-product-preview');
 
         const getProduct = (id: string | undefined) =>
-          cy.get(
-            `[data-cy-product-preview="${id}"] > :nth-child(3) > :nth-child(1) > img`
-          );
+          cy.get(`[data-cy-product-preview="${id}"] > :nth-child(3) > :nth-child(1) > img`);
 
         //click at iteration product
         getProduct(dataCyValue).click();
         cy.wait(200);
 
         //check info of product
-        cy.url().should(
-          'include',
-          `/category/${dataCyCategory}/${dataCyValue}`
-        );
+        cy.url().should('include', `/category/${dataCyCategory}/${dataCyValue}`);
         cy.wait(500);
-        cy.get('.Product_wrapperProductInfoCurrency__g9D59').should(
-          'be.visible'
-        );
+        cy.get('.Product_wrapperProductInfoCurrency__g9D59').should('be.visible');
         cy.get('.Product_wrapperProductInfoLabel__lygPI').should('be.visible');
 
         //back to the iteration category
@@ -86,9 +78,7 @@ describe('products_functionality', () => {
     cy.get(':nth-child(5) > a').click();
 
     for (let index = 8; index >= 1; index--) {
-      let removeProductButton = cy.get(
-        `:nth-child(${index}) > .CartProduct_orderAddToCart__Lc2Cy`
-      );
+      let removeProductButton = cy.get(`:nth-child(${index}) > .CartProduct_orderAddToCart__Lc2Cy`);
       removeProductButton.each(($el) => {
         cy.wrap($el).click();
       });

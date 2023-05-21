@@ -5,11 +5,7 @@ import { productsInCategory } from '../moc/moc';
 import { rootDataFavorites } from '../store/favorites/favoritesSlice';
 import style from './../styles/favorites.module.scss';
 
-const Favorites = ({
-  productsPreview,
-}: {
-  productsPreview: productsInCategory;
-}) => {
+const Favorites = ({ productsPreview }: { productsPreview: productsInCategory }) => {
   const favoriteProducts = useAppSelector(rootDataFavorites);
 
   return (
@@ -21,9 +17,7 @@ const Favorites = ({
       <h2>Избранное</h2>
       <div className={style.favoritesProduct}>
         {favoriteProducts.length ? (
-          favoriteProducts.map((product) => (
-            <ProductPreview product={product} key={product.id} />
-          ))
+          favoriteProducts.map((product) => <ProductPreview product={product} key={product.id} />)
         ) : (
           <span>Список избранных пуст</span>
         )}
@@ -43,9 +37,7 @@ const Favorites = ({
 export default Favorites;
 
 export const getStaticProps = async () => {
-  const getProducts = await fetch(
-    `${process.env.API_URL}/api/category/category1`
-  );
+  const getProducts = await fetch(`${process.env.API_URL}/api/category/category1`);
   const productsPreview: productsInCategory = await getProducts.json();
 
   return {

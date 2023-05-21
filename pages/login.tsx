@@ -2,11 +2,7 @@ import { useEffect, useState, useCallback } from 'react';
 import { useForm } from 'react-hook-form';
 import style from './../styles/login.module.scss';
 import useRootDispatch from '../hooks/useRootDispatch';
-import {
-  errorAuthState,
-  isAuthState,
-  loginThunk,
-} from '../store/auth/authSlice';
+import { errorAuthState, isAuthState, loginThunk } from '../store/auth/authSlice';
 import useAppSelector from '../hooks/useAppSelector';
 import { useRouter } from 'next/router';
 

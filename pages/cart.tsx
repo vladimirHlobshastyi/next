@@ -20,9 +20,7 @@ const Cart = ({ productsPreview }: { productsPreview: productsInCategory }) => {
       <div className={style.orderContainer}>
         <div className={style.orderProductsContainer}>
           {products.length ? (
-            products.map((product) => (
-              <CartProduct product={product.data} key={product.data.id} />
-            ))
+            products.map((product) => <CartProduct product={product.data} key={product.data.id} />)
           ) : (
             <span>Корзина пуста</span>
           )}
@@ -74,9 +72,7 @@ const Cart = ({ productsPreview }: { productsPreview: productsInCategory }) => {
 export default Cart;
 
 export const getStaticProps = async () => {
-  const getProducts = await fetch(
-    `${process.env.API_URL}/api/category/category1`
-  );
+  const getProducts = await fetch(`${process.env.API_URL}/api/category/category1`);
   const productsPreview: productsInCategory = await getProducts.json();
 
   return {

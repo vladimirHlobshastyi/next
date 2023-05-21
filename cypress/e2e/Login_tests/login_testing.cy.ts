@@ -31,9 +31,7 @@ describe('login_testing', () => {
     cy.url().should('include', '/user/history_of_orders');
 
     // click on logout Button
-    cy.get(
-      '.NavbarInUserComponent_dropDownNavigateNone__pHfgS > :nth-child(5)'
-    ).click();
+    cy.get('.NavbarInUserComponent_dropDownNavigateNone__pHfgS > :nth-child(5)').click();
 
     expect(IS_AUTH).to.be.false;
 

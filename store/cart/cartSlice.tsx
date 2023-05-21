@@ -26,19 +26,13 @@ const cartSlice = createSlice({
           return productItem;
         });
       } else {
-        state.products = [
-          ...state.products,
-          { data: action.payload, count: 1 },
-        ];
+        state.products = [...state.products, { data: action.payload, count: 1 }];
       }
       ++state.totalCount;
       state.totalPrice += action.payload.price;
       return state;
     },
-    minusProduct(
-      state,
-      action: PayloadAction<{ id: number | string; price: number }>
-    ) {
+    minusProduct(state, action: PayloadAction<{ id: number | string; price: number }>) {
       if (state.totalCount !== 0) {
         const minusProduct = state.products.map((productItem) => {
           if (productItem.data.id === action.payload.id) {
@@ -48,9 +42,7 @@ const cartSlice = createSlice({
           }
           return productItem;
         });
-        state.products = minusProduct.filter(
-          (productItem) => productItem.count !== 0
-        );
+        state.products = minusProduct.filter((productItem) => productItem.count !== 0);
       }
     },
     removeProduct(

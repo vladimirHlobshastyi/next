@@ -3,10 +3,7 @@ import ControlCountComponent from '../components/ControlCountComponent/ControlCo
 
 function useControlCount(totalCount: number) {
   return useMemo(
-    () =>
-      totalCount ? (
-        <ControlCountComponent countProductsInCart={totalCount} />
-      ) : null,
+    () => (totalCount ? <ControlCountComponent countProductsInCart={totalCount} /> : null),
     [totalCount]
   );
 }

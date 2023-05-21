@@ -75,15 +75,9 @@ const Adress = () => {
               type="text"
               id="city"
               {...register('city', { required: true })}
-              defaultValue={
-                cityOfUser !== undefined && cityOfUser !== null
-                  ? cityOfUser
-                  : ''
-              }
+              defaultValue={cityOfUser !== undefined && cityOfUser !== null ? cityOfUser : ''}
             />
-            {errors.city && (
-              <span className={styles.errorMessage}>Это поле обязательно</span>
-            )}
+            {errors.city && <span className={styles.errorMessage}>Это поле обязательно</span>}
           </div>
           <div className={styles.inputContainer}>
             <label htmlFor="street">Улица *</label>
@@ -91,15 +85,9 @@ const Adress = () => {
               type="text"
               id="street"
               {...register('street', { required: true })}
-              defaultValue={
-                streetOfUser !== undefined && streetOfUser !== null
-                  ? streetOfUser
-                  : ''
-              }
+              defaultValue={streetOfUser !== undefined && streetOfUser !== null ? streetOfUser : ''}
             />
-            {errors.street && (
-              <span className={styles.errorMessage}>Это поле обязательно</span>
-            )}
+            {errors.street && <span className={styles.errorMessage}>Это поле обязательно</span>}
           </div>
           <div className={styles.inputContainer}>
             <label htmlFor="houseNumber">Дом *</label>
@@ -124,22 +112,15 @@ const Adress = () => {
               id="apartmentNumber"
               {...register('apartmentNumber')}
               defaultValue={
-                apartmentNumberOfUser !== undefined &&
-                apartmentNumberOfUser !== null
+                apartmentNumberOfUser !== undefined && apartmentNumberOfUser !== null
                   ? apartmentNumberOfUser
                   : ''
               }
             />
           </div>
           {error && <span className={styles.error}>{error}</span>}
-          {success && (
-            <span className={styles.success}>Данные успешно сохранены</span>
-          )}
-          <button
-            type="submit"
-            className={styles.submitButton}
-            disabled={submitting}
-          >
+          {success && <span className={styles.success}>Данные успешно сохранены</span>}
+          <button type="submit" className={styles.submitButton} disabled={submitting}>
             {submitting ? 'Сохранение...' : 'Сохранить изменения'}
           </button>
         </form>

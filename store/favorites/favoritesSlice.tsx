@@ -13,19 +13,14 @@ const favoritesSlice = createSlice({
   initialState,
   reducers: {
     addFavoritesProduct(state, action: PayloadAction<dataCartProduct>) {
-      let sheckIdentical = state.data.some(
-        (productItem) => productItem.id === action.payload.id
-      );
+      let sheckIdentical = state.data.some((productItem) => productItem.id === action.payload.id);
 
       if (!sheckIdentical) {
         state.data = [...state.data, action.payload];
         ++state.count;
       }
     },
-    removeFavoritesProduct(
-      state,
-      action: PayloadAction<{ id: string; price: number }>
-    ) {
+    removeFavoritesProduct(state, action: PayloadAction<{ id: string; price: number }>) {
       const minusFavoritesProduct = state.data.filter(
         (productItem) => productItem.id !== action.payload.id
       );
@@ -36,8 +31,7 @@ const favoritesSlice = createSlice({
   extraReducers: (builder) => {},
 });
 
-export const { addFavoritesProduct, removeFavoritesProduct } =
-  favoritesSlice.actions;
+export const { addFavoritesProduct, removeFavoritesProduct } = favoritesSlice.actions;
 export const favoritesState = (state: RootState) => state.favorites;
 export const rootFavoritesProducts = (state: RootState) => state.favorites;
 export const rootCountInFavorites = (state: RootState) => state.favorites.count;

@@ -27,9 +27,7 @@ describe('user_functionality', () => {
     cy.get('.Dropdown_sidePanelCatalogElementC1__5OqgK').click();
 
     // check is active dropdown menu
-    cy.get('.Dropdown_sidePanelCatalogElementOpen__Ap0mN')
-      .last()
-      .should('have.descendants', 'a');
+    cy.get('.Dropdown_sidePanelCatalogElementOpen__Ap0mN').last().should('have.descendants', 'a');
   });
 
   it('should get 404 response after sending non-matching request on API', () => {
@@ -48,9 +46,7 @@ describe('user_functionality', () => {
     cy.url().should('include', '/user/history_of_orders');
 
     //go to the user/adress
-    cy.get(
-      '.NavbarInUserComponent_dropDownNavigateNone__pHfgS > :nth-child(2)'
-    ).click();
+    cy.get('.NavbarInUserComponent_dropDownNavigateNone__pHfgS > :nth-child(2)').click();
 
     cy.url().should('include', '/user/adress');
 
@@ -60,10 +56,7 @@ describe('user_functionality', () => {
 
     //submit adress
     cy.get('button[type="submit"]').click();
-    cy.get('.adress_success__is6sj').should(
-      'have.text',
-      'Данные успешно сохранены'
-    );
+    cy.get('.adress_success__is6sj').should('have.text', 'Данные успешно сохранены');
   });
 
   it('should have respons blogs status', () => {
@@ -109,9 +102,7 @@ describe('user_functionality', () => {
     cy.visit('/');
 
     //click on search button
-    cy.get('.NavBar_navBarAreaControls__hv1tc > :nth-child(1) > div')
-      .should('be.visible')
-      .click();
+    cy.get('.NavBar_navBarAreaControls__hv1tc > :nth-child(1) > div').should('be.visible').click();
 
     //type search text
     cy.get('input').type('тов');
@@ -125,9 +116,7 @@ describe('user_functionality', () => {
     cy.visit('/');
 
     //click on serach button
-    cy.get('.NavBar_navBarAreaControls__hv1tc > :nth-child(1) > div')
-      .should('be.visible')
-      .click();
+    cy.get('.NavBar_navBarAreaControls__hv1tc > :nth-child(1) > div').should('be.visible').click();
 
     cy.get('input').type(searchTitle + '{enter}');
     cy.url().should('include', `/search/${encodeURIComponent(searchTitle)}`);
@@ -142,9 +131,7 @@ describe('user_functionality', () => {
       cy.wrap($image).click();
 
       // wait for the large image to load
-      cy.get('.Product_wrapperProductImageLogo__hP62n > img').should(
-        'be.visible'
-      );
+      cy.get('.Product_wrapperProductImageLogo__hP62n > img').should('be.visible');
 
       //check logo image width check small image
       cy.get('[data-cy-logo-image]').should(($logoImage) => {
@@ -170,17 +157,13 @@ describe('user_functionality', () => {
     ).should('be.visible');
 
     //close descr info menu
-    cy.get(
-      '[data-cy="Описание"] > .Dropdown_sidePanelCatalogElementC1__5OqgK'
-    ).click();
-    cy.get(
-      '[data-cy="dropDown Описание"] > .Dropdown_sidePanelCatalogElementC1__5OqgK'
-    ).should('not.exist');
+    cy.get('[data-cy="Описание"] > .Dropdown_sidePanelCatalogElementC1__5OqgK').click();
+    cy.get('[data-cy="dropDown Описание"] > .Dropdown_sidePanelCatalogElementC1__5OqgK').should(
+      'not.exist'
+    );
 
     //close param info menu
-    cy.get(
-      '[data-cy="Характеристики"] > .Dropdown_sidePanelCatalogElementC1__5OqgK'
-    ).click();
+    cy.get('[data-cy="Характеристики"] > .Dropdown_sidePanelCatalogElementC1__5OqgK').click();
     cy.get(
       '[data-cy="dropDown Характеристики"] > .Dropdown_sidePanelCatalogElementC1__5OqgK'
     ).should('not.exist');
@@ -204,9 +187,7 @@ describe('user_functionality', () => {
     cy.intercept('/api/search/*').as('searchRequest');
 
     //click on search button
-    cy.get('.NavBar_navBarAreaControls__hv1tc > :nth-child(1) > div')
-      .should('be.visible')
-      .click();
+    cy.get('.NavBar_navBarAreaControls__hv1tc > :nth-child(1) > div').should('be.visible').click();
 
     //type search word
     cy.get('input').type(SEARCH_WORD + '{enter}');

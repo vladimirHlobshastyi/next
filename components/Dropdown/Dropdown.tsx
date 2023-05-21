@@ -4,19 +4,11 @@ import { GoChevronDown } from 'react-icons/go';
 import { DropdownTypes } from './Dropdown.types';
 import Link from 'next/link';
 
-const Dropdown = ({
-  catalogName,
-  info,
-  infoForProduct,
-  calb,
-}: DropdownTypes) => {
+const Dropdown = ({ catalogName, info, infoForProduct, calb }: DropdownTypes) => {
   const [isVisibleCategory, setIsVisibleCategory] = useState(false);
 
   return (
-    <div
-      className={style.sidePanelCatalogElement}
-      data-cy={infoForProduct?.nameWrapper}
-    >
+    <div className={style.sidePanelCatalogElement} data-cy={infoForProduct?.nameWrapper}>
       <div
         className={style.sidePanelCatalogElementC1}
         onClick={() => setIsVisibleCategory(!isVisibleCategory)}
@@ -32,15 +24,11 @@ const Dropdown = ({
             return (
               <div
                 className={style.sidePanelCatalogElementOpenСategory}
-                data-cy={
-                  'dropDown ' + infoForProduct?.nameWrapper || catalogName
-                }
+                data-cy={'dropDown ' + infoForProduct?.nameWrapper || catalogName}
                 key={navigateCategory.id}
                 onClick={calb}
               >
-                <Link href={`/category/${navigateCategory.name}`}>
-                  {navigateCategory.name}
-                </Link>
+                <Link href={`/category/${navigateCategory.name}`}>{navigateCategory.name}</Link>
               </div>
             );
           })}

@@ -30,9 +30,7 @@ export default function Home({ products }: { products: productsInCategory }) {
             {products.data.map((product, index) => (
               <React.Fragment key={product.id}>
                 <ProductPreview product={product} />
-                {index === products.data.length - 1 && (
-                  <div className={style.proposalProductsLp} />
-                )}
+                {index === products.data.length - 1 && <div className={style.proposalProductsLp} />}
               </React.Fragment>
             ))}
           </div>
@@ -44,9 +42,8 @@ export default function Home({ products }: { products: productsInCategory }) {
               <h4> О магазине Mono</h4>
               <span>
                 {' '}
-                Тут вы можете добавить небольшое описание о вашем
-                интернет-магазине. Какие у вас есть плюсы и можете добавить
-                интересные факты о магазине
+                Тут вы можете добавить небольшое описание о вашем интернет-магазине. Какие у вас
+                есть плюсы и можете добавить интересные факты о магазине
               </span>
               <Link href="/">Подробнее</Link>
             </div>
@@ -58,9 +55,7 @@ export default function Home({ products }: { products: productsInCategory }) {
 }
 
 export const getStaticProps = async () => {
-  const getProducts = await fetch(
-    `${process.env.API_URL}/api/category/category1`
-  );
+  const getProducts = await fetch(`${process.env.API_URL}/api/category/category1`);
   const products: productsInCategory = await getProducts.json();
 
   return {

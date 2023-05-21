@@ -21,9 +21,7 @@ const CartProduct = ({ product }: { product: dataCartProduct }) => {
   const router = useRouter();
 
   const countProduct = () => {
-    const isProductInCart = products.find(
-      (productItem) => productItem.data.id === product.id
-    );
+    const isProductInCart = products.find((productItem) => productItem.data.id === product.id);
     if (isProductInCart?.count) {
       return isProductInCart.count;
     }
@@ -33,8 +31,7 @@ const CartProduct = ({ product }: { product: dataCartProduct }) => {
 
   const addProductItem = () => dispatch(addProduct(product));
 
-  const removeProductItem = () =>
-    dispatch(removeProduct({ ...product, quantity: countProduct() }));
+  const removeProductItem = () => dispatch(removeProduct({ ...product, quantity: countProduct() }));
 
   const totalPriceOrder = () => product.price * countProduct();
 
@@ -43,10 +40,7 @@ const CartProduct = ({ product }: { product: dataCartProduct }) => {
       <div className={style.orderProductImage}>
         <Image src={product.images[0]} alt="logot" width={150} height={150} />
       </div>
-      <div
-        className={style.orderDescription}
-        onClick={() => router.push(`/product/${product.id}`)}
-      >
+      <div className={style.orderDescription} onClick={() => router.push(`/product/${product.id}`)}>
         {product.description}
         <span>
           {product.price}
@@ -57,9 +51,7 @@ const CartProduct = ({ product }: { product: dataCartProduct }) => {
         <div className={style.orderNumberMinus} onClick={minusProductItem}>
           <AiOutlineMinus />
         </div>
-        <div className={style.orderNumberCall}>
-          {countProduct ? countProduct() : null}
-        </div>
+        <div className={style.orderNumberCall}>{countProduct ? countProduct() : null}</div>
         <div className={style.orderNumberPlus} onClick={addProductItem}>
           <AiOutlinePlus />
         </div>

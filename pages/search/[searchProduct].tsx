@@ -7,13 +7,9 @@ type SearchProps = {
   searchProducts: searchProductResult;
 };
 
-const Search = ({ searchProducts }: SearchProps) => (
-  <SearchPage searchProducts={searchProducts} />
-);
+const Search = ({ searchProducts }: SearchProps) => <SearchPage searchProducts={searchProducts} />;
 
-export const getServerSideProps: GetServerSideProps<SearchProps> = async (
-  context
-) => {
+export const getServerSideProps: GetServerSideProps<SearchProps> = async (context) => {
   const searchProduct = context.query.searchProduct as string;
   const fetchData = await getSerchedProducts(searchProduct);
   return { props: { searchProducts: fetchData } };

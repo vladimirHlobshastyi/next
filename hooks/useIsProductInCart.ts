@@ -8,10 +8,7 @@ type useIsProductInCartPropType =
       count: number;
     }[];
 
-const useIsProductInCart = (
-  products: useIsProductInCartPropType,
-  product: dataCartProduct
-) => {
+const useIsProductInCart = (products: useIsProductInCartPropType, product: dataCartProduct) => {
   const filteredProducts = useMemo(
     () => products.filter((productItem) => productItem.data.id === product.id),
     [products, product.id]

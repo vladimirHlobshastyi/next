@@ -21,12 +21,7 @@ const SearchPage = ({ searchProducts }: SearchProps) => {
       </div>
       <div className={style.searchProduct}>
         {searchProducts.map((itemProduct) => {
-          return (
-            <ProductPreview
-              product={itemProduct.product}
-              key={itemProduct.product.id}
-            />
-          );
+          return <ProductPreview product={itemProduct.product} key={itemProduct.product.id} />;
         })}{' '}
       </div>
     </div>

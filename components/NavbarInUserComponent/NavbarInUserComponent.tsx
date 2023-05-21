@@ -20,38 +20,24 @@ const NavbarInUserComponent = () => {
   const path = router.asPath;
 
   const dispatch = useRootDispatch();
-  const isActive = (variableString: string) =>
-    useIsActiveNavbar({ path, variableString });
+  const isActive = (variableString: string) => useIsActiveNavbar({ path, variableString });
 
   const historyOrdersClass = classNames(
     style.navigateEl,
     isActive(HISTORY_OF_ORDERS) ? style.active : ''
   );
-  const adressClass = classNames(
-    style.navigateEl,
-    isActive(ADRESS) ? style.active : ''
-  );
-  const bonusesClass = classNames(
-    style.navigateEl,
-    isActive(BONUSES) ? style.active : ''
-  );
-  const contactsClass = classNames(
-    style.navigateEl,
-    isActive(CONTACTS) ? style.active : ''
-  );
+  const adressClass = classNames(style.navigateEl, isActive(ADRESS) ? style.active : '');
+  const bonusesClass = classNames(style.navigateEl, isActive(BONUSES) ? style.active : '');
+  const contactsClass = classNames(style.navigateEl, isActive(CONTACTS) ? style.active : '');
   const titleClass = classNames(style.navigateEl, style.title);
-  const isDropdownClass = isOpenDropdown
-    ? style.dropDownNavigate
-    : style.dropDownNavigateNone;
+  const isDropdownClass = isOpenDropdown ? style.dropDownNavigate : style.dropDownNavigateNone;
 
   const logoutFunc = () => {
     dispatch(logout());
     router.push('/');
   };
-  const changeDropdown = () =>
-    setIsOpenDropdown((prevIsOpenDropdown) => !prevIsOpenDropdown);
-  const mobileDropDownIcon =
-    isMobile && (isOpenDropdown ? <IoIosArrowUp /> : <IoIosArrowDown />);
+  const changeDropdown = () => setIsOpenDropdown((prevIsOpenDropdown) => !prevIsOpenDropdown);
+  const mobileDropDownIcon = isMobile && (isOpenDropdown ? <IoIosArrowUp /> : <IoIosArrowDown />);
 
   const pushToContacts = () => router.push(CONTACTS);
   const pushToBonuses = () => router.push(BONUSES);

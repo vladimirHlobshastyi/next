@@ -11,10 +11,7 @@ import {
   rootFavoritesProducts,
 } from '../store/favorites/favoritesSlice';
 import { RiDeleteBin6Line } from 'react-icons/ri';
-import {
-  compareState,
-  removeCompareProduct,
-} from '../store/compare/compareSlice';
+import { compareState, removeCompareProduct } from '../store/compare/compareSlice';
 import { AiOutlineStar } from 'react-icons/ai';
 import HeadComponent from '../components/Head/HeadComponent';
 import { useRouter } from 'next/router';
@@ -64,10 +61,7 @@ const CompareProduct = ({ product }: { product: dataCartProduct }) => {
         <span>{product.currency}</span>
       </div>
       <div className={style.buttons}>
-        <div
-          className={style.likes}
-          onClick={isFavorite ? removeFromFavorites : addToFavorites}
-        >
+        <div className={style.likes} onClick={isFavorite ? removeFromFavorites : addToFavorites}>
           {isFavorite ? <BsHeartFill /> : <BsHeart />}
         </div>
         <div className={style.remove} onClick={removeFromCompare}>
@@ -88,9 +82,7 @@ const Compare = () => {
         viewport="width=device-width, initial-scale=1"
       />
       {compare.count ? (
-        compare.data.map((product) => (
-          <CompareProduct product={product} key={product.id} />
-        ))
+        compare.data.map((product) => <CompareProduct product={product} key={product.id} />)
       ) : (
         <span>Список сравнения пуст</span>
       )}

@@ -48,14 +48,8 @@ export async function getStaticPaths() {
   };
 }
 
-export async function getStaticProps({
-  params,
-}: {
-  params: { category: string };
-}) {
-  const getProducts = await fetch(
-    `${process.env.API_URL}/api/category/${params.category}`
-  );
+export async function getStaticProps({ params }: { params: { category: string } }) {
+  const getProducts = await fetch(`${process.env.API_URL}/api/category/${params.category}`);
   const products = await getProducts.json();
 
   return {

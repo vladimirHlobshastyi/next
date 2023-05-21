@@ -16,9 +16,7 @@ export default function handler(req: NextApiRequest, res: NextApiResponse) {
 
   for (const keyItem in allProducts) {
     allProducts[keyItem].data.forEach((product) => {
-      const isIncludes = product.description
-        .toLowerCase()
-        .includes(bodyReq.toLocaleLowerCase());
+      const isIncludes = product.description.toLowerCase().includes(bodyReq.toLocaleLowerCase());
       if (isIncludes) {
         result.push({ product, category: keyItem });
       }

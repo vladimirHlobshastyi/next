@@ -66,9 +66,7 @@ function Сontacts() {
               defaultValue={fullnameOfUser ?? ''}
             />
             {errors.fullName && (
-              <span className={styles.error}>
-                Поле обязательно для заполнения
-              </span>
+              <span className={styles.error}>Поле обязательно для заполнения</span>
             )}
           </div>
           <div className={styles.inputContainer}>
@@ -111,14 +109,8 @@ function Сontacts() {
             )}
           </div>
           {error && <span className={styles.error}>{error}</span>}
-          {success && (
-            <span className={styles.success}>Данные успешно сохранены</span>
-          )}
-          <button
-            type="submit"
-            disabled={submitting}
-            aria-label="Сохранить изменения"
-          >
+          {success && <span className={styles.success}>Данные успешно сохранены</span>}
+          <button type="submit" disabled={submitting} aria-label="Сохранить изменения">
             {submitting ? 'Сохранение...' : 'Сохранить изменения'}
           </button>
         </form>

@@ -13,19 +13,14 @@ const compareSlice = createSlice({
   initialState,
   reducers: {
     addCompareProduct(state, action: PayloadAction<dataCartProduct>) {
-      let sheckIdentical = state.data.some(
-        (productItem) => productItem.id === action.payload.id
-      );
+      let sheckIdentical = state.data.some((productItem) => productItem.id === action.payload.id);
 
       if (!sheckIdentical) {
         state.data = [...state.data, action.payload];
         ++state.count;
       }
     },
-    removeCompareProduct(
-      state,
-      action: PayloadAction<{ id: string; price: number }>
-    ) {
+    removeCompareProduct(state, action: PayloadAction<{ id: string; price: number }>) {
       const minusCompareProduct = state.data.filter(
         (productItem) => productItem.id !== action.payload.id
       );
