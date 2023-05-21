@@ -26,9 +26,8 @@
   "eslintConfig": {
     "extends": [
       "next/babel",
-      "next/core-web-vitals",
-      "rbnb"
-    ]
+      "next/core-web-vitals"
+     ]
   },
   "dependencies": {
     "@next/font": "13.1.1",
