@@ -8,10 +8,9 @@ const nextConfig = {
 
     return config;
   },
-};
-module.exports = {
   env: {
     API_URL: 'https://next-lime-delta.vercel.app',
   },
-  nextConfig,
 };
+
+module.exports = nextConfig;
