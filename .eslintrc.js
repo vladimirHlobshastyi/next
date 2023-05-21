@@ -1,5 +1,5 @@
 module.exports = {
-  extends: ['eslint-config-rbnb'],
+  extends: ['eslint-config-airbnb'],
   plugins: ['import', 'jsx-a11y', 'react', 'react-hooks'],
   rules: {
     'react/prop-types': 'off',

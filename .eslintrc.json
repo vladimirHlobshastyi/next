@@ -1,5 +1,5 @@
 {
-  "extends": ["next/babel", "next/core-web-vitals", "eslint-config-rbnb"],
+  "extends": ["next/babel", "next/core-web-vitals", "eslint-config-airbnb"],
   "rules": {
     "react/prop-types": "off",
     "react/react-in-jsx-scope": "off",
