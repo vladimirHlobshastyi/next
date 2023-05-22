@@ -7,14 +7,14 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        node-version: [16.17.0]
+        node-version: [16.x]
 
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v2
+        uses: actions/checkout@v2.4.3
 
       - name: Set up Node.js
-        uses: actions/setup-node@v2
+        uses: actions/setup-node@v2.4.1
         with:
           node-version: ${{ matrix.node-version }}
 
@@ -29,14 +29,14 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        node-version: [16.17.0]
+        node-version: [16.x]
 
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v2
+        uses: actions/checkout@v2.4.3
 
       - name: Set up Node.js
-        uses: actions/setup-node@v2
+        uses: actions/setup-node@v2.4.1
         with:
           node-version: ${{ matrix.node-version }}
 
@@ -47,21 +47,21 @@ jobs:
         id: auth-tests
         run: |
           npm run cypress -- --spec "./cypress/e2e/Login_tests/login_testing.cy.ts" --browser chrome
-          echo "::set-output name=auth-tests::success"
+          echo "auth-tests=success" >> $GITHUB_ENV
 
   Run-UI-Tests:
     needs: Run-Auth-Tests
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        node-version: [16.17.0]
+        node-version: [16.x]
 
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v2
+        uses: actions/checkout@v2.4.3
 
       - name: Set up Node.js
-        uses: actions/setup-node@v2
+        uses: actions/setup-node@v2.4.1
         with:
           node-version: ${{ matrix.node-version }}
 
