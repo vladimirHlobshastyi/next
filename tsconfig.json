@@ -25,5 +25,8 @@
     "pages/category/category/[productName].tsx",
     "components/ArrowDropup"
   ],
-  "exclude": ["node_modules"]
+  "exclude": ["node_modules"],
+  "resolve": {
+    "extensions": [".ts", ".tsx", ".js", ".jsx"]
+  }
 }
