@@ -3,15 +3,14 @@ const nextConfig = {
     config.module.rules.push({
       test: /\.svg$/i,
       issuer: /\.[jt]sx?$/,
-      use: ["@svgr/webpack"],
+      use: ['@svgr/webpack'],
     });
 
     return config;
   },
-};
-module.exports = nextConfig;
-module.exports = {
   env: {
-    API_URL: "https://next-lime-delta.vercel.app",
+    API_URL: 'https://next-lime-delta.vercel.app',
   },
 };
+
+module.exports = nextConfig;

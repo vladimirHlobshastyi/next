@@ -1,23 +1,23 @@
-const login = (username = "user", password = "password") => {
-  cy.visit("/login");
+const login = (username = 'user', password = 'password') => {
+  cy.visit('/login');
 
   cy.get('input[name="login"]').type(username);
   cy.get('input[name="password"]').type(password);
-  cy.intercept("POST", "/api/auth").as("login");
+  cy.intercept('POST', '/api/auth').as('login');
   cy.get('button[type="submit"]').click();
 };
 
 const clearCache = () => {
   cy.clearCookies();
   cy.clearLocalStorage();
-  cy.window().its("sessionStorage").invoke("clear");
+  cy.window().its('sessionStorage').invoke('clear');
 };
 
 const openCategories = () => {
-  const menuButton = ".NavBar_navBarMenu__BeYEF";
-  const allCategoryButton = ".NavBar_sidePanelCatalog__PMB0F > :nth-child(1)";
+  const menuButton = '.NavBar_navBarMenu__BeYEF';
+  const allCategoryButton = '.NavBar_sidePanelCatalog__PMB0F > :nth-child(1)';
 
-  cy.visit("/");
+  cy.visit('/');
 
   // Click on menu button
   cy.get(menuButton).click();
@@ -39,19 +39,19 @@ declare global {
   }
 }
 
-Cypress.Commands.add("myLogin", (username, password) => {
+Cypress.Commands.add('myLogin', (username, password) => {
   login(username, password);
 });
 
-Cypress.Commands.add("myClearCache", () => {
+Cypress.Commands.add('myClearCache', () => {
   clearCache();
 });
 
-Cypress.Commands.add("myOpenCategories", () => {
+Cypress.Commands.add('myOpenCategories', () => {
   openCategories();
 });
 
-Cypress.Commands.add("myGetElByDataAttr", (dataAttr: string) => {
+Cypress.Commands.add('myGetElByDataAttr', (dataAttr: string) => {
   getElByDataAttr(dataAttr);
 });
 

@@ -1,7 +1,7 @@
-import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { dataCartProduct } from "../cart/cartSlice.types";
-import { RootState } from "../store";
-import { initialStateTypes } from "./compareSlice.types";
+import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { dataCartProduct } from '../cart/cartSlice.types';
+import { RootState } from '../store';
+import { initialStateTypes } from './compareSlice.types';
 
 const initialState: initialStateTypes = {
   data: [],
@@ -9,23 +9,18 @@ const initialState: initialStateTypes = {
 };
 
 const compareSlice = createSlice({
-  name: "compare",
+  name: 'compare',
   initialState,
   reducers: {
     addCompareProduct(state, action: PayloadAction<dataCartProduct>) {
-      let sheckIdentical = state.data.some(
-        (productItem) => productItem.id === action.payload.id
-      );
+      let sheckIdentical = state.data.some((productItem) => productItem.id === action.payload.id);
 
       if (!sheckIdentical) {
         state.data = [...state.data, action.payload];
         ++state.count;
       }
     },
-    removeCompareProduct(
-      state,
-      action: PayloadAction<{ id: string; price: number }>
-    ) {
+    removeCompareProduct(state, action: PayloadAction<{ id: string; price: number }>) {
       const minusCompareProduct = state.data.filter(
         (productItem) => productItem.id !== action.payload.id
       );

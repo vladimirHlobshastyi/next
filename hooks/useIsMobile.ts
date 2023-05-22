@@ -1,4 +1,4 @@
-import { useMemo } from "react";
+import { useMemo } from 'react';
 
 export const useIsMobile = () => {
   const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);

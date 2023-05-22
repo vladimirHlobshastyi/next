@@ -1,5 +1,5 @@
-import { useMemo } from "react";
-import { dataCartProduct } from "../store/cart/cartSlice.types";
+import { useMemo } from 'react';
+import { dataCartProduct } from '../store/cart/cartSlice.types';
 
 type useIsProductInCartPropType =
   | []
@@ -8,10 +8,7 @@ type useIsProductInCartPropType =
       count: number;
     }[];
 
-const useIsProductInCart = (
-  products: useIsProductInCartPropType,
-  product: dataCartProduct
-) => {
+const useIsProductInCart = (products: useIsProductInCartPropType, product: dataCartProduct) => {
   const filteredProducts = useMemo(
     () => products.filter((productItem) => productItem.data.id === product.id),
     [products, product.id]

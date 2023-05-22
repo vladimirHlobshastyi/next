@@ -18,11 +18,10 @@ import { RefObject, useEffect } from 'react';
   }, []);
 };
  */
-const useClickOutsideDiv = <T extends HTMLElement = HTMLElement>(ref: RefObject<HTMLElement>,
-  callback: () => void,
+const useClickOutsideDiv = <T extends HTMLElement = HTMLElement>(
+  ref: RefObject<HTMLElement>,
+  callback: () => void
 ) => {
-
-
   const handleClickOutside = (event: Event) => {
     if (ref.current && !ref.current.contains(event.target as Node)) {
       callback();
@@ -38,7 +37,5 @@ const useClickOutsideDiv = <T extends HTMLElement = HTMLElement>(ref: RefObject<
       document.removeEventListener('touchstart', handleClickOutside);
     };
   }, []);
-
-
 };
 export default useClickOutsideDiv;

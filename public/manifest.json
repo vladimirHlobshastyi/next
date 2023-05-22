@@ -1,81 +1,80 @@
-  {
-    "version": "1.1",
-    "short_name": "Mono Store",
-    "name": "Mono Store",
-    "lang": "ru-Ru",
-    "description": "Mono store",
-    "orientation": "portrait",
-    "icons": [
-      {
-        "src": "Letter_M_black_64.ico",
-        "sizes": "64x64 32x32 24x24 16x16",
-        "type": "image/x-icon"
-      },
-      {
-        "src": "Letter_M_black_128x128.png",
-        "type": "image/png",
-        "sizes": "128x128"
-      },
-      {
-        "src": "Logo_192x192.png",
-        "type": "image/png",
-        "sizes": "192x192"
-      },
-      {
-        "src": "Letter_M_black_256x256.png",
-        "type": "image/png",
-        "sizes": "256x256"
-      },
-      {
-        "src": "Logo_512x512.png",
-        "type": "image/png",
-        "sizes": "512x512"
-      }
-    ],
-    "start_url": ".",
-    "display": "standalone",
-    "theme_color": "#000000",
-    "background_color": "#ffffff",
-    "features": {
-      "redux": true,
-      "reduxPersist": true
+{
+  "version": "1.1",
+  "short_name": "Mono Store",
+  "name": "Mono Store",
+  "lang": "ru-Ru",
+  "description": "Mono store",
+  "orientation": "portrait",
+  "icons": [
+    {
+      "src": "Letter_M_black_64.ico",
+      "sizes": "64x64 32x32 24x24 16x16",
+      "type": "image/x-icon"
     },
-    "slices": [
-      {
-        "name": "favorites",
-        "initialState": {
-          "data": [],
-          "count": 0
-        },
-        "types": {
-          "data": "Array<{ description: string; price: number; currency: string; images: StaticImageData[]; id: string; article: string; } | []>",
-          "count": "number"
-        }
+    {
+      "src": "Letter_M_black_128x128.png",
+      "type": "image/png",
+      "sizes": "128x128"
+    },
+    {
+      "src": "Logo_192x192.png",
+      "type": "image/png",
+      "sizes": "192x192"
+    },
+    {
+      "src": "Letter_M_black_256x256.png",
+      "type": "image/png",
+      "sizes": "256x256"
+    },
+    {
+      "src": "Logo_512x512.png",
+      "type": "image/png",
+      "sizes": "512x512"
+    }
+  ],
+  "start_url": ".",
+  "display": "standalone",
+  "theme_color": "#000000",
+  "background_color": "#ffffff",
+  "features": {
+    "redux": true,
+    "reduxPersist": true
+  },
+  "slices": [
+    {
+      "name": "favorites",
+      "initialState": {
+        "data": [],
+        "count": 0
       },
-      {
-        "name": "compare",
-        "initialState": {
-          "data": [],
-          "count": 0
-        },
-        "types": {
-          "data": "Array<{ description: string; price: number; currency: string; images: StaticImageData[]; id: string; article: string; } | []>",
-          "count": "number"
-        }
-      },
-      {
-        "name": "cart",
-        "initialState": {
-          "products": [],
-          "totalCount": 0,
-          "totalPrice": 0
-        },
-        "types": {
-          "products": "Array<{ data: { description: string; price: number; currency: string; images: StaticImageData[]; id: string; article: string; }, count: number } | []>",
-          "totalCount": "number",
-          "totalPrice": "number"
-        }
+      "types": {
+        "data": "Array<{ description: string; price: number; currency: string; images: StaticImageData[]; id: string; article: string; } | []>",
+        "count": "number"
       }
-    ]
-  }
-  
+    },
+    {
+      "name": "compare",
+      "initialState": {
+        "data": [],
+        "count": 0
+      },
+      "types": {
+        "data": "Array<{ description: string; price: number; currency: string; images: StaticImageData[]; id: string; article: string; } | []>",
+        "count": "number"
+      }
+    },
+    {
+      "name": "cart",
+      "initialState": {
+        "products": [],
+        "totalCount": 0,
+        "totalPrice": 0
+      },
+      "types": {
+        "products": "Array<{ data: { description: string; price: number; currency: string; images: StaticImageData[]; id: string; article: string; }, count: number } | []>",
+        "totalCount": "number",
+        "totalPrice": "number"
+      }
+    }
+  ]
+}

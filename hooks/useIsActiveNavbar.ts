@@ -1,4 +1,4 @@
-import { useMemo } from "react";
+import { useMemo } from 'react';
 
 type useIsActiveNavbarType = { path: string; variableString: string };
 
