@@ -45,7 +45,9 @@ jobs:
 
       - name: Run Auth tests
         id: auth-tests
-        run: npm run cypress -- --spec "./cypress/e2e/Login_tests/login_testing.cy.ts" --browser chrome
+        run: |
+          npm run cypress -- --spec "./cypress/e2e/Login_tests/login_testing.cy.ts" --browser chrome
+          echo "AUTH_TESTS_RESULT=success" >> $GITHUB_ENV
 
   Run-UI-Tests:
     needs: Run-Auth-Tests
@@ -67,5 +69,5 @@ jobs:
         run: npm ci
 
       - name: Run UI tests
-        if: ${{ success() && needs.Run-Auth-Tests.outputs.auth-tests == 'success' }}
+        if: ${{ success() && env.AUTH_TESTS_RESULT == 'success' }}
         run: npm run cypress -- --browser chrome
