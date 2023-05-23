@@ -69,5 +69,4 @@ jobs:
         run: npm ci
 
       - name: Run UI tests
-        if: ${{ success() && env.AUTH_TESTS_RESULT == 'success' }}
         run: npm run cypress -- --browser chrome
