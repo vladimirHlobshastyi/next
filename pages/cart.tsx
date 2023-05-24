@@ -5,7 +5,7 @@ import CartProduct from '../components/CartProduct/CartProduct';
 import { cartState } from '../store/cart/cartSlice';
 import useAppSelector from '../hooks/useAppSelector';
 import HeadComponent from '../components/Head/HeadComponent';
-import { productsInCategory } from '../moc/moc';
+import { productsInCategory } from '../mock/moc';
 
 const Cart = ({ productsPreview }: { productsPreview: productsInCategory }) => {
   const { products, totalCount, totalPrice } = useAppSelector(cartState);

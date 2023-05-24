@@ -1,5 +1,5 @@
 import { NextApiRequest, NextApiResponse } from 'next';
-import { authToken } from '../../moc/moc';
+import { authToken } from '../../mock/mock';
 
 const loginMock = 'user';
 const passwordMock: string = 'password';

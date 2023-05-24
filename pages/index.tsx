@@ -5,7 +5,7 @@ import SwiperComponent from '../components/SwiperComponent/SwiperComponent';
 import Link from 'next/link';
 import { BsFillInfoCircleFill } from 'react-icons/bs';
 import ProductPreview from '../components/ProductPreview/ProductPreview';
-import { productsInCategory } from '../moc/moc';
+import { productsInCategory } from '../mock/mock';
 import React from 'react';
 
 const inter = Inter({ subsets: ['latin'] });

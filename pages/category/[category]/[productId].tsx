@@ -11,7 +11,7 @@ import HeadComponent from '../../../components/Head/HeadComponent';
 import useAppSelector from '../../../hooks/useAppSelector';
 import useIsFavorites from '../../../hooks/useIsFavorites';
 import useRootDispatch from '../../../hooks/useRootDispatch';
-import { productsInCategory, produtsDataType } from '../../../moc/moc';
+import { productsInCategory, produtsDataType } from '../../../mock/mock';
 import { dataCartProduct } from '../../../store/cart/cartSlice.types';
 import {
   addCompareProduct,
