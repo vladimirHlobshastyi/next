@@ -3,7 +3,7 @@ on:
   push:
 
 jobs:
-  Explore-GitHub-Actions:
+  Run-Lint_Tests:
     runs-on: ubuntu-latest
     strategy:
       matrix:
@@ -24,10 +24,8 @@ jobs:
       - name: Lint code
         run: npm run lint
 
-      - name: Run auth tests
-        run: npm run cypress -- --spec "./cypress/e2e/Login_tests/login_testing.cy.ts"
-
-  Run-Other-Tests:
+  Run-Auth-Tests:
+    needs: Run-Lint_Tests
     runs-on: ubuntu-latest
     strategy:
       matrix:
@@ -45,5 +43,30 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
-      - name: Run tests
-        run: npm run cypress
+      - name: Run Auth tests
+        id: auth-tests
+        run: |
+          npm run cypress -- --spec "./cypress/e2e/Login_tests/login_testing.cy.ts" --browser chrome
+          echo "AUTH_TESTS_RESULT=success" >> $GITHUB_ENV
+
+  Run-UI-Tests:
+    needs: Run-Auth-Tests
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [16.17.0]
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: ${{ matrix.node-version }}
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Run UI tests
+        run: npm run cypress -- --browser chrome

@@ -9,7 +9,8 @@
     "precommit": "lint-staged",
     "lint": "eslint .",
     "format": "prettier --write .",
-    "cypress": "cypress run"
+    "cypress": "cypress run",
+    "cypress:spec": "cypress run --spec ./cypress/e2e/Login_tests/login_testing.cy.ts"
   },
   "husky": {
     "hooks": {

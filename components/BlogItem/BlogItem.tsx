@@ -1,7 +1,7 @@
 import Image from 'next/image';
 import { useRouter } from 'next/router';
 import useFormattedDate from '../../hooks/useFormattedDate';
-import { blogPostsTypes } from '../../moc/moc';
+import { blogPostsTypes } from '../../mock/mock';
 import style from './BlogItem.module.scss';
 
 const BlogItem = ({ blogData, pageNumber }: { blogData: blogPostsTypes; pageNumber: number }) => {

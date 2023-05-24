@@ -1,6 +1,6 @@
 import Image from 'next/image';
 import useFormattedDate from '../../../hooks/useFormattedDate';
-import { blogPostsTypes } from '../../../moc/moc';
+import { blogPostsTypes } from '../../../mock/mock';
 import { responsBlogType } from '../../api/blog/[page]';
 import style from './blogPost.module.scss';
 import Link from 'next/link';

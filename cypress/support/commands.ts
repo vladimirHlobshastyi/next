@@ -19,14 +19,16 @@ const openCategories = () => {
 
   cy.visit('/');
 
-  // Click on menu button
+  // Click on the menu button
   cy.get(menuButton).click();
 
-  // Click on all category button
+  // Click on the all category button
   cy.get(allCategoryButton).click();
 };
 
-const getElByDataAttr = (dataAttr: string) => cy.get(`[data-cy=${dataAttr}]`);
+const getElByDataAttr = (dataAttr: string) => {
+  return cy.get(`[data-cy=${dataAttr}]`);
+};
 
 declare global {
   namespace Cypress {
@@ -35,9 +37,19 @@ declare global {
       myClearCache(): Chainable<Subject>;
       myOpenCategories(): Chainable<Subject>;
       myGetElByDataAttr(dataAttr: string): Chainable<Subject>;
+      logErrorLogs(): Chainable<Subject>;
     }
   }
 }
+Cypress.Commands.add('logErrorLogs', () => {
+  //  calling the task to receive all error logs
+  cy.task('getErrorLogs').then((logs: any) => {
+    // displaying logs
+    logs.forEach((log: any) => {
+      console.log('Error log:', log);
+    });
+  });
+});
 
 Cypress.Commands.add('myLogin', (username, password) => {
   login(username, password);

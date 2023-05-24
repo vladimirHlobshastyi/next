@@ -1,7 +1,7 @@
 import HeadComponent from '../components/Head/HeadComponent';
 import ProductPreview from '../components/ProductPreview/ProductPreview';
 import useAppSelector from '../hooks/useAppSelector';
-import { productsInCategory } from '../moc/moc';
+import { productsInCategory } from '../mock/mock';
 import { rootDataFavorites } from '../store/favorites/favoritesSlice';
 import style from './../styles/favorites.module.scss';
 

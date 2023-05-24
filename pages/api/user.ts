@@ -1,5 +1,5 @@
 import { NextApiRequest, NextApiResponse } from 'next';
-import { authToken } from '../../moc/moc';
+import { authToken } from '../../mock/mock';
 
 export default function handler(req: NextApiRequest, res: NextApiResponse) {
   const { authKey } = req.body;

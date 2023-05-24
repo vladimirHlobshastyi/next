@@ -1,5 +1,5 @@
 import { NextApiRequest, NextApiResponse } from 'next';
-import { allProducts } from '../../../moc/moc';
+import { allProducts } from '../../../mock/mock';
 
 export default function handler(req: NextApiRequest, res: NextApiResponse) {
   const { id } = req.query;

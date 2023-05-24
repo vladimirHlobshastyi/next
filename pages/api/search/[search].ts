@@ -1,6 +1,6 @@
-import { produtsDataType } from '../../../moc/moc';
+import { produtsDataType } from '../../../mock/mock';
 import { NextApiRequest, NextApiResponse } from 'next';
-import { allProducts } from '../../../moc/moc';
+import { allProducts } from '../../../mock/mock';
 
 export type searchProductResult = {
   product: produtsDataType;

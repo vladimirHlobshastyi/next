@@ -2,7 +2,7 @@ import ProductPreview from '../../components/ProductPreview/ProductPreview';
 import style from './category.module.scss';
 import { useRouter } from 'next/router';
 import Link from 'next/link';
-import { productsInCategory } from '../../moc/moc';
+import { productsInCategory } from '../../mock/mock';
 
 export type pathTypes = { params: { category: string } }[];
 export type productComponentTypes = { products: productsInCategory };

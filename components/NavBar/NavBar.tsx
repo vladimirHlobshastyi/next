@@ -21,7 +21,6 @@ import classNames from 'classnames';
 import { rootTotalCountInCart } from '../../store/cart/cartSlice';
 import { rootCountInFavorites } from '../../store/favorites/favoritesSlice';
 import { rootCountInCompare } from '../../store/compare/compareSlice';
-import Logo from '../../public/Logo.svg';
 import SearchComponent from '../Search/Search';
 import { useRouter } from 'next/router';
 import { useIsMobile } from '../../hooks/useIsMobile';
@@ -84,8 +83,7 @@ const NavBar = ({ categories }: { categories: CategoryTypes }) => {
             <SearchComponent calb={setIsSearch} />
           ) : (
             <Link href="/">
-              {' '}
-              <Image src={Logo} width={180} height={39} alt="Logo" />
+              <Image src="/Logo.svg" width={180} height={39} alt="Logo" />
             </Link>
           )}
         </div>

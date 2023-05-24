@@ -1,5 +1,5 @@
 import { NextApiRequest, NextApiResponse } from 'next';
-import { blogPosts, blogPostsTypes } from '../../../moc/moc';
+import { blogPosts, blogPostsTypes } from '../../../mock/mock';
 
 export type responsBlogType = {
   data: blogPostsTypes[];
