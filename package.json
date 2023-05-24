@@ -9,7 +9,7 @@
     "precommit": "lint-staged",
     "lint": "eslint .",
     "format": "prettier --write .",
-    "cypress": "cypress run",
+    "cypress": "cypress open",
     "cypress -- --spec": "cypress run --spec ./cypress/e2e/user_functionality/user_functionality.cy.ts"
   },
   "husky": {

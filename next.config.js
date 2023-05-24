@@ -1,4 +1,4 @@
-const nextConfig = {
+/* const nextConfig = {
   webpack(config) {
     config.module.rules.push({
       test: /\.svg$/i,
@@ -9,8 +9,28 @@ const nextConfig = {
     return config;
   },
   env: {
-    API_URL: 'https://next-lime-delta.vercel.app',
+    API_URL:
+     // 'https://next-lime-delta.vercel.app' 
+     'http://localhost:3000',
   },
 };
 
 module.exports = nextConfig;
+ */
+const nextConfig = {
+  webpack(config) {
+    config.module.rules.push({
+      test: /\.svg$/i,
+      issuer: /\.[jt]sx?$/,
+      use: ['@svgr/webpack'],
+    });
+
+    return config;
+  },
+};
+module.exports = {
+  env: {
+    API_URL: 'http://localhost:3000',
+  },
+  nextConfig,
+};
