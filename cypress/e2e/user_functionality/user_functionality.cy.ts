@@ -9,6 +9,47 @@ describe('user_functionality', () => {
   beforeEach(() => {
     cy.myClearCache();
   });
+  it('should display sub categories after checking category button in the NavBar menu', () => {
+    cy.visit('/');
+  });
+
+  it('should display sub categories after checking category button in the NavBar menu', () => {
+    cy.visit('/');
+
+    //Open navbar and click on the category button
+    cy.get('.NavBar_navBarMenu__BeYEF').click();
+    cy.get('.Dropdown_sidePanelCatalogElementC1__5OqgK').click();
+
+    //Check is display the sub categories
+    cy.get('.Dropdown_sidePanelCatalogElementOpen__Ap0mN')
+      .find('a')
+      .should('be.visible')
+      .and(($linkElement) => {
+        expect($linkElement).to.have.length.greaterThan(1);
+      });
+  });
+
+  it('should display social network icons after scrolling down the NavBar menu', () => {
+    cy.visit('/');
+
+    // Scroll to the NavBar menu
+    cy.get('.NavBar_navBarMenu__BeYEF').click();
+    cy.get('.NavBar_sidePanel__kHV5b').scrollTo('bottom');
+
+    // Verify visibility and attributes of social network icons
+    cy.get('.NavBar_sidePanelCatalogSoclinks__9egQI')
+      .find('svg')
+      .should('be.visible')
+      .and(($svgBlocks) => {
+        // Check if any svg blocks are displayed
+        expect($svgBlocks).to.have.length.above(0);
+        $svgBlocks.each((index, $svgBlock) => {
+          // Verify the presence of width and height attributes
+          expect($svgBlock).to.have.attr('width');
+          expect($svgBlock).to.have.attr('height');
+        });
+      });
+  });
 
   it("should scroll to top of the page when clicking on the 'scroll to top' button", () => {
     cy.visit('/category/category1');

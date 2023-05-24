@@ -1,22 +1,3 @@
-/* const nextConfig = {
-  webpack(config) {
-    config.module.rules.push({
-      test: /\.svg$/i,
-      issuer: /\.[jt]sx?$/,
-      use: ['@svgr/webpack'],
-    });
-
-    return config;
-  },
-  env: {
-    API_URL:
-     // 'https://next-lime-delta.vercel.app' 
-     'http://localhost:3000',
-  },
-};
-
-module.exports = nextConfig;
- */
 const nextConfig = {
   webpack(config) {
     config.module.rules.push({
@@ -30,7 +11,7 @@ const nextConfig = {
 };
 module.exports = {
   env: {
-    API_URL: 'http://localhost:3000',
+    API_URL: '  http://localhost:3000',
   },
   nextConfig,
 };
