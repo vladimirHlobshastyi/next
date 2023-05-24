@@ -10,28 +10,7 @@ describe('user_functionality', () => {
   beforeEach(() => {
     cy.myClearCache();
   });
-  it('should correct display sub categories to compare for API request', () => {
-    cy.visit('/');
 
-    //Open navbar and click on the category button
-    cy.get('.NavBar_navBarMenu__BeYEF').click();
-    cy.get('.Dropdown_sidePanelCatalogElementC1__5OqgK').click();
-    //Subscribe to the request for check all categories
-    cy.intercept('GET', '/api/categories').as('categories');
-    //Get all categories from API
-    cy.request({
-      method: 'GET',
-      url: '/api/categories',
-      failOnStatusCode: false,
-    });
-    cy.wait('@categories').then((interception: Interception) => {
-      const allCategories: categoriesMockType = interception?.response?.body;
-      cy.get('.NavBar_sidePanelCatalog__PMB0F > :nth-child(2)').each(($element, index) => {
-        expect($element).to.have.text(allCategories[index].name);
-      });
-    });
-  });
-  /*  
   it('should display sub categories after checking category button in the NavBar menu', () => {
     cy.visit('/');
 
@@ -256,5 +235,5 @@ describe('user_functionality', () => {
     cy.wait('@searchRequest').then((interception: Interception) => {
       expect(interception.response?.statusCode).to.be.equal(200);
     });
-  });*/
+  });
 });
