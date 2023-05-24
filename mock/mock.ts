@@ -134,11 +134,11 @@ export type productsInCategory = {
   total: number;
 };
 
-export type categoriesMock = {
+export type categoriesMockType = {
   name: string;
   id: string;
 }[];
-export const categoriesMock: categoriesMock = [
+export const categoriesMock: categoriesMockType = [
   { name: 'category1', id: 'category1' },
   { name: 'category2', id: 'category2' },
   { name: 'category3', id: 'category3' },
