@@ -26,7 +26,7 @@ describe('user_functionality', () => {
       cy.get('.NavBar_sidePanelCatalog__PMB0F > :nth-child(2)').each(($element, index) => {});
     });
   });
-  /* 
+
   it('should display sub categories after checking category button in the NavBar menu', () => {
     cy.visit('/');
 
@@ -251,5 +251,5 @@ describe('user_functionality', () => {
     cy.wait('@searchRequest').then((interception: Interception) => {
       expect(interception.response?.statusCode).to.be.equal(200);
     });
-  }); */
+  });
 });

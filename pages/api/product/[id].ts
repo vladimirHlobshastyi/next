@@ -1,5 +1,5 @@
 import { NextApiRequest, NextApiResponse } from 'next';
-import { allProducts, produtsDataType } from '../../../mock/moc';
+import { allProducts, produtsDataType } from '../../../mock/mock';
 
 export default function handler(req: NextApiRequest, res: NextApiResponse) {
   const { category, idProduct } = req.query;

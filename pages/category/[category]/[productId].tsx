@@ -11,14 +11,13 @@ import HeadComponent from '../../../components/Head/HeadComponent';
 import useAppSelector from '../../../hooks/useAppSelector';
 import useIsFavorites from '../../../hooks/useIsFavorites';
 import useRootDispatch from '../../../hooks/useRootDispatch';
-import { productsInCategory, produtsDataType } from '../../../mock/mock';
-import { dataCartProduct } from '../../../store/cart/cartSlice.types';
 import {
   addCompareProduct,
   compareState,
   removeCompareProduct,
 } from '../../../store/compare/compareSlice';
 import style from './Product.module.scss';
+import { productsInCategory, produtsDataType } from 'mock/mock';
 
 export type productPathType = {
   params: {
