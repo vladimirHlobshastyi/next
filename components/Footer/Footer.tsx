@@ -3,7 +3,6 @@ import Link from 'next/link';
 import style from './Footer.module.scss';
 import { BsInstagram, BsTelegram } from 'react-icons/bs';
 import { TfiYoutube } from 'react-icons/tfi';
-import Logo from '../../public/Logo.svg';
 
 const Footer = () => {
   return (
@@ -17,7 +16,7 @@ const Footer = () => {
       </div>
       <div className={style.logo}>
         <Link href="/">
-          <Image src={Logo} width={180} height={39} alt="Logo" />
+          <Image src='/Logo.svg' width={180} height={39} alt="Logo" />
         </Link>
       </div>
       <div className={style.social}>
