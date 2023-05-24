@@ -15,7 +15,7 @@ module.exports = {
     domains: ['https://next-lime-delta.vercel.app'],
   },
   env: {
-    API_URL: 'http://localhost:3000',
+    API_URL: 'https://next-lime-delta.vercel.app',
   },
   ...nextConfig,
 };

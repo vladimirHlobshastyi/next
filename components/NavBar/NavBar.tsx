@@ -83,8 +83,7 @@ const NavBar = ({ categories }: { categories: CategoryTypes }) => {
             <SearchComponent calb={setIsSearch} />
           ) : (
             <Link href="/">
-
-              <Image src='/Logo.svg' width={180} height={39} alt="Logo" />
+              <Image src="/Logo.svg" width={180} height={39} alt="Logo" />
             </Link>
           )}
         </div>
